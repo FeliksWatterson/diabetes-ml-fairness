@@ -1,0 +1,9 @@
+trial,inner_fold,category,message
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E36A72D40>
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E369B8040>
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E36072F20>
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E35FA67A0>
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E3ABD3E20>
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E3ABD1300>
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E36A71B70>
+21,2,ResourceWarning,unclosed database in <sqlite3.Connection object at 0x0000022E36A736A0>

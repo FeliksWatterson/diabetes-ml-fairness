@@ -1,0 +1,18 @@
+{
+  "run_id": "54c463bbe9079503",
+  "model": "XGBoost",
+  "stage": "final_development",
+  "params": {
+    "learning_rate": 0.06707295148238462,
+    "max_depth": 3,
+    "n_estimators": 246,
+    "subsample": 0.6419679183622217,
+    "colsample_bytree": 0.6046644161013743,
+    "min_child_weight": 9
+  },
+  "best_trial": 25,
+  "mean_cv_auc": 0.7976697082493571,
+  "complete_trials": 30,
+  "failed_trials": [],
+  "trial_seconds": 63.670351
+}

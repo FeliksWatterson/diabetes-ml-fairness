@@ -1,0 +1,32 @@
+{
+  "identity": {
+    "budget": 30,
+    "model": "SVM RBF",
+    "outer_fold": 2,
+    "phase": "official",
+    "run_id": "3d15f3dbb58256ec",
+    "seed": 42,
+    "best_params": {
+      "C": 1.0944826212760483,
+      "gamma": 0.018949196255146586
+    },
+    "train_sha256": "c012ec459130f6771d014b5b1c15b11c76812ab70919f31948c0ce9cdf3cb598",
+    "test_sha256": "be4d00a14ffe88868588a344317f447716f79165edf2c8ab30a29e0528290e00",
+    "columns": [
+      "age",
+      "sex",
+      "race_ethnicity",
+      "bmi",
+      "smoking_status",
+      "physical_activity",
+      "heart_attack",
+      "stroke"
+    ]
+  },
+  "artifacts": {
+    "D:\\NCKH Mini\\diabetes-project\\models\\nested_cv\\3d15f3dbb58256ec\\SVM_RBF_outer2.joblib": "5f3abe242f897af70d1e9a820e0650daf42a8caf5724939335306f7109518507",
+    "D:\\NCKH Mini\\diabetes-project\\models\\nested_cv\\3d15f3dbb58256ec\\SVM_RBF_outer2.json": "e4c206820142a4b5923ac94ecf1615b0cdac364299c2398b04c4ff8e4429b3bc",
+    "D:\\NCKH Mini\\diabetes-project\\results\\tuning\\3d15f3dbb58256ec\\official\\SVM_RBF_outer2\\outer_metrics.json": "aedca2c765cbb15d0c165d51000c05df61cd8df1fba5015f3ff6baadf58073dd",
+    "D:\\NCKH Mini\\diabetes-project\\results\\tuning\\3d15f3dbb58256ec\\official\\SVM_RBF_outer2\\outer_predictions.parquet": "4aa117bc32875fc8b0a1d0bed5253fdb824895356887e0aef2ef74a8b5058f73"
+  }
+}

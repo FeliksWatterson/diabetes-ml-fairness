@@ -1,0 +1,91 @@
+{
+  "final_run_id": "54c463bbe9079503",
+  "models": {
+    "XGBoost": "primary",
+    "LR": "reference"
+  },
+  "input_columns": [
+    "age",
+    "sex",
+    "race_ethnicity",
+    "bmi",
+    "smoking_status",
+    "physical_activity",
+    "heart_attack",
+    "stroke"
+  ],
+  "thresholds": {
+    "XGBoost": {
+      "default": 0.5,
+      "youden": 0.48996129631996155,
+      "selection_rule": "maximize Youden J over finite development OOF thresholds; ties: higher threshold",
+      "tie_comparison": "exact integer TP*N - FP*P",
+      "prediction_rule": "probability >= threshold; same threshold for all groups",
+      "use": "threshold development after CV parameter selection; not independent internal evaluation"
+    },
+    "LR": {
+      "default": 0.5,
+      "youden": 0.5066326293898256,
+      "selection_rule": "maximize Youden J over finite development OOF thresholds; ties: higher threshold",
+      "tie_comparison": "exact integer TP*N - FP*P",
+      "prediction_rule": "probability >= threshold; same threshold for all groups",
+      "use": "threshold development after CV parameter selection; not independent internal evaluation"
+    }
+  },
+  "source_row_id": "index of processed BRFSS source before reset or sorting; unique within year",
+  "survey_weighted": false,
+  "calibration_bins": "10 quantile groups; equal probabilities stay together",
+  "source_sha256": {
+    "D:\\NCKH Mini\\diabetes-project\\data\\processed\\brfss_2015.parquet": "b5d71aa72d7814a7a8a973553b2d5488e3ca7b929dc548628b4e9bc61b55adae",
+    "D:\\NCKH Mini\\diabetes-project\\data\\processed\\brfss_2017.parquet": "6254c57a6190931068e08c72b4aeed8332a14ea4c874d62e814d24078fcf2033"
+  },
+  "frozen_artifact_sha256": {
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\config.json": "3e7546d84d2280bd50728a0ff2cfa351c64e5ed5e22a70abfd2c8e2317af741c",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\splits.npz": "1ce58ce7b17bdf34e0edcc2cc452f9bc496a0ef634b31b2119c95e5b064db25a",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\summary.csv": "c2a7a87b78a802364ce580bb469b5549a439a616db289789919a299280ab18a7",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\artifacts.json": "fb3746d53fac704b1e6bec91e38fb1fb87f10c9a2ebf30888912278f37c72fc7",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\best_params.json": "72a532ecc6d4ba595cf69ff25efe4687264a6206d794c3e659b8ad8f45e08cb8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\development_oof.parquet": "b07e7099a4ab5e9c57297d7fb8de473ba533ea96e77addc3e31093f3b49c188c",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\metadata.json": "7fcdc5dbe8ae62942500bbdf527cbabafc471dbc9f2f8289b4e7cac1b49c7f6d",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\study.sqlite3": "554cd8fcb622fdb59c33fbc2f6e0d0e3ff1fcd690491937c39b140349b6dbf5c",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\thresholds.json": "a9762860455abe1c73be42e2177a363be1a69b0bdf621171e5cd580a890bf2c8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\trials.csv": "439407c6c6d7bd63ca393517700d7c19e8e2322db19190977844210b43aa2a3a",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\warnings.csv": "fe4aac6050d6bfb50f575846cde077e47ca45fa5d4cb9309e9c5aa38c735dbda",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\youden_candidates.csv": "438e22a7eb14981395b4f4ed6805b18493c91781c1a4c35f7a0f386dedaa72e9",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\artifacts.json": "65e781070e3a64b71ee5cf7bf7efa7727a2e3305b8e090d31382e506c78326e8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\best_params.json": "99d5597aafb5d3150879a7a592e6b9c3f49a6f3a6b54137101b54185c3683fff",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\development_oof.parquet": "d304608d05a88c1378fac68485b19c3f5e95851fa2d92a3a952f8276636b2392",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\metadata.json": "520717189a45ceaac37b830bcfa93270f3b053a76e7bf6169f5e4360067c962c",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\study.sqlite3": "23e173456d7206167a4f51ac6c3ece71fe2da29e3fcb33d97b033ac0ae70be77",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\thresholds.json": "02a8a4abf81837b05607e57cda5499f9c8c116024e9f25d2c08cabb2852a300b",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\trials.csv": "6b0c633826ed6919c1799f0cfda136c7530f06e30f850aff406bdeab96e42a68",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\warnings.csv": "fe4aac6050d6bfb50f575846cde077e47ca45fa5d4cb9309e9c5aa38c735dbda",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\youden_candidates.csv": "b5cc6a4d33eafe86c2ca1739fa166571ba080967e7d075f31762a871aed8ad79",
+    "D:\\NCKH Mini\\diabetes-project\\models\\final\\54c463bbe9079503\\LR.joblib": "37f88b525c5a499b7c8dc799fdeb1d1cfdf59fd6d3229c32758606700213af95",
+    "D:\\NCKH Mini\\diabetes-project\\models\\final\\54c463bbe9079503\\LR.metadata.json": "7fcdc5dbe8ae62942500bbdf527cbabafc471dbc9f2f8289b4e7cac1b49c7f6d",
+    "D:\\NCKH Mini\\diabetes-project\\models\\final\\54c463bbe9079503\\XGBoost.joblib": "f1ebf682091e086e14f9efde26136a39bdf731d98aabfa65de02f529c1a36791",
+    "D:\\NCKH Mini\\diabetes-project\\models\\final\\54c463bbe9079503\\XGBoost.metadata.json": "520717189a45ceaac37b830bcfa93270f3b053a76e7bf6169f5e4360067c962c"
+  },
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "optuna": "5.0.0",
+    "pyarrow": "26.0.0",
+    "joblib": "1.6.0"
+  },
+  "output_sha256": {
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2015_LR_predictions.parquet": "28cb67b04ebaaa20678efc6aaed35090e9c82664f79149767f9d19429ac3cd09",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2015_XGBoost_predictions.parquet": "172901451f9fe09aa4b8a2a83b86d2243af5536e60c5cc774ca41d547479e6a8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2017_LR_predictions.parquet": "b73c906fd90b24c72fbff037f5062cc26c85689b877f142cc797083041106398",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2017_XGBoost_predictions.parquet": "5aaf2f32c12be0dd4aca046978e30c12076bf07d0c7d38d6181a54d728b55f61",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\calibration_quantile_bins.csv": "e295aebb1eb8e5b15efc3e01285dcee6722102847c534f1b6e1315627e87f7eb",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\input_checks.csv": "c9daabaf5fb36bad06ea1475a428a4e16c8fd9ca5fcb07e06a68dc180429ca91",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\probability_metrics.csv": "1e423d3d0638fd9e18a76af4a72c177ff201b9d3fb55fbec41704784c85e26e3",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\threshold_metrics.csv": "89daee8d8bdd2328ef5d6c7dfcbcc468252350a12c9862fc969bce5906fefc06",
+    "D:\\NCKH Mini\\diabetes-project\\results\\figures\\external_validation\\54c463bbe9079503\\brfss_roc_pr.png": "f28f12528c3f8c85b49c79164df9b9f0aee0fba7634aed840b6059a335605063",
+    "D:\\NCKH Mini\\diabetes-project\\results\\figures\\external_validation\\54c463bbe9079503\\brfss_calibration.png": "8f530ef28697423100c9faf3c88a859b1e108af768d70752ea8cb145861ea718",
+    "D:\\NCKH Mini\\diabetes-project\\results\\figures\\external_validation\\54c463bbe9079503\\brfss_xgboost_confusion_youden.png": "988351c6849f4b3c9b95bb2cf6d854911d9223cb216ca868389fba7fb2860a38"
+  }
+}

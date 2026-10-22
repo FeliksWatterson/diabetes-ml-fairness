@@ -1,0 +1,31 @@
+{
+  "budget": 30,
+  "model": "LR",
+  "outer_fold": 3,
+  "phase": "official",
+  "run_id": "3d15f3dbb58256ec",
+  "best_params": {
+    "C": 22.33236910113079
+  },
+  "inner_auc": 0.7940752614557238,
+  "outer_n": 2166,
+  "fit_seconds": 0.026213900000584545,
+  "ROC-AUC": 0.7981358588249826,
+  "Average precision": 0.45725864515266973,
+  "Sensitivity": 0.7819383259911894,
+  "Specificity": 0.6886682242990654,
+  "Precision": 0.3997747747747748,
+  "F1": 0.5290611028315947,
+  "Brier score": 0.1901331177046314,
+  "confusion_matrix": [
+    [
+      1179,
+      533
+    ],
+    [
+      99,
+      355
+    ]
+  ],
+  "warnings": []
+}

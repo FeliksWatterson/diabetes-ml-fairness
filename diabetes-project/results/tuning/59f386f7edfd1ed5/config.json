@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "seed": 42,
+  "trials_per_model_outer": 30,
+  "objective": "mean_inner_roc_auc",
+  "direction": "maximize",
+  "sampler": "TPE",
+  "startup_trials": 10,
+  "multivariate": false,
+  "sampler_seed_rule": "seed + 1000 * outer_fold + trial_number",
+  "pruning": false,
+  "study_jobs": 1,
+  "estimator_jobs": 4,
+  "budget_rule": "30 started trials including failed/interrupted; stop on error",
+  "space": {
+    "LR": {
+      "C": {
+        "kind": "float",
+        "low": 0.001,
+        "high": 100.0,
+        "log": true
+      }
+    },
+    "RF": {
+      "n_estimators": {
+        "kind": "int",
+        "low": 200,
+        "high": 600,
+        "step": 100
+      },
+      "max_depth": {
+        "kind": "categorical",
+        "choices": [
+          null,
+          5,
+          10,
+          20
+        ]
+      },
+      "min_samples_leaf": {
+        "kind": "int",
+        "low": 1,
+        "high": 20
+      },
+      "min_samples_split": {
+        "kind": "int",
+        "low": 2,
+        "high": 20
+      },
+      "max_features": {
+        "kind": "categorical",
+        "choices": [
+          "sqrt",
+          0.5,
+          1.0
+        ]
+      }
+    },
+    "SVM RBF": {
+      "C": {
+        "kind": "float",
+        "low": 0.01,
+        "high": 100.0,
+        "log": true
+      },
+      "gamma": {
+        "kind": "float",
+        "low": 0.0001,
+        "high": 1.0,
+        "log": true
+      }
+    },
+    "XGBoost": {
+      "learning_rate": {
+        "kind": "float",
+        "low": 0.01,
+        "high": 0.2
+      },
+      "max_depth": {
+        "kind": "int",
+        "low": 3,
+        "high": 9
+      },
+      "n_estimators": {
+        "kind": "int",
+        "low": 100,
+        "high": 500
+      },
+      "subsample": {
+        "kind": "float",
+        "low": 0.6,
+        "high": 1.0
+      },
+      "colsample_bytree": {
+        "kind": "float",
+        "low": 0.6,
+        "high": 1.0
+      },
+      "min_child_weight": {
+        "kind": "int",
+        "low": 1,
+        "high": 10
+      }
+    }
+  },
+  "columns": [
+    "age",
+    "sex",
+    "race_ethnicity",
+    "bmi",
+    "smoking_status",
+    "physical_activity",
+    "heart_attack",
+    "stroke"
+  ],
+  "dtypes": {
+    "age": "float64",
+    "sex": "Int64",
+    "race_ethnicity": "string",
+    "bmi": "float64",
+    "smoking_status": "string",
+    "physical_activity": "Int64",
+    "heart_attack": "Int64",
+    "stroke": "Int64"
+  },
+  "rows": 10832,
+  "data_sha256": "a06997f6036954444fa5d2cfb7b184ee7327cd51378c91d3f4c59f8be0cc5faf",
+  "outer_train_hashes": {
+    "1": "858539de2babcf4ee08245f5975a4938bd7560d4006fbcc107c84c57cf6c2da9",
+    "2": "c012ec459130f6771d014b5b1c15b11c76812ab70919f31948c0ce9cdf3cb598",
+    "3": "e7e3d2193f15819b98a8e5557780d37241f4bdd5d92c04b736a2c46b9b65e44e",
+    "4": "edeb230483ba2a67365b29a45eb76f093f16cb5814c01167ca9104ef2ffa7641",
+    "5": "aa44f11ed43268d68c18bff9ce655a428586f06e89416c169fd993d1edcc234f"
+  },
+  "splits_sha256": "12605b8bb63d9dc931c2592b824e6b5614bf100226d8c70e93866fe1add20e62",
+  "pilot_params": {
+    "LR": {
+      "C": 1.0
+    },
+    "RF": {
+      "n_estimators": 300,
+      "max_depth": null,
+      "min_samples_leaf": 5,
+      "min_samples_split": 2,
+      "max_features": "sqrt"
+    },
+    "SVM RBF": {
+      "C": 1.0,
+      "gamma": 0.1
+    },
+    "XGBoost": {
+      "learning_rate": 0.05,
+      "max_depth": 3,
+      "n_estimators": 200,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 1
+    }
+  },
+  "paper_sha256": "3c57403b644d8cfdf322fa4688e27af4ec52eaaf0894684bc99dde5dfbf75c1a",
+  "utils_sha256": "8056479f2ff6aecdaad4ff68f5ceff962c9d0091f7686399586f7eda56f2924f",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "optuna": "5.0.0",
+    "pyarrow": "26.0.0"
+  },
+  "fixed": {
+    "LR": {
+      "solver": "lbfgs",
+      "max_iter": 2000,
+      "class_weight": "balanced"
+    },
+    "RF": {
+      "class_weight": "balanced",
+      "n_jobs": 4
+    },
+    "SVM RBF": {
+      "kernel": "rbf",
+      "class_weight": "balanced",
+      "search_probability": false,
+      "outer_probability": true
+    },
+    "XGBoost": {
+      "objective": "binary:logistic",
+      "eval_metric": "logloss",
+      "reg_alpha": 0,
+      "reg_lambda": 1,
+      "tree_method": "hist",
+      "scale_pos_weight": "computed from y on every fit"
+    }
+  },
+  "thresholds": {
+    "SVM RBF": "decision score >= 0",
+    "others": "probability >= 0.5"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "run_id": "59f386f7edfd1ed5",
+  "phase": "pilot",
+  "model": "RF",
+  "outer_fold": 1,
+  "budget": 1,
+  "trial": 0,
+  "inner_auc": 0.7869367449456762,
+  "params": {
+    "n_estimators": 300,
+    "max_depth": null,
+    "min_samples_leaf": 5,
+    "min_samples_split": 2,
+    "max_features": "sqrt"
+  },
+  "completed_trials": 1
+}

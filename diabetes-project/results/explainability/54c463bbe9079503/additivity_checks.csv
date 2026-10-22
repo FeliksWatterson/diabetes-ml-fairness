@@ -1,0 +1,4 @@
+check,max_abs_error,absolute_tolerance
+base + transformed SHAP vs raw margin,4.896894097328186e-06,1e-05
+base + grouped SHAP vs raw margin,4.896894097328186e-06,1e-05
+sigmoid(raw margin) vs predict_proba,6.97383885084335e-08,1e-07

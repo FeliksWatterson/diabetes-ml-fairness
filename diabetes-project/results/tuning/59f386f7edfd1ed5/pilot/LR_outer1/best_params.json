@@ -1,0 +1,13 @@
+{
+  "run_id": "59f386f7edfd1ed5",
+  "phase": "pilot",
+  "model": "LR",
+  "outer_fold": 1,
+  "budget": 1,
+  "trial": 0,
+  "inner_auc": 0.7988620030615045,
+  "params": {
+    "C": 1.0
+  },
+  "completed_trials": 1
+}

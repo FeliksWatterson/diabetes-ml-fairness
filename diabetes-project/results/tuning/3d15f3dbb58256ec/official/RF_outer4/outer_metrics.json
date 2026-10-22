@@ -1,0 +1,35 @@
+{
+  "budget": 30,
+  "model": "RF",
+  "outer_fold": 4,
+  "phase": "official",
+  "run_id": "3d15f3dbb58256ec",
+  "best_params": {
+    "n_estimators": 300,
+    "max_depth": 10,
+    "min_samples_leaf": 17,
+    "min_samples_split": 6,
+    "max_features": "sqrt"
+  },
+  "inner_auc": 0.7922450677960103,
+  "outer_n": 2166,
+  "fit_seconds": 1.715277800001786,
+  "ROC-AUC": 0.7976191546618198,
+  "Average precision": 0.46112043977444783,
+  "Sensitivity": 0.756043956043956,
+  "Specificity": 0.6808883693746347,
+  "Precision": 0.3865168539325843,
+  "F1": 0.5115241635687733,
+  "Brier score": 0.18202148645656568,
+  "confusion_matrix": [
+    [
+      1165,
+      546
+    ],
+    [
+      111,
+      344
+    ]
+  ],
+  "warnings": []
+}

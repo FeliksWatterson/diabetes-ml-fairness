@@ -1,0 +1,18 @@
+transformed_index,transformed_feature,original_feature,transformer,category
+0,numeric__age,age,numeric,
+1,numeric__bmi,bmi,numeric,
+2,categorical__sex_1,sex,categorical,1
+3,categorical__sex_2,sex,categorical,2
+4,categorical__race_ethnicity_Black NH,race_ethnicity,categorical,Black NH
+5,categorical__race_ethnicity_Hispanic,race_ethnicity,categorical,Hispanic
+6,categorical__race_ethnicity_Other,race_ethnicity,categorical,Other
+7,categorical__race_ethnicity_White NH,race_ethnicity,categorical,White NH
+8,categorical__smoking_status_current,smoking_status,categorical,current
+9,categorical__smoking_status_former,smoking_status,categorical,former
+10,categorical__smoking_status_never,smoking_status,categorical,never
+11,categorical__physical_activity_0,physical_activity,categorical,0
+12,categorical__physical_activity_1,physical_activity,categorical,1
+13,categorical__heart_attack_0,heart_attack,categorical,0
+14,categorical__heart_attack_1,heart_attack,categorical,1
+15,categorical__stroke_0,stroke,categorical,0
+16,categorical__stroke_1,stroke,categorical,1

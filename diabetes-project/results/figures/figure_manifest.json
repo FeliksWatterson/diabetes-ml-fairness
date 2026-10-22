@@ -1,0 +1,36 @@
+{
+  "run_id": "3d15f3dbb58256ec",
+  "unweighted": true,
+  "n": 10832,
+  "prevalence": 0.20993353028064993,
+  "model_colors": {
+    "LR": "#0072B2",
+    "RF": "#E69F00",
+    "SVM RBF": "#009E73",
+    "XGBoost": "#CC79A7"
+  },
+  "auc_error_bar": "SD across 5 outer folds (ddof=1), not confidence interval",
+  "baseline_precision": "recorded values: 4 decimal places",
+  "pooled_ranking_score": "SVM decision_function; other models probability_1",
+  "thresholds": {
+    "SVM RBF": "score >= 0",
+    "others": "probability_1 >= 0.5"
+  },
+  "calibration": "10 model-specific quantile groups; ties kept together",
+  "svm_probability": "internal probability estimation; no additional calibration",
+  "matplotlib_version": "3.11.2",
+  "source_sha256": {
+    "..\\results\\tuning\\3d15f3dbb58256ec\\baseline_tuned_comparison.csv": "ea74cb4ec28565d86003b3f298d61c0e129a7a71abd469ddca6f908bd70cafec",
+    "..\\results\\tuning\\3d15f3dbb58256ec\\tuned_fold_metrics.csv": "b38cd29f71deb5abcc2ceab9e08f78ec3ad1b34a21b3f831941fd19f5927c1d8",
+    "..\\results\\tuning\\3d15f3dbb58256ec\\oof_LR.parquet": "c953c012cc0b2f3a8125ff2029f089b70d5648f9b403a25528f214a80f179309",
+    "..\\results\\tuning\\3d15f3dbb58256ec\\oof_RF.parquet": "e1d5f25d96237a77d1837aee372cb76423560a3216e886150a7b9f480255dfbb",
+    "..\\results\\tuning\\3d15f3dbb58256ec\\oof_SVM_RBF.parquet": "116923b1806e186d39e3d6304b464072d3ffa885695ad4d64639a00511b7a87e",
+    "..\\results\\tuning\\3d15f3dbb58256ec\\oof_XGBoost.parquet": "77e91e33292103d69fcbc80babfc7ffe10651a69744fdda2aca77a796e4849e1"
+  },
+  "figures": [
+    "auc_baseline_tuned.png",
+    "roc_pr_oof_tuned.png",
+    "confusion_matrices_oof_tuned.png",
+    "calibration_oof_tuned.png"
+  ]
+}

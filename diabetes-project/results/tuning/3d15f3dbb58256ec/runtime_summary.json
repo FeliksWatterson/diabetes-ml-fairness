@@ -1,0 +1,19 @@
+{
+  "run_id": "3d15f3dbb58256ec",
+  "complete_trials": 600,
+  "failed_trials": 0,
+  "inner_fits_complete": 3000,
+  "outer_pipelines": 20,
+  "wall_seconds": 4690.3305881000015,
+  "trial_seconds": 4503.382436,
+  "outer_fit_seconds": 119.34247890000188,
+  "warning_count": 781,
+  "convergence_warnings": 0,
+  "oof_people_per_model": {
+    "LR": 10832,
+    "RF": 10832,
+    "SVM RBF": 10832,
+    "XGBoost": 10832
+  },
+  "baseline_precision": "recorded notebook outputs: four decimal places"
+}

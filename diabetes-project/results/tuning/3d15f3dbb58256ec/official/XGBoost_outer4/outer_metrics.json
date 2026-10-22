@@ -1,0 +1,36 @@
+{
+  "budget": 30,
+  "model": "XGBoost",
+  "outer_fold": 4,
+  "phase": "official",
+  "run_id": "3d15f3dbb58256ec",
+  "best_params": {
+    "learning_rate": 0.06276173324274366,
+    "max_depth": 3,
+    "n_estimators": 141,
+    "subsample": 0.679731550356053,
+    "colsample_bytree": 0.6471155624322241,
+    "min_child_weight": 4
+  },
+  "inner_auc": 0.7963036530856076,
+  "outer_n": 2166,
+  "fit_seconds": 0.07036480000169831,
+  "ROC-AUC": 0.8078342464081797,
+  "Average precision": 0.4833440481732876,
+  "Sensitivity": 0.7846153846153846,
+  "Specificity": 0.684979544126242,
+  "Precision": 0.3984375,
+  "F1": 0.5284974093264249,
+  "Brier score": 0.18114544451236725,
+  "confusion_matrix": [
+    [
+      1172,
+      539
+    ],
+    [
+      98,
+      357
+    ]
+  ],
+  "warnings": []
+}

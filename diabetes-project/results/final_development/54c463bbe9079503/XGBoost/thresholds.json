@@ -1,0 +1,8 @@
+{
+  "default": 0.5,
+  "youden": 0.48996129631996155,
+  "selection_rule": "maximize Youden J over finite development OOF thresholds; ties: higher threshold",
+  "tie_comparison": "exact integer TP*N - FP*P",
+  "prediction_rule": "probability >= threshold; same threshold for all groups",
+  "use": "threshold development after CV parameter selection; not independent internal evaluation"
+}

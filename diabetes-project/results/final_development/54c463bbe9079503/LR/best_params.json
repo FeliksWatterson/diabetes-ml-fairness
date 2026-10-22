@@ -1,0 +1,13 @@
+{
+  "run_id": "54c463bbe9079503",
+  "model": "LR",
+  "stage": "final_development",
+  "params": {
+    "C": 91.91723538975099
+  },
+  "best_trial": 12,
+  "mean_cv_auc": 0.7953034175502125,
+  "complete_trials": 30,
+  "failed_trials": [],
+  "trial_seconds": 22.617323
+}

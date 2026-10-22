@@ -1,0 +1,39 @@
+{
+  "final_run_id": "54c463bbe9079503",
+  "source": "saved external BRFSS predictions",
+  "models": {
+    "XGBoost": "primary",
+    "LR": "reference"
+  },
+  "groups": {
+    "1": "Nam",
+    "2": "Nữ",
+    "missing": "Thiếu giới"
+  },
+  "thresholds": {
+    "XGBoost": 0.48996129631996155,
+    "LR": 0.5066326293898256
+  },
+  "prediction_rule": "probability >= fixed NHANES Youden threshold, shared across sexes and years",
+  "gap_direction": "male - female",
+  "gap_unit": "percentage points",
+  "equalized_odds_gap": "max(abs(TPR gap), abs(FPR gap)); NA if either component is NA",
+  "undefined_metrics": "NA for zero denominator; AUC requires both classes; AP requires positives; empty group metrics NA",
+  "survey_weighted": false,
+  "confidence_intervals": false,
+  "statistical_tests": false,
+  "source_sha256": {
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\XGBoost\\thresholds.json": "02a8a4abf81837b05607e57cda5499f9c8c116024e9f25d2c08cabb2852a300b",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\thresholds.json": "a9762860455abe1c73be42e2177a363be1a69b0bdf621171e5cd580a890bf2c8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2015_XGBoost_predictions.parquet": "172901451f9fe09aa4b8a2a83b86d2243af5536e60c5cc774ca41d547479e6a8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2015_LR_predictions.parquet": "28cb67b04ebaaa20678efc6aaed35090e9c82664f79149767f9d19429ac3cd09",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2017_XGBoost_predictions.parquet": "5aaf2f32c12be0dd4aca046978e30c12076bf07d0c7d38d6181a54d728b55f61",
+    "D:\\NCKH Mini\\diabetes-project\\results\\external_validation\\54c463bbe9079503\\brfss_2017_LR_predictions.parquet": "b73c906fd90b24c72fbff037f5062cc26c85689b877f142cc797083041106398"
+  },
+  "output_sha256": {
+    "D:\\NCKH Mini\\diabetes-project\\results\\fairness\\54c463bbe9079503\\sex_counts.csv": "51b5abb6574f177c82835e8015f0ba3fc4ccf486ca60c300fbecde8c076de850",
+    "D:\\NCKH Mini\\diabetes-project\\results\\fairness\\54c463bbe9079503\\sex_group_metrics.csv": "f872cb7e62bbb01af2d9e245326025f2249142820421bc806f54035bca5d6681",
+    "D:\\NCKH Mini\\diabetes-project\\results\\fairness\\54c463bbe9079503\\sex_gaps_pp.csv": "a8c070d6b2fe5d6276190130d3e1196549e86d026cd1dc8788ed5a81a2ce11f0",
+    "D:\\NCKH Mini\\diabetes-project\\results\\figures\\fairness\\54c463bbe9079503\\sex_tpr_fpr.png": "255caeae372be0177b3a909aa50fe9db44e3043f142c66134e32bbc4d5698bf4"
+  }
+}

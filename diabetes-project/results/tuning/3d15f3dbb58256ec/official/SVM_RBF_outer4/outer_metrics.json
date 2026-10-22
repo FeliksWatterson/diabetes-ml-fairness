@@ -1,0 +1,37 @@
+{
+  "budget": 30,
+  "model": "SVM RBF",
+  "outer_fold": 4,
+  "phase": "official",
+  "run_id": "3d15f3dbb58256ec",
+  "best_params": {
+    "C": 3.1168496905083147,
+    "gamma": 0.009915191403613138
+  },
+  "inner_auc": 0.7976226380551243,
+  "outer_n": 2166,
+  "fit_seconds": 25.69384859999991,
+  "ROC-AUC": 0.7971226902845839,
+  "Average precision": 0.45435145740343785,
+  "Sensitivity": 0.8087912087912088,
+  "Specificity": 0.6528345996493279,
+  "Precision": 0.38253638253638256,
+  "F1": 0.5194071983062809,
+  "Brier score": 0.13640832450469167,
+  "confusion_matrix": [
+    [
+      1117,
+      594
+    ],
+    [
+      87,
+      368
+    ]
+  ],
+  "warnings": [
+    {
+      "category": "FutureWarning",
+      "message": "The `probability` parameter was deprecated in 1.9 and will be removed in version 1.11. Use `CalibratedClassifierCV(SVC(), ensemble=False)` instead of `SVC(probability=True)`"
+    }
+  ]
+}

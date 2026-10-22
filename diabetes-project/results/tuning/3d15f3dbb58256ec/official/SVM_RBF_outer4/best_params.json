@@ -1,0 +1,16 @@
+{
+  "run_id": "3d15f3dbb58256ec",
+  "phase": "official",
+  "model": "SVM RBF",
+  "outer_fold": 4,
+  "budget": 30,
+  "trial": 28,
+  "inner_auc": 0.7976226380551243,
+  "params": {
+    "C": 3.1168496905083147,
+    "gamma": 0.009915191403613138
+  },
+  "completed_trials": 30,
+  "failed_trials": 0,
+  "trial_seconds": 589.077099
+}

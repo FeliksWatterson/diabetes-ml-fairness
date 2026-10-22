@@ -1,0 +1,15 @@
+{
+  "run_id": "3d15f3dbb58256ec",
+  "phase": "official",
+  "model": "LR",
+  "outer_fold": 5,
+  "budget": 30,
+  "trial": 7,
+  "inner_auc": 0.7899148739372739,
+  "params": {
+    "C": 0.8402401216213362
+  },
+  "completed_trials": 30,
+  "failed_trials": 0,
+  "trial_seconds": 14.245138
+}

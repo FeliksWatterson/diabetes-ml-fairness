@@ -1,0 +1,14 @@
+{
+  "run_id": "54c463bbe9079503",
+  "sha256": {
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\best_params.json": "72a532ecc6d4ba595cf69ff25efe4687264a6206d794c3e659b8ad8f45e08cb8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\development_oof.parquet": "b07e7099a4ab5e9c57297d7fb8de473ba533ea96e77addc3e31093f3b49c188c",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\metadata.json": "7fcdc5dbe8ae62942500bbdf527cbabafc471dbc9f2f8289b4e7cac1b49c7f6d",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\thresholds.json": "a9762860455abe1c73be42e2177a363be1a69b0bdf621171e5cd580a890bf2c8",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\trials.csv": "439407c6c6d7bd63ca393517700d7c19e8e2322db19190977844210b43aa2a3a",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\warnings.csv": "fe4aac6050d6bfb50f575846cde077e47ca45fa5d4cb9309e9c5aa38c735dbda",
+    "D:\\NCKH Mini\\diabetes-project\\results\\final_development\\54c463bbe9079503\\LR\\youden_candidates.csv": "438e22a7eb14981395b4f4ed6805b18493c91781c1a4c35f7a0f386dedaa72e9",
+    "D:\\NCKH Mini\\diabetes-project\\models\\final\\54c463bbe9079503\\LR.joblib": "37f88b525c5a499b7c8dc799fdeb1d1cfdf59fd6d3229c32758606700213af95",
+    "D:\\NCKH Mini\\diabetes-project\\models\\final\\54c463bbe9079503\\LR.metadata.json": "7fcdc5dbe8ae62942500bbdf527cbabafc471dbc9f2f8289b4e7cac1b49c7f6d"
+  }
+}

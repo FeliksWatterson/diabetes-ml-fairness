@@ -1,0 +1,18 @@
+{
+  "run_id": "59f386f7edfd1ed5",
+  "phase": "pilot",
+  "model": "XGBoost",
+  "outer_fold": 1,
+  "budget": 1,
+  "trial": 0,
+  "inner_auc": 0.803055156615927,
+  "params": {
+    "learning_rate": 0.05,
+    "max_depth": 3,
+    "n_estimators": 200,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 1
+  },
+  "completed_trials": 1
+}

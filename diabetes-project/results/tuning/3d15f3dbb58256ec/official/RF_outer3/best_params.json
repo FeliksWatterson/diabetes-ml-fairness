@@ -1,0 +1,19 @@
+{
+  "run_id": "3d15f3dbb58256ec",
+  "phase": "official",
+  "model": "RF",
+  "outer_fold": 3,
+  "budget": 30,
+  "trial": 14,
+  "inner_auc": 0.790864035414433,
+  "params": {
+    "n_estimators": 500,
+    "max_depth": 5,
+    "min_samples_leaf": 1,
+    "min_samples_split": 17,
+    "max_features": 0.5
+  },
+  "completed_trials": 30,
+  "failed_trials": 0,
+  "trial_seconds": 208.416415
+}

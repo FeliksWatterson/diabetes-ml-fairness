@@ -1,0 +1,3 @@
+Mô hình,Vai trò,Trial hoàn tất,Trial lỗi,Cảnh báo,Ngưỡng 0.5,Ngưỡng Youden,CV tìm tham số (giây),OOF phát triển (giây),Fit toàn mẫu (giây),Tổng mô hình (giây),Pipeline
+XGBoost,primary,30,0,0,0.5,0.48996129631996155,63.670351,1.370049699999072,0.31089060000158497,69.87896650000039,D:\NCKH Mini\diabetes-project\models\final\54c463bbe9079503\XGBoost.joblib
+LR,reference,30,0,0,0.5,0.5066326293898256,22.617323,0.5633417999997619,0.1194735999997647,26.218815899999754,D:\NCKH Mini\diabetes-project\models\final\54c463bbe9079503\LR.joblib
