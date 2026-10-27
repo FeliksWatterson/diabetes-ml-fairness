@@ -10,7 +10,6 @@ from xgboost import XGBClassifier
 
 
 def get_tuning_space():
-    """Trả miền tìm kiếm của dự án, với khoảng XGBoost theo paper II.D."""
     return {
         "LR": {"C": {"kind": "float", "low": 0.001, "high": 100.0, "log": True}},
         "RF": {
@@ -36,7 +35,6 @@ def get_tuning_space():
 
 
 def build_tuning_pipeline(model_name, params, seed=42, svm_probability=False):
-    """Tạo pipeline mới với trọng số lớp tính theo dữ liệu của lần fit."""
     from sklearn.ensemble import RandomForestClassifier
     from sklearn.linear_model import LogisticRegression
     from sklearn.svm import SVC
@@ -66,8 +64,6 @@ def build_tuning_pipeline(model_name, params, seed=42, svm_probability=False):
 
 
 class FitBalancedXGBClassifier(XGBClassifier):
-    """Tính scale_pos_weight từ y của từng lần fit."""
-
     def fit(self, X, y, **kwargs):
         if kwargs.get("sample_weight") is not None or kwargs.get("eval_set") is not None:
             raise ValueError("This pipeline does not use sample_weight or eval_set")
@@ -96,7 +92,6 @@ def _hash_tuning_frames(*frames):
 
 def prepare_tuning_run(X, y, support, outer_splits, inner_splits_by_outer,
                        results_dir, seed=42, budget=30, pilot_params=None, paper_sha256=None):
-    """Tạo mã lượt chạy từ dữ liệu, fold, cấu hình, code và phiên bản thư viện."""
     import hashlib
     import importlib.metadata
     import io
@@ -169,7 +164,6 @@ def prepare_tuning_run(X, y, support, outer_splits, inner_splits_by_outer,
 
 def run_tuning_study(model_name, X_train, y_train, inner_splits, run,
                      outer_fold, phase="pilot", pilot_params=None):
-    """Tạo hoặc tiếp tục study theo ngân sách trial COMPLETE."""
     import optuna
     import warnings
     from time import perf_counter
@@ -288,7 +282,6 @@ def run_tuning_study(model_name, X_train, y_train, inner_splits, run,
 
 def evaluate_tuned_outer(model_name, study, directory, X_train, y_train,
                           X_test, y_test, support_test, seed=42, models_dir=None):
-    """Lưu hoặc nạp pipeline và kết quả outer-test có cùng cấu hình."""
     import hashlib
     import json
     import joblib
@@ -377,7 +370,6 @@ def evaluate_tuned_outer(model_name, study, directory, X_train, y_train,
 
 
 def read_baseline_snapshot(notebook_path):
-    """Đọc metric baseline từ output notebook đã làm tròn 4 chữ số."""
     import json
     import re
     cells = json.loads(Path(notebook_path).read_text(encoding="utf-8"))["cells"]
@@ -422,7 +414,6 @@ def read_baseline_snapshot(notebook_path):
 
 
 def run_nested_cv(X, y, support, outer_splits, inner_splits_by_outer, run, models_dir):
-    """Chạy nested CV và lưu kết quả từng outer fold."""
     import json
     from datetime import datetime, timezone
     from time import perf_counter
@@ -465,7 +456,6 @@ def run_nested_cv(X, y, support, outer_splits, inner_splits_by_outer, run, model
 
 
 def summarize_nested_cv(X, y, support, outer_splits, run, baseline_folds, baseline_stats):
-    """Tổng hợp metric, OOF, thời gian và cảnh báo."""
     import json
     import optuna
 
@@ -564,13 +554,11 @@ def summarize_nested_cv(X, y, support, outer_splits, run, baseline_folds, baseli
 
 
 def _sklearn_missing_array(values):
-    """Đổi giá trị thiếu nullable sang np.nan trong mảng mới."""
     array = np.asarray(values, dtype=object)
     return np.where(pd.isna(array), np.nan, array)
 
 
 def build_preprocessor(scale_numeric=False):
-    """Tạo ColumnTransformer mới cho 8 đầu vào, với scaling tùy chọn."""
     numeric_steps = [
         ("missing", FunctionTransformer(
             _sklearn_missing_array, feature_names_out="one-to-one"
@@ -599,13 +587,11 @@ def build_preprocessor(scale_numeric=False):
 
 def load_xpt(path, columns=None):
     df = pd.read_sas(Path(path), format="xport")
-    # Số 0 XPT có thể bị pandas đọc thành 2**-260.
     df = df.replace(2.0 ** -260, 0.0)
     return df if columns is None else df[columns].copy()
 
 
 def _map_input_codes(series, mapping, unknown=()):
-    """Ánh xạ mã hợp lệ và báo lỗi khi gặp mã ngoài miền."""
     unexpected = series.notna() & ~series.isin([*mapping, *unknown])
     if unexpected.any():
         raise ValueError(f"Unexpected codes in {series.name!r}: "
@@ -614,7 +600,6 @@ def _map_input_codes(series, mapping, unknown=()):
 
 
 def map_nhanes_inputs(df):
-    """Ánh xạ 8 đầu vào NHANES sang tên và nhóm dùng chung."""
     result = df[[
         "RIDAGEYR", "RIAGENDR", "RIDRETH3", "BMXBMI", "smoking_status",
         "physical_activity", "heart_attack", "stroke",
@@ -623,7 +608,6 @@ def map_nhanes_inputs(df):
         "RIDRETH3": "race_ethnicity", "BMXBMI": "bmi",
     }).copy()
     result["sex"] = _map_input_codes(df["RIAGENDR"], {1: 1, 2: 2}).astype("Int64")
-    # RIDRETH3 không dùng mã 5, khác RIDRETH1.
     result["race_ethnicity"] = _map_input_codes(df["RIDRETH3"], {
         1: "Hispanic", 2: "Hispanic", 3: "White NH", 4: "Black NH",
         6: "Other", 7: "Other",
@@ -640,7 +624,6 @@ def map_nhanes_inputs(df):
 
 
 def map_brfss_inputs(df):
-    """Ánh xạ 8 đầu vào BRFSS 2015/2017 sang bảng dùng chung."""
     age = df["_AGE80"].copy()
     if not age.dropna().between(18, 80).all():
         raise ValueError("BRFSS _AGE80 must be in 18-80")
@@ -666,14 +649,12 @@ def map_brfss_inputs(df):
 
 
 def get_brfss_diabetes_label(series):
-    """Đổi DIABETE3 sang nhãn đái tháo đường ngoài thai kỳ, kiểu Int64 nullable."""
     return _map_input_codes(
         series, {1: 1, 2: 0, 3: 0, 4: 0}, unknown=[7, 9]
     ).astype("Int64").rename("diabetes_label")
 
 
 def get_diabetes_label(df):
-    """Trả nhãn nullable theo bằng chứng quan sát và giả định nhãn âm của dự án."""
     positive = (
         df["DIQ010"].eq(1)
         | df["DIQ050"].eq(1)
@@ -694,7 +675,6 @@ def get_diabetes_label(df):
 
 
 def get_yes_no(series):
-    """Đổi mã Có/Không thành Int64 nullable; báo lỗi với mã ngoài miền."""
     unexpected = series.notna() & ~series.isin([1, 2, 7, 9])
     if unexpected.any():
         raise ValueError(
@@ -708,7 +688,6 @@ def get_yes_no(series):
 
 
 def get_smoking_status(df):
-    """Trả Series never/former/current; trường hợp không xác định trả NA."""
     status = pd.Series(pd.NA, index=df.index, dtype="string", name="smoking_status")
     smoked = df["SMQ020"].eq(1)
     status.loc[df["SMQ020"].eq(2)] = "never"
@@ -718,7 +697,6 @@ def get_smoking_status(df):
 
 
 def get_physical_activity(df):
-    """Trả thời lượng giải trí và trạng thái đạt ngưỡng, với trường hợp chưa rõ là NA."""
     def branch_minutes(question, days, minutes):
         result = pd.Series(pd.NA, index=df.index, dtype="Float64")
         result.loc[df[question].eq(2)] = 0.0
@@ -734,7 +712,6 @@ def get_physical_activity(df):
     moderate = branch_minutes("PAQ665", "PAQ670", "PAD675")
     vigorous = branch_minutes("PAQ650", "PAQ655", "PAD660")
     weekly = moderate + 2 * vigorous
-    # fillna(0) chỉ tính cận dưới của tổng, không điền thời lượng còn thiếu.
     known_minutes = moderate.fillna(0) + 2 * vigorous.fillna(0)
     status = pd.Series(pd.NA, index=df.index, dtype="Int64")
     status.loc[weekly.lt(150).fillna(False)] = 0
@@ -748,7 +725,6 @@ def get_physical_activity(df):
 
 
 def get_glucose_usable(df):
-    """Trả cờ boolean nullable; thiếu điều kiện bắt buộc ưu tiên NA, kể cả khi điều kiện khác không đạt."""
     def no_recent_beverage(question, hours, minutes):
         answer = df[question]
         elapsed = df[hours] + df[minutes] / 60
@@ -778,7 +754,6 @@ def get_glucose_usable(df):
 
 def prepare_final_run(X, y, support, splits, data_path, results_dir, models_dir,
                       seed=42, budget=30):
-    """Gắn lượt phát triển cuối với dữ liệu, cấu hình và bộ chia CV."""
     import hashlib
     import importlib.metadata
     import json
@@ -859,7 +834,6 @@ def prepare_final_run(X, y, support, splits, data_path, results_dir, models_dir,
 
 
 def get_youden_threshold(y, probability):
-    """Chọn ngưỡng hữu hạn có Youden J cao nhất; hòa thì lấy ngưỡng cao hơn."""
     from sklearn.metrics import roc_curve
 
     labels, probability = np.asarray(y, dtype=int), np.asarray(probability, dtype=float)
@@ -881,7 +855,6 @@ def get_youden_threshold(y, probability):
 
 
 def fit_final_development(model_name, X, y, support, splits, run):
-    """Tối ưu CV, chọn ngưỡng OOF và lưu pipeline fit toàn NHANES."""
     import hashlib
     import json
     import joblib
@@ -1064,7 +1037,6 @@ def fit_final_development(model_name, X, y, support, splits, run):
 
 
 def check_external_inputs(source, columns, year):
-    """Đối chiếu đầu vào BRFSS và khóa dòng nguồn trước khi dự đoán."""
     assert source.columns.is_unique and source.index.is_unique and source.index.notna().all()
     assert source["year"].eq(year).all()
     assert source["diabetes_label"].notna().all() and source["diabetes_label"].isin([0, 1]).all()
@@ -1089,7 +1061,6 @@ def check_external_inputs(source, columns, year):
 
 
 def get_calibration_bins(y, probability, n_bins=10):
-    """Trả số người, xác suất trung bình và tỷ lệ nhãn 1 theo quantile."""
     from sklearn.calibration import calibration_curve
 
     labels, probability = np.asarray(y, dtype=int), np.asarray(probability, dtype=float)
@@ -1112,7 +1083,6 @@ def get_calibration_bins(y, probability, n_bins=10):
 
 
 def evaluate_external_pipeline(pipeline, source, X, thresholds, model_name, year):
-    """Dự đoán với pipeline đã fit và tính metric ngoài mẫu, không áp trọng số."""
     import joblib
     from sklearn.metrics import average_precision_score, brier_score_loss, confusion_matrix, roc_auc_score
 
@@ -1164,7 +1134,6 @@ def evaluate_external_pipeline(pipeline, source, X, thresholds, model_name, year
 
 
 def get_binary_group_metrics(y, probability, prediction):
-    """Tính metric nhị phân cho một nhóm; metric không xác định trả NA."""
     from sklearn.metrics import average_precision_score, brier_score_loss, roc_auc_score
 
     labels = np.asarray(y, dtype=int)
@@ -1193,7 +1162,6 @@ def get_binary_group_metrics(y, probability, prediction):
 
 
 def get_sex_metric_gaps(group_metrics):
-    """Trả chênh lệch Nam − Nữ và equalized odds gap, đơn vị điểm phần trăm."""
     rows = []
     for (year, model), groups in group_metrics.groupby(["year", "model"], sort=False):
         groups = groups.set_index("sex_group")
@@ -1209,7 +1177,6 @@ def get_sex_metric_gaps(group_metrics):
 
 
 def get_transformer_feature_map(preprocessor):
-    """Ánh xạ cột sau biến đổi về biến gốc từ cấu trúc ColumnTransformer đã fit."""
     names = preprocessor.get_feature_names_out()
     rows = []
     for name, transformer, columns in preprocessor.transformers_:
@@ -1238,7 +1205,6 @@ def get_transformer_feature_map(preprocessor):
 
 
 def explain_xgboost_pipeline(pipeline, X):
-    """Tính TreeSHAP raw margin và cộng có dấu về biến gốc, không fit lại pipeline."""
     import joblib
     from scipy.special import expit
     from xgboost import DMatrix
@@ -1289,12 +1255,10 @@ def explain_xgboost_pipeline(pipeline, X):
 
 
 def _safe_ratio(numerator, denominator):
-    """Chia hai số; mẫu số 0 trả NA."""
     return float(numerator / denominator) if denominator else np.nan
 
 
 def get_model_metrics(y, score, probability, prediction):
-    """Tính bảy metric dùng chung cho baseline và nested CV."""
     from sklearn.metrics import (
         average_precision_score, brier_score_loss, confusion_matrix,
         f1_score, precision_score, recall_score, roc_auc_score,
@@ -1313,7 +1277,6 @@ def get_model_metrics(y, score, probability, prediction):
 
 
 def save_png(figure, path):
-    """Xuất hình PNG 300 dpi và trả đường dẫn."""
     path = Path(path)
     figure.savefig(path, dpi=300, bbox_inches="tight")
     return path
