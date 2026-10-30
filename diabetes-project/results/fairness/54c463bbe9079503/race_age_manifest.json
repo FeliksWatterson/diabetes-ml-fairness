@@ -1,0 +1,45 @@
+{
+  "final_run_id": "54c463bbe9079503",
+  "attributes": {
+    "race_ethnicity": [
+      "White NH",
+      "Black NH",
+      "Hispanic",
+      "Other"
+    ],
+    "age": [
+      "18-39",
+      "40-59",
+      "60-79",
+      "80+"
+    ]
+  },
+  "age_bins": "[18,40), [40,60), [60,80), [80,infinity); source topcoded at 80",
+  "missing_group": "reported separately; excluded from disparity comparisons",
+  "gap_rule": "100 * (max - min) across all prespecified nonmissing groups; NA if any required metric undefined",
+  "equalized_odds_gap": "max(TPR range, FPR range); NA if either undefined",
+  "thresholds": {
+    "XGBoost": 0.48996129631996155,
+    "LR": 0.5066326293898256
+  },
+  "survey_weighted": false,
+  "confidence_intervals": false,
+  "statistical_tests": false,
+  "source_sha256": {
+    "results\\external_validation\\54c463bbe9079503\\brfss_2015_XGBoost_predictions.parquet": "172901451f9fe09aa4b8a2a83b86d2243af5536e60c5cc774ca41d547479e6a8",
+    "results\\external_validation\\54c463bbe9079503\\brfss_2015_LR_predictions.parquet": "28cb67b04ebaaa20678efc6aaed35090e9c82664f79149767f9d19429ac3cd09",
+    "results\\external_validation\\54c463bbe9079503\\brfss_2017_XGBoost_predictions.parquet": "5aaf2f32c12be0dd4aca046978e30c12076bf07d0c7d38d6181a54d728b55f61",
+    "results\\external_validation\\54c463bbe9079503\\brfss_2017_LR_predictions.parquet": "b73c906fd90b24c72fbff037f5062cc26c85689b877f142cc797083041106398"
+  },
+  "utils_sha256": "f1ad047e228b02291f5ec6edecede1006f597b38cd77eb09457ba4fc08dc5b0c",
+  "output_sha256": {
+    "results\\fairness\\54c463bbe9079503\\race_ethnicity_counts.csv": "871738bcbc7cc897dbf274a917393146b814ffb69501f1f5666ff79cba17fb88",
+    "results\\fairness\\54c463bbe9079503\\race_ethnicity_group_metrics.csv": "783f920d5f0d75f2495dbbbc4ce8a49fda987a28045249da65abe278d771b5eb",
+    "results\\fairness\\54c463bbe9079503\\race_ethnicity_gaps_pp.csv": "7c34c5c6a9fe7ce74701ff733a4ddfa140b3d5a91ae7119bec034ffa66555c1e",
+    "results\\figures\\fairness\\54c463bbe9079503\\race_ethnicity_tpr_fpr.png": "99cd925feb8c4f332e1b4a60ad7e91491cbfe7a1ebbab26d9fb3fa4e3a1c87f1",
+    "results\\fairness\\54c463bbe9079503\\age_counts.csv": "f16442b563a5612fd3b0e4fe1811ad3509e126d784e7c26f26612f100432ea34",
+    "results\\fairness\\54c463bbe9079503\\age_group_metrics.csv": "c87a6b8e210e49f29929271dcb1b2410aed20394f56aabcf7f9ac4ce33437c8c",
+    "results\\fairness\\54c463bbe9079503\\age_gaps_pp.csv": "ea0e3cc803ee566b93cb0a9cfe221adffc3265cb6a5b79c68d76305f84796cf6",
+    "results\\figures\\fairness\\54c463bbe9079503\\age_tpr_fpr.png": "bb9cd9df8c99a581c21c6cb4dd5be7ff9c243c4d622d46b6373eb16ac13afc3b"
+  }
+}

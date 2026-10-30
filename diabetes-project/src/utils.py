@@ -1161,6 +1161,59 @@ def get_binary_group_metrics(y, probability, prediction):
     }
 
 
+def get_manifest_artifact_hash(recorded_hashes, path, project_dir):
+    """Resolve legacy absolute manifest keys by their full project-relative path."""
+    relative = Path(path).resolve().relative_to(Path(project_dir).resolve()).as_posix()
+    matches = [digest for name, digest in recorded_hashes.items()
+               if name.replace("\\", "/") == relative
+               or name.replace("\\", "/").endswith("/" + relative)]
+    if len(matches) != 1:
+        raise ValueError(f"Expected one manifest entry for {relative}; found {len(matches)}")
+    return matches[0]
+
+
+def get_race_age_groups(data):
+    """Group original survey values before model imputation for fairness audits."""
+    race_groups = ["White NH", "Black NH", "Hispanic", "Other"]
+    age_groups = ["18-39", "40-59", "60-79", "80+"]
+    if not data["race_ethnicity"].dropna().isin(race_groups).all():
+        raise ValueError("Unexpected race/ethnicity value")
+    if not data["age"].dropna().between(18, 80).all():
+        raise ValueError("Expected adult ages topcoded at 80")
+    labels = pd.DataFrame({
+        "race_ethnicity": data["race_ethnicity"].astype("string").fillna("Missing"),
+        "age": pd.cut(data["age"], bins=[18, 40, 60, 80, np.inf],
+                      right=False, labels=age_groups).astype("string").fillna("Missing"),
+    }, index=data.index)
+    return labels, {"race_ethnicity": race_groups, "age": age_groups}
+
+
+def get_multigroup_metric_gaps(group_metrics, group_column, groups):
+    """Max-min gaps across prespecified nonmissing groups; undefined stays NA.
+
+    Missing groups remain in descriptive tables, but are excluded here.
+    An empty or undefined required group makes the corresponding gap NA.
+    """
+    if len(groups) < 2 or len(set(groups)) != len(groups):
+        raise ValueError("At least two distinct comparison groups are required")
+    rows = []
+    for (year, model), frame in group_metrics.groupby(["year", "model"], sort=False):
+        if frame[group_column].duplicated().any():
+            raise ValueError("Duplicate group rows")
+        selected = frame.set_index(group_column).reindex(groups)
+        row = {"year": year, "model": model}
+        for metric in ["tpr", "fpr", "ppv", "predicted_positive_rate"]:
+            values = selected[metric].to_numpy(dtype=float)
+            row[f"{metric}_gap_pp"] = (
+                float((values.max() - values.min()) * 100)
+                if np.isfinite(values).all() else np.nan
+            )
+        components = [row["tpr_gap_pp"], row["fpr_gap_pp"]]
+        row["equalized_odds_gap_pp"] = max(components) if np.isfinite(components).all() else np.nan
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
 def get_sex_metric_gaps(group_metrics):
     rows = []
     for (year, model), groups in group_metrics.groupby(["year", "model"], sort=False):
