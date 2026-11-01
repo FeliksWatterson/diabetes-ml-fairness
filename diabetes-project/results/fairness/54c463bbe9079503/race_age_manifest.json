@@ -10,36 +10,57 @@
     "age": [
       "18-39",
       "40-59",
-      "60-79",
-      "80+"
+      "60+"
+    ],
+    "bmi": [
+      "Underweight",
+      "Normal",
+      "Overweight",
+      "Obese"
     ]
   },
-  "age_bins": "[18,40), [40,60), [60,80), [80,infinity); source topcoded at 80",
-  "missing_group": "reported separately; excluded from disparity comparisons",
-  "gap_rule": "100 * (max - min) across all prespecified nonmissing groups; NA if any required metric undefined",
-  "equalized_odds_gap": "max(TPR range, FPR range); NA if either undefined",
-  "thresholds": {
-    "XGBoost": 0.48996129631996155,
-    "LR": 0.5066326293898256
+  "comparison_groups": {
+    "race_ethnicity": [
+      "White NH",
+      "Black NH",
+      "Hispanic",
+      "Other"
+    ],
+    "age": [
+      "18-39",
+      "40-59",
+      "60+"
+    ],
+    "bmi": [
+      "Normal",
+      "Overweight",
+      "Obese"
+    ]
   },
+  "age_bins": "[18,40), [40,60), [60,infinity); source topcoded at 80",
+  "bmi_bins": "(0,18.5), [18.5,25), [25,30), [30,infinity)",
+  "gap_rule": "100*(max-min) across comparison_groups; Missing and BMI Underweight descriptive only",
   "survey_weighted": false,
   "confidence_intervals": false,
-  "statistical_tests": false,
   "source_sha256": {
     "results\\external_validation\\54c463bbe9079503\\brfss_2015_XGBoost_predictions.parquet": "172901451f9fe09aa4b8a2a83b86d2243af5536e60c5cc774ca41d547479e6a8",
     "results\\external_validation\\54c463bbe9079503\\brfss_2015_LR_predictions.parquet": "28cb67b04ebaaa20678efc6aaed35090e9c82664f79149767f9d19429ac3cd09",
     "results\\external_validation\\54c463bbe9079503\\brfss_2017_XGBoost_predictions.parquet": "5aaf2f32c12be0dd4aca046978e30c12076bf07d0c7d38d6181a54d728b55f61",
     "results\\external_validation\\54c463bbe9079503\\brfss_2017_LR_predictions.parquet": "b73c906fd90b24c72fbff037f5062cc26c85689b877f142cc797083041106398"
   },
-  "utils_sha256": "f1ad047e228b02291f5ec6edecede1006f597b38cd77eb09457ba4fc08dc5b0c",
+  "utils_sha256": "e3519930415d5800e5a700d94fa91804ed78c24dd04f3362d43aebed1666f6a3",
   "output_sha256": {
     "results\\fairness\\54c463bbe9079503\\race_ethnicity_counts.csv": "871738bcbc7cc897dbf274a917393146b814ffb69501f1f5666ff79cba17fb88",
     "results\\fairness\\54c463bbe9079503\\race_ethnicity_group_metrics.csv": "783f920d5f0d75f2495dbbbc4ce8a49fda987a28045249da65abe278d771b5eb",
     "results\\fairness\\54c463bbe9079503\\race_ethnicity_gaps_pp.csv": "7c34c5c6a9fe7ce74701ff733a4ddfa140b3d5a91ae7119bec034ffa66555c1e",
-    "results\\figures\\fairness\\54c463bbe9079503\\race_ethnicity_tpr_fpr.png": "99cd925feb8c4f332e1b4a60ad7e91491cbfe7a1ebbab26d9fb3fa4e3a1c87f1",
-    "results\\fairness\\54c463bbe9079503\\age_counts.csv": "f16442b563a5612fd3b0e4fe1811ad3509e126d784e7c26f26612f100432ea34",
-    "results\\fairness\\54c463bbe9079503\\age_group_metrics.csv": "c87a6b8e210e49f29929271dcb1b2410aed20394f56aabcf7f9ac4ce33437c8c",
-    "results\\fairness\\54c463bbe9079503\\age_gaps_pp.csv": "ea0e3cc803ee566b93cb0a9cfe221adffc3265cb6a5b79c68d76305f84796cf6",
-    "results\\figures\\fairness\\54c463bbe9079503\\age_tpr_fpr.png": "bb9cd9df8c99a581c21c6cb4dd5be7ff9c243c4d622d46b6373eb16ac13afc3b"
+    "results\\figures\\fairness\\54c463bbe9079503\\race_ethnicity_tpr_fpr.png": "1cfb12a698395b4cdcc556308ca75c9e963cc9900b6507be8369eda33013ae05",
+    "results\\fairness\\54c463bbe9079503\\age_counts.csv": "cd10935614341ad5f085ff91bfbe0b53d3f85c5fe9e0348adf6875acf63d7b96",
+    "results\\fairness\\54c463bbe9079503\\age_group_metrics.csv": "09df51aab4cd13b8a715137d1d9c5cbb3f4d70af98d74ad0f663312ac574678e",
+    "results\\fairness\\54c463bbe9079503\\age_gaps_pp.csv": "8eba319a5066161ae11098f0dc40793a6a79a129d17ca22ba0e22d84dbbbd47d",
+    "results\\figures\\fairness\\54c463bbe9079503\\age_tpr_fpr.png": "98b0957527ac56b6e3a618ca8744173bdc61b349ff879e5163645a2b094b6702",
+    "results\\fairness\\54c463bbe9079503\\bmi_counts.csv": "3fcee9088fc314fe576a25db3450b592463dc52b21543e4fee4a9797aa8adf2f",
+    "results\\fairness\\54c463bbe9079503\\bmi_group_metrics.csv": "108d8ce077ddada8b3904a48a935b01ec3e4309dee98f260342ada62c7b36fbe",
+    "results\\fairness\\54c463bbe9079503\\bmi_gaps_pp.csv": "e4ae4d001e6f8a8de38a745796f04bbe368184ea5673d3cf06365732cd1f8f9f",
+    "results\\figures\\fairness\\54c463bbe9079503\\bmi_tpr_fpr.png": "8f88844211e85e3a60381a0f62209e367ec9a1635b987998fe10f24673ddbe24"
   }
 }

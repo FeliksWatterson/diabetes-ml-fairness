@@ -1,0 +1,8 @@
+part,content,notebook_cell_marker,utils_function,output_files
+1,AUC + CI 95%,RESEARCH_AUC_CI,get_delong_auc_ci,overall_auc_brier_ci.csv; group_metrics_with_ci.csv
+2,Bảng III và delta AUC,RESEARCH_TABLE_III,get_delong_auc_ci,table_iii_auc_by_group.csv
+3,Forest plot,RESEARCH_FOREST_PLOT,get_delong_auc_ci,forest_auc_2015.png; forest_auc_2017.png
+4,Kiểm định AUC + Bonferroni,RESEARCH_AUC_TESTS,get_subgroup_auc_tests; get_paired_auc_test,auc_subgroup_tests_bonferroni.csv; auc_paired_model_tests.csv
+5,Disparate impact,RESEARCH_DISPARATE_IMPACT,get_disparate_impact,disparate_impact_by_group.csv
+6,Brier + CI 95%,RESEARCH_BRIER_CI,get_brier_ci,brier_ci_by_group.csv; overall_auc_brier_ci.csv
+7,Decision Curve Analysis,RESEARCH_DCA,get_decision_curve,decision_curve_net_benefit.csv; decision_curve_beneficial_grid_ranges.csv; decision_curve_2015.png; decision_curve_2017.png

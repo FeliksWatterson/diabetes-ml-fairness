@@ -1172,20 +1172,54 @@ def get_manifest_artifact_hash(recorded_hashes, path, project_dir):
     return matches[0]
 
 
-def get_race_age_groups(data):
-    """Group original survey values before model imputation for fairness audits."""
-    race_groups = ["White NH", "Black NH", "Hispanic", "Other"]
-    age_groups = ["18-39", "40-59", "60-79", "80+"]
+def get_fairness_group_specs():
+    """Single source of group labels for both notebook output and binning.
+
+    Return fresh lists so notebook code cannot mutate the shared definition.
+    """
+    specs = {
+        "race_ethnicity": ["White NH", "Black NH", "Hispanic", "Other"],
+        "age": ["18-39", "40-59", "60+"],
+        "bmi": ["Underweight", "Normal", "Overweight", "Obese"],
+    }
+    comparisons = {key: groups.copy() for key, groups in specs.items()}
+    comparisons["bmi"] = specs["bmi"][1:].copy()
+    return specs, comparisons
+
+
+def get_fairness_groups(data):
+    """Group original survey values using the paper's age and BMI boundaries.
+
+    Underweight and missing BMI remain visible in descriptive output. The
+    paper's primary BMI comparisons use Normal, Overweight and Obese only.
+    """
+    specs, _ = get_fairness_group_specs()
+    race_groups = specs["race_ethnicity"]
+    age_groups = specs["age"]
+    bmi_groups = specs["bmi"]
     if not data["race_ethnicity"].dropna().isin(race_groups).all():
         raise ValueError("Unexpected race/ethnicity value")
     if not data["age"].dropna().between(18, 80).all():
         raise ValueError("Expected adult ages topcoded at 80")
+    bmi = data["bmi"].dropna().to_numpy(dtype=float)
+    if not (np.isfinite(bmi).all() and (bmi > 0).all()):
+        raise ValueError("BMI must be positive and finite, or missing")
     labels = pd.DataFrame({
         "race_ethnicity": data["race_ethnicity"].astype("string").fillna("Missing"),
-        "age": pd.cut(data["age"], bins=[18, 40, 60, 80, np.inf],
+        "age": pd.cut(data["age"], bins=[18, 40, 60, np.inf],
                       right=False, labels=age_groups).astype("string").fillna("Missing"),
+        "bmi": pd.cut(data["bmi"], bins=[0, 18.5, 25, 30, np.inf],
+                      right=False, labels=bmi_groups).astype("string").fillna("Missing"),
     }, index=data.index)
-    return labels, {"race_ethnicity": race_groups, "age": age_groups}
+    return labels, specs
+
+
+def get_race_age_groups(data):
+    """Backward-compatible race/age grouping, with the paper's three age bands."""
+    # Older callers only need race and age, not a BMI column.
+    source = data if "bmi" in data else data.assign(bmi=np.nan)
+    labels, specs = get_fairness_groups(source)
+    return labels[["race_ethnicity", "age"]], {key: specs[key] for key in ["race_ethnicity", "age"]}
 
 
 def get_multigroup_metric_gaps(group_metrics, group_column, groups):
@@ -1227,6 +1261,215 @@ def get_sex_metric_gaps(group_metrics):
         row["equalized_odds_gap_pp"] = max(map(abs, gaps)) if np.isfinite(gaps).all() else np.nan
         rows.append(row)
     return pd.DataFrame(rows)
+
+
+def _validated_binary_scores(y, score, probabilities=False):
+    labels = np.asarray(y)
+    values = np.asarray(score, dtype=float)
+    if labels.ndim != 1 or values.ndim != 1 or labels.shape != values.shape:
+        raise ValueError("Labels and scores must be aligned one-dimensional arrays")
+    if not np.isin(labels, [0, 1]).all() or not np.isfinite(values).all():
+        raise ValueError("Expected binary labels and finite scores")
+    if probabilities and not ((values >= 0) & (values <= 1)).all():
+        raise ValueError("Probabilities must be in [0, 1]")
+    return labels.astype(int), values
+
+
+def _delong_placements(y, score):
+    """Mann-Whitney placements with half credit for tied scores, O(n log n).
+
+    DeLong et al. (1988), doi:10.2307/2531595. Positive and negative
+    placements retain original within-class order for paired comparisons.
+    """
+    y, score = _validated_binary_scores(y, score)
+    positive, negative = score[y == 1], score[y == 0]
+    if not len(positive) or not len(negative):
+        return np.array([]), np.array([])
+    sorted_negative, sorted_positive = np.sort(negative), np.sort(positive)
+    v_positive = (np.searchsorted(sorted_negative, positive, side="left")
+                  + np.searchsorted(sorted_negative, positive, side="right")) / (2 * len(negative))
+    v_negative = 1 - (np.searchsorted(sorted_positive, negative, side="left")
+                      + np.searchsorted(sorted_positive, negative, side="right")) / (2 * len(positive))
+    return v_positive, v_negative
+
+
+def get_delong_auc_ci(y, score, confidence=0.95):
+    """Pointwise normal CI for AUC with DeLong variance, clipped to [0, 1].
+
+    Assumes independent people; does not include survey design, model fitting
+    or hyperparameter-selection uncertainty. CI is NA with <2 in either class.
+    """
+    from statistics import NormalDist
+    if not 0 < confidence < 1:
+        raise ValueError("Confidence must lie strictly between 0 and 1")
+    labels, values = _validated_binary_scores(y, score)
+    positive, negative = _delong_placements(labels, values)
+    auc = float(positive.mean()) if len(positive) else np.nan
+    variance = (float(positive.var(ddof=1) / len(positive)
+                      + negative.var(ddof=1) / len(negative))
+                if len(positive) >= 2 and len(negative) >= 2 else np.nan)
+    se = float(np.sqrt(variance))
+    critical = NormalDist().inv_cdf((1 + confidence) / 2)
+    return {
+        "roc_auc": auc, "auc_variance": variance, "auc_se": se,
+        "auc_ci_lower": max(0., auc - critical * se) if np.isfinite(se) else np.nan,
+        "auc_ci_upper": min(1., auc + critical * se) if np.isfinite(se) else np.nan,
+    }
+
+
+def get_brier_ci(y, probability, confidence=0.95):
+    """Pointwise large-sample CI for the mean squared probability loss.
+
+    Normal approximation using sample variance/n, clipped to [0,1]. This is
+    neither bootstrap nor survey-weighted, and assumes independent people.
+    """
+    from statistics import NormalDist
+    if not 0 < confidence < 1:
+        raise ValueError("Confidence must lie strictly between 0 and 1")
+    labels, values = _validated_binary_scores(y, probability, probabilities=True)
+    loss = (values - labels) ** 2
+    brier = float(loss.mean()) if len(loss) else np.nan
+    se = float(loss.std(ddof=1) / np.sqrt(len(loss))) if len(loss) >= 2 else np.nan
+    critical = NormalDist().inv_cdf((1 + confidence) / 2)
+    return {
+        "brier": brier, "brier_se": se,
+        "brier_ci_lower": max(0., brier - critical * se) if np.isfinite(se) else np.nan,
+        "brier_ci_upper": min(1., brier + critical * se) if np.isfinite(se) else np.nan,
+    }
+
+
+def _auc_difference_test(difference, variance, confidence=0.95):
+    from math import erfc, sqrt
+    from statistics import NormalDist
+    if not 0 < confidence < 1:
+        raise ValueError("Confidence must lie strictly between 0 and 1")
+    if not np.isfinite(difference) or not np.isfinite(variance) or variance < 0:
+        return {"auc_difference": difference, "difference_se": np.nan,
+                "difference_ci_lower": np.nan, "difference_ci_upper": np.nan,
+                "z_statistic": np.nan, "p_value": np.nan, "test_status": "undefined"}
+    se = sqrt(variance)
+    critical = NormalDist().inv_cdf((1 + confidence) / 2)
+    z = difference / se if se > 0 else (0. if difference == 0 else np.nan)
+    return {
+        "auc_difference": difference, "difference_se": se,
+        "difference_ci_lower": max(-1., difference - critical * se),
+        "difference_ci_upper": min(1., difference + critical * se),
+        "z_statistic": z, "p_value": erfc(abs(z) / sqrt(2)) if np.isfinite(z) else np.nan,
+        "test_status": "ok" if se > 0 else "degenerate_variance",
+    }
+
+
+def get_subgroup_auc_tests(metrics, references, comparison_groups, confidence=0.95):
+    """Independent-group DeLong-variance Wald contrasts with Bonferroni.
+
+    Family: all prespecified reference contrasts across attributes per year and
+    model. Undefined tests remain NA; planned family size is not reduced.
+    Direction is AUC(group) - AUC(reference). Missing/underweight excluded
+    from primary comparisons according to comparison_groups.
+    """
+    planned = sum(len(groups) - 1 for groups in comparison_groups.values())
+    if planned < 1:
+        raise ValueError("At least one reference contrast is required")
+    rows = []
+    for (year, model), frame in metrics.groupby(["year", "model"], sort=False):
+        for attribute, groups in comparison_groups.items():
+            reference = references[attribute]
+            if reference not in groups:
+                raise ValueError("Reference must belong to the comparison groups")
+            table = frame.loc[frame["attribute"].eq(attribute)].set_index("group")
+            if not table.index.is_unique:
+                raise ValueError("Duplicate subgroup rows")
+            ref = table.loc[reference]
+            for group in groups:
+                if group == reference:
+                    continue
+                current = table.loc[group]
+                test = _auc_difference_test(
+                    float(current["roc_auc"] - ref["roc_auc"]),
+                    float(current["auc_variance"] + ref["auc_variance"]), confidence,
+                )
+                p = test["p_value"]
+                adjusted = min(1., p * planned) if np.isfinite(p) else np.nan
+                rows.append({
+                    "year": year, "model": model, "attribute": attribute,
+                    "group": group, "reference_group": reference,
+                    "auc_group": current["roc_auc"], "auc_reference": ref["roc_auc"],
+                    "n_group": current["n"], "n_reference": ref["n"], **test,
+                    "bonferroni_family_size": planned, "p_bonferroni": adjusted,
+                    "reject_bonferroni_0_05": bool(adjusted < .05) if np.isfinite(adjusted) else pd.NA,
+                })
+    return pd.DataFrame(rows)
+
+
+def get_paired_auc_test(y, score_a, score_b, confidence=0.95):
+    """Paired DeLong contrast for two models evaluated on the same people."""
+    pos_a, neg_a = _delong_placements(y, score_a)
+    pos_b, neg_b = _delong_placements(y, score_b)
+    if len(pos_a) < 2 or len(neg_a) < 2:
+        return _auc_difference_test(np.nan, np.nan, confidence)
+    difference = float(pos_a.mean() - pos_b.mean())
+    variance = float((pos_a - pos_b).var(ddof=1) / len(pos_a)
+                     + (neg_a - neg_b).var(ddof=1) / len(neg_a))
+    return _auc_difference_test(difference, variance, confidence)
+
+
+def get_disparate_impact(metrics, references, comparison_groups):
+    """Selection-rate ratio group/reference. Zero reference gives NA.
+
+    Rates are based on frozen model-specific NHANES thresholds. Ratios are
+    descriptive; no universal fairness pass/fail threshold is imposed.
+    """
+    rows = []
+    for (year, model, attribute), frame in metrics.groupby(["year", "model", "attribute"], sort=False):
+        table = frame.set_index("group")
+        if not table.index.is_unique:
+            raise ValueError("Duplicate subgroup rows")
+        reference = references[attribute]
+        reference_rate = float(table.loc[reference, "predicted_positive_rate"])
+        primary = table.reindex(comparison_groups[attribute])["predicted_positive_rate"].to_numpy(dtype=float)
+        min_max_ratio = (float(primary.min() / primary.max())
+                         if np.isfinite(primary).all() and primary.max() > 0 else np.nan)
+        for group, item in table.iterrows():
+            rate = float(item["predicted_positive_rate"])
+            ratio = rate / reference_rate if np.isfinite(reference_rate) and reference_rate > 0 else np.nan
+            rows.append({
+                "year": year, "model": model, "attribute": attribute,
+                "group": group, "reference_group": reference, "n": item["n"],
+                "selection_rate": rate, "reference_selection_rate": reference_rate,
+                "disparate_impact_ratio": ratio,
+                "primary_comparison": group in comparison_groups[attribute],
+                "primary_min_max_selection_ratio": min_max_ratio,
+            })
+    return pd.DataFrame(rows)
+
+
+def get_decision_curve(y, probability, thresholds):
+    """Observed net benefit at prespecified thresholds, without fitting.
+
+    NB=TP/n-FP/n*t/(1-t). Screen-all=prevalence-(1-prevalence)*t/(1-t).
+    Vickers & Elkin (2006), doi:10.1177/0272989X06295361.
+    All screen decisions use probability >= threshold, including ties.
+    """
+    labels, values = _validated_binary_scores(y, probability, probabilities=True)
+    thresholds = np.asarray(thresholds, dtype=float)
+    if thresholds.ndim != 1 or not np.isfinite(thresholds).all() or not ((thresholds > 0) & (thresholds < 1)).all():
+        raise ValueError("DCA thresholds must be finite and strictly between 0 and 1")
+    if len(np.unique(thresholds)) != len(thresholds):
+        raise ValueError("DCA thresholds must be distinct")
+    positive, negative = np.sort(values[labels == 1]), np.sort(values[labels == 0])
+    tp = len(positive) - np.searchsorted(positive, thresholds, side="left")
+    fp = len(negative) - np.searchsorted(negative, thresholds, side="left")
+    n = len(labels)
+    prevalence = float(labels.mean()) if n else np.nan
+    odds = thresholds / (1 - thresholds)
+    nb = (tp / n - fp / n * odds) if n else np.full(len(thresholds), np.nan)
+    screen_all = prevalence - (1 - prevalence) * odds
+    return pd.DataFrame({
+        "threshold": thresholds, "n": n, "prevalence": prevalence,
+        "tp": tp, "fp": fp, "net_benefit": nb,
+        "screen_all_net_benefit": screen_all, "screen_none_net_benefit": 0.,
+        "better_than_both": (nb > screen_all) & (nb > 0),
+    })
 
 
 def get_transformer_feature_map(preprocessor):
