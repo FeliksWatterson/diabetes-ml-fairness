@@ -1,0 +1,101 @@
+{
+  "reverse_run_id": "58ba2320a9141ff0",
+  "external": "NHANES 2015-2018",
+  "n": 10832,
+  "source": "saved external predictions; original pre-imputation inputs",
+  "thresholds_youden_brfss": {
+    "LR": 0.47120265240078846,
+    "XGBoost": 0.5007332563400269
+  },
+  "threshold_policy": "fixed per model, shared by all groups",
+  "group_order": {
+    "sex": [
+      "Nam",
+      "Nữ",
+      "Missing"
+    ],
+    "race_ethnicity": [
+      "White NH",
+      "Black NH",
+      "Hispanic",
+      "Other",
+      "Missing"
+    ],
+    "age": [
+      "18-39",
+      "40-59",
+      "60+",
+      "Missing"
+    ],
+    "bmi": [
+      "Underweight",
+      "Normal",
+      "Overweight",
+      "Obese",
+      "Missing"
+    ]
+  },
+  "comparison_groups": {
+    "sex": [
+      "Nam",
+      "Nữ"
+    ],
+    "race_ethnicity": [
+      "White NH",
+      "Black NH",
+      "Hispanic",
+      "Other"
+    ],
+    "age": [
+      "18-39",
+      "40-59",
+      "60+"
+    ],
+    "bmi": [
+      "Normal",
+      "Overweight",
+      "Obese"
+    ]
+  },
+  "age_boundaries": [
+    18,
+    40,
+    60
+  ],
+  "bmi_boundaries": [
+    0,
+    18.5,
+    25,
+    30
+  ],
+  "intervals": "left-closed, right-open; last age/BMI group unbounded",
+  "missing": "separate descriptive group; excluded from gaps",
+  "bmi_underweight": "descriptive only; excluded from primary BMI gaps",
+  "gap_unit": "percentage points",
+  "sex_gap": "male - female",
+  "multigroup_gap": "max - min",
+  "eo_gap": "max(abs(TPR gap), abs(FPR gap)); NA if either is undefined",
+  "survey_weighted": false,
+  "confidence_intervals": false,
+  "statistical_tests": false,
+  "source_sha256": {
+    "data\\processed\\nhanes_2015_2018.parquet": "966f97c24c43df55dd37096ee325c0b22047ac5bee7539a44c63f7fba9794873",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\manifest.json": "7ad6cd3e0f8c0bae8937c0d57f1c6153b3fe2b41ca382689aaf8c936221e2812",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\nhanes_LR_predictions.parquet": "fce608e88d349e74043ffc670f2fcea36e7df09719df389c25dadf2a60cceb56",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\LR\\thresholds.json": "c9f083b7aae9ad6ce4fe488ee247dddaedefbcfc63c3714580500564b1b635fa",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\nhanes_XGBoost_predictions.parquet": "8d1344d211a588c019d2fcbae75d908caaa106a8d5eb50a1d8a98f101548d7a2",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\thresholds.json": "16f168fa4e4088234c600564ab36fec2a3615b8b0a02f74c95b2a311a3ad9937",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\overall_metrics.csv": "5a1b40f1b476f0622016f302e1b57453687c0a853a7563d6678c3ac872ad4508"
+  },
+  "utils_sha256": "c48edaa15160165941b9b92c1af656495fe075ef14cd71e79a1d71cb40e9e823",
+  "output_sha256": {
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\group_count_checks.csv": "a175d0ae17d060eebbd6460b576e6516012d44fae2e02778b8490259f960d8a4",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\group_gaps_pp.csv": "73fa678be8205fa9410b4724b76575cd34c930efbc97c6cae25e3ead61cd6921",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\group_metrics.csv": "1861d43c8a41c9183f3f608a17c9786bb6e5fc494b65be598c6c2e16a76473e1",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\source_hashes.csv": "350539fb3604d2deaa5ebe91fb39b1b33bc42f681a7ec25894fd811fd550698a",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\figures\\tpr_fpr_age.png": "354e29dedf158cb195d354bf32cbcde4e74de3ac348b128af7365cbe1caf4859",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\figures\\tpr_fpr_bmi.png": "29818a9dfe00b7507e4e55d1dc6bd0ac56d4db2d2b4db9837cb2446d90496572",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\figures\\tpr_fpr_race_ethnicity.png": "5497e7b3ba1bfc319b8b57ea7bde785425f9f0001de75fcfdffd27a1643c9d5e",
+    "results\\reverse_validation\\official\\58ba2320a9141ff0\\external_validation\\fairness\\figures\\tpr_fpr_sex.png": "121ee1e7980a67ed1e4a1d08eb4d87184071a30a23a1e944779920000160ff30"
+  }
+}
