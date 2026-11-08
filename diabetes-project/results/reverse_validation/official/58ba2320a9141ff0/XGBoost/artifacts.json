@@ -1,0 +1,26 @@
+{
+  "run_id": "58ba2320a9141ff0",
+  "sha256": {
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\best_params.json": "5ae5f1edc2b879ee199409777bb6fa9f4605e1b36afffe8875ce7e5cf8f08bf7",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof.parquet": "210caf623520914ec9e65a1c81990beec81372794a28536e4dbf894766f81b92",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold1.json": "7e145cca2378174bd686cc0db0b373e0d1e5e60b6db8fe29585eb65df6fade81",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold1.parquet": "b103fca1e277ed066cfbe3b3523f5da48fc7609b77724b17a741812e2d8002e2",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold2.json": "3ed8ea129192dfc47dfee026f71223da6403422b4868295377caf1c3dcb2ebd9",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold2.parquet": "39150280965eb7447f9013fda2b18bb9c7f7d369cf389df1b8c064f4c4136b57",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold3.json": "d283d247b40aeec8293b45e8e1b07ae4e8168b77f12439f8ef7b504b6a3a4144",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold3.parquet": "41f11a29206c2aa504a811dd471168278607164b844c96180ddc7f5f280944bc",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold4.json": "ae2ce7a3d4b7da3ea81c5cd26885ec4d0c9dc1d94bc145feded76dceaf65e4ea",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold4.parquet": "8340ef3645684b2f9bbf3f52ccbe659ef55b6d4220727e7bfccd30cb8205d786",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold5.json": "4653471ab96b2cfe567c417a4884173d9f32a3ff0954106618792600d091b583",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\development_oof_fold5.parquet": "7621e0abb207237f1ffaf6e25b29786a360d50635e2240e808ba0b041ee6929d",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\failed_trials.csv": "0b87e12ebcf6ce33530c2656eceb2c291e7347d628f3d14f5fefd57fef4d325d",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\metadata.json": "89b78b6e3d69049dd65bd14372d27733b0eebcd6f1da0c5bdd136cea7d51a1db",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\thresholds.json": "16f168fa4e4088234c600564ab36fec2a3615b8b0a02f74c95b2a311a3ad9937",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\trials.csv": "c60892d023a5119497bb9187726a55e503f8650cbd7010975cfa5e9bb7f1f8e0",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\warnings.csv": "fe4aac6050d6bfb50f575846cde077e47ca45fa5d4cb9309e9c5aa38c735dbda",
+    "D:\\NCKH Mini\\diabetes-project\\results\\reverse_validation\\official\\58ba2320a9141ff0\\XGBoost\\youden_candidates.csv": "9b56264a37545438b8a54882cc29919c563c11ceb8505deeaac9de2aad7cc343",
+    "D:\\NCKH Mini\\diabetes-project\\models\\reverse_validation\\58ba2320a9141ff0\\XGBoost.joblib": "4aaf0829ac8fdca36be06e2a22f066a787c55a3ad169c2a8f8123995f510c590",
+    "D:\\NCKH Mini\\diabetes-project\\models\\reverse_validation\\58ba2320a9141ff0\\XGBoost.metadata.json": "9237905499133fcbb86d34e7a3c6ed491b38ac4f773b656d011d2f84b55ddf9e",
+    "D:\\NCKH Mini\\diabetes-project\\models\\reverse_validation\\58ba2320a9141ff0\\XGBoost.run.json": "89b78b6e3d69049dd65bd14372d27733b0eebcd6f1da0c5bdd136cea7d51a1db"
+  }
+}

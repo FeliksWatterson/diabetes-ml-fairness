@@ -1,0 +1,18 @@
+{
+  "run_id": "58ba2320a9141ff0",
+  "model": "XGBoost",
+  "stage": "reverse_official",
+  "params": {
+    "learning_rate": 0.07874356006336057,
+    "max_depth": 4,
+    "n_estimators": 253,
+    "subsample": 0.9972372420148096,
+    "colsample_bytree": 0.7762185188910097,
+    "min_child_weight": 5
+  },
+  "mean_cv_auc": 0.7873497399979692,
+  "best_trial": 22,
+  "complete_trials": 30,
+  "failed_trials": 0,
+  "trial_seconds": 715.788857
+}

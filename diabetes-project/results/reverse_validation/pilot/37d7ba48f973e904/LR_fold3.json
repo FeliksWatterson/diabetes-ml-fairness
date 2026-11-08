@@ -1,0 +1,15 @@
+{
+  "run_id": "37d7ba48f973e904",
+  "model": "LR",
+  "fold": 3,
+  "train_n": 359375,
+  "valid_n": 89844,
+  "train_positive": 48352,
+  "valid_positive": 12088,
+  "train_negative": 311023,
+  "auc": 0.779396837347321,
+  "fit_seconds": 2.445883099999719,
+  "predict_seconds": 0.2920225000002574,
+  "scale_pos_weight": null,
+  "warnings": []
+}

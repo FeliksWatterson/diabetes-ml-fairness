@@ -1576,3 +1576,446 @@ def save_png(figure, path):
     path = Path(path)
     figure.savefig(path, dpi=300, bbox_inches="tight")
     return path
+
+
+def run_reverse_pilot(X, y, support, splits, pilot_params, results_dir, seed=42):
+    """Chạy cấu hình cố định trên CV BRFSS 2017, lưu AUC và thời gian từng fold."""
+    import hashlib
+    import importlib.metadata
+    import json
+    import warnings
+    from time import perf_counter
+    from sklearn.metrics import roc_auc_score
+
+    assert X.index.equals(y.index) and X.index.equals(support.index)
+    assert len(X) == 449219 and len(splits) == 5
+    assert support["year"].eq(2017).all() and support["source_row_id"].is_unique
+    assert list(pilot_params) == ["LR", "XGBoost"]
+    frame_hash = _hash_tuning_frames(X, y, support)
+    split_hash = hashlib.sha256()
+    arrays, coverage = {}, np.zeros(len(X), dtype=int)
+    for fold, (train, valid) in enumerate(splits, 1):
+        assert not np.intersect1d(train, valid).size
+        assert np.array_equal(np.sort(np.r_[train, valid]), np.arange(len(X)))
+        assert not np.intersect1d(support.iloc[train]["source_row_id"],
+                                  support.iloc[valid]["source_row_id"]).size
+        coverage[valid] += 1
+        for name, indices in [("train", train), ("valid", valid)]:
+            arrays[f"fold_{fold}_{name}"] = indices
+            split_hash.update(np.asarray(indices, dtype="int64").tobytes())
+    assert np.all(coverage == 1)
+    config = {
+        "stage": "reverse_pilot", "source": "BRFSS 2017", "rows": len(X),
+        "seed": seed, "cv_folds": 5, "stratify": "diabetes_label", "shuffle": True,
+        "params": pilot_params, "columns": X.columns.tolist(),
+        "dtypes": X.dtypes.astype(str).to_dict(), "data_sha256": frame_hash,
+        "splits_sha256": split_hash.hexdigest(),
+        "utils_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "versions": {name: importlib.metadata.version(name) for name in [
+            "numpy", "pandas", "scikit-learn", "xgboost",
+        ]},
+        "class_balance": "LR balanced; XGBoost negative/positive from y of each fit",
+        "timing": "fit includes preprocessing; predict includes transform and predict_proba",
+        "estimate": "30 * sum(fit_seconds + predict_seconds) across 5 pilot folds; configuration dependent",
+    }
+    run_id = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:16]
+    directory = Path(results_dir) / "pilot" / run_id
+    directory.mkdir(parents=True, exist_ok=True)
+    config_path = directory / "config.json"
+    if config_path.exists():
+        assert json.loads(config_path.read_text(encoding="utf-8")) == config
+    else:
+        _write_tuning_json(config_path, config)
+    split_path = directory / "splits.npz"
+    if split_path.exists():
+        with np.load(split_path) as saved:
+            assert set(saved.files) == set(arrays)
+            for name, indices in arrays.items():
+                np.testing.assert_array_equal(saved[name], indices)
+    else:
+        np.savez_compressed(split_path, **arrays)
+    rows, warning_rows = [], []
+    for model, params in pilot_params.items():
+        previous_pipeline = None
+        for fold, (train, valid) in enumerate(splits, 1):
+            row_path = directory / f"{model}_fold{fold}.json"
+            y_train, y_valid = y.iloc[train], y.iloc[valid]
+            if row_path.exists():
+                record = json.loads(row_path.read_text(encoding="utf-8"))
+                assert record["run_id"] == run_id and record["model"] == model and record["fold"] == fold
+                assert record["train_n"] == len(train) and record["valid_n"] == len(valid)
+                assert record["train_positive"] == int(y_train.sum())
+                assert record["valid_positive"] == int(y_valid.sum())
+            else:
+                pipeline = build_tuning_pipeline(model, params, seed=seed)
+                if previous_pipeline is not None:
+                    assert pipeline.named_steps["preprocessor"] is not previous_pipeline.named_steps["preprocessor"]
+                    assert pipeline.named_steps["classifier"] is not previous_pipeline.named_steps["classifier"]
+                assert not hasattr(pipeline.named_steps["preprocessor"], "transformers_")
+                X_train, X_valid = X.iloc[train], X.iloc[valid]
+                with warnings.catch_warnings(record=True) as caught:
+                    warnings.simplefilter("always")
+                    started = perf_counter()
+                    pipeline.fit(X_train, y_train)
+                    fit_seconds = perf_counter() - started
+                    started = perf_counter()
+                    probability = pipeline.predict_proba(X_valid)[:, 1]
+                    predict_seconds = perf_counter() - started
+                assert probability.shape == (len(valid),) and np.isfinite(probability).all()
+                assert ((probability >= 0) & (probability <= 1)).all()
+                classifier = pipeline.named_steps["classifier"]
+                ratio = float(y_train.eq(0).sum() / y_train.eq(1).sum())
+                if model == "XGBoost":
+                    assert np.isclose(classifier.scale_pos_weight, ratio)
+                else:
+                    assert classifier.class_weight == "balanced"
+                record = {
+                    "run_id": run_id, "model": model, "fold": fold,
+                    "train_n": len(train), "valid_n": len(valid),
+                    "train_positive": int(y_train.sum()), "valid_positive": int(y_valid.sum()),
+                    "train_negative": int(y_train.eq(0).sum()),
+                    "auc": float(roc_auc_score(y_valid, probability)),
+                    "fit_seconds": fit_seconds, "predict_seconds": predict_seconds,
+                    "scale_pos_weight": ratio if model == "XGBoost" else None,
+                    "warnings": [{"category": w.category.__name__, "message": str(w.message)} for w in caught],
+                }
+                _write_tuning_json(row_path, record)
+                previous_pipeline = pipeline
+            assert np.isfinite(record["auc"]) and 0 <= record["auc"] <= 1
+            assert record["fit_seconds"] >= 0 and record["predict_seconds"] >= 0
+            warning_rows.extend({"model": model, "fold": fold, **w} for w in record["warnings"])
+            rows.append({k: v for k, v in record.items() if k != "warnings"})
+    assert _hash_tuning_frames(X, y, support) == frame_hash
+    folds = pd.DataFrame(rows)
+    folds["fit_predict_seconds"] = folds["fit_seconds"] + folds["predict_seconds"]
+    summary = folds.groupby("model", sort=False).agg(
+        folds=("fold", "size"), auc_mean=("auc", "mean"), auc_sd=("auc", "std"),
+        fit_seconds=("fit_seconds", "sum"), predict_seconds=("predict_seconds", "sum"),
+        pilot_seconds=("fit_predict_seconds", "sum"),
+    )
+    assert summary["folds"].eq(5).all()
+    summary["estimated_30_trials_minutes"] = summary["pilot_seconds"] * 30 / 60
+    warning_table = pd.DataFrame(warning_rows, columns=["model", "fold", "category", "message"])
+    folds.to_csv(directory / "fold_metrics.csv", index=False)
+    summary.to_csv(directory / "pilot_summary.csv")
+    warning_table.to_csv(directory / "warnings.csv", index=False)
+    return {"id": run_id, "directory": directory, "folds": folds,
+            "summary": summary, "warnings": warning_table}
+
+
+def prepare_reverse_run(X, y, support, pilot_dir, results_dir, models_dir, seed=42, budget=30):
+    """Gắn study đảo chiều với dữ liệu BRFSS 2017 và bộ chia đã kiểm tra."""
+    import hashlib
+    import importlib.metadata
+    import json
+    import platform
+
+    assert len(X) == 449219 and X.index.is_unique
+    assert X.index.equals(y.index) and X.index.equals(support.index)
+    assert y.notna().all() and y.isin([0, 1]).all()
+    assert support["year"].eq(2017).all()
+    assert support["source_row_id"].notna().all() and support["source_row_id"].is_unique
+    pilot_dir = Path(pilot_dir)
+    pilot_config = json.loads((pilot_dir / "config.json").read_text(encoding="utf-8"))
+    data_hash = _hash_tuning_frames(X, y, support)
+    assert data_hash == pilot_config["data_sha256"]
+    assert pilot_config["seed"] == seed and pilot_config["stratify"] == "diabetes_label"
+    assert X.columns.tolist() == pilot_config["columns"]
+    assert X.dtypes.astype(str).to_dict() == pilot_config["dtypes"]
+    splits, arrays = [], {}
+    coverage = np.zeros(len(X), dtype=int)
+    split_hash = hashlib.sha256()
+    with np.load(pilot_dir / "splits.npz") as saved:
+        for fold in range(1, 6):
+            train, valid = saved[f"fold_{fold}_train"].copy(), saved[f"fold_{fold}_valid"].copy()
+            assert not np.intersect1d(train, valid).size
+            assert np.array_equal(np.sort(np.r_[train, valid]), np.arange(len(X)))
+            assert not np.intersect1d(support.iloc[train]["source_row_id"],
+                                      support.iloc[valid]["source_row_id"]).size
+            coverage[valid] += 1
+            splits.append((train, valid))
+            for name, indices in [("train", train), ("valid", valid)]:
+                arrays[f"fold_{fold}_{name}"] = indices
+                split_hash.update(np.asarray(indices, dtype="int64").tobytes())
+    assert np.all(coverage == 1) and split_hash.hexdigest() == pilot_config["splits_sha256"]
+    config = {
+        "schema": 1, "stage": "reverse_official", "development": "BRFSS 2017",
+        "external_target": "NHANES 2015-2018; not accessed during development",
+        "models": ["LR", "XGBoost"], "rows": len(X), "columns": X.columns.tolist(),
+        "dtypes": X.dtypes.astype(str).to_dict(), "seed": seed, "budget_complete": budget,
+        "cv": {"n_splits": 5, "stratify": "diabetes_label", "shuffle": True},
+        "objective": "mean_cv_roc_auc", "direction": "maximize",
+        "space": {model: get_tuning_space()[model] for model in ["LR", "XGBoost"]},
+        "sampler": {"name": "TPE", "n_startup_trials": 10,
+                    "seed_rule": "seed + trial_number", "multivariate": False},
+        "class_balance": "LR balanced; XGBoost negative/positive from y of each fit",
+        "pipeline": "build_tuning_pipeline; fresh preprocessing and classifier per fit",
+        "fixed": {
+            "LR": {"solver": "lbfgs", "max_iter": 2000, "class_weight": "balanced"},
+            "XGBoost": {"objective": "binary:logistic", "eval_metric": "logloss",
+                        "reg_alpha": 0, "reg_lambda": 1, "tree_method": "hist", "n_jobs": 4},
+        },
+        "preprocessing": {"numeric_imputer": "median", "categorical_imputer": "most_frequent",
+                          "onehot_drop": None, "onehot_unknown": "ignore", "scaled_models": ["LR"]},
+        "survey_weighted": False, "calibration": None, "early_stopping": False, "pruning": False,
+        "thresholds": "0.5 and maximum finite Youden J; ties choose higher threshold",
+        "oof_use": "parameter selection and threshold development on same 5 folds; not independent internal evaluation",
+        "data_sha256": data_hash, "splits_sha256": split_hash.hexdigest(),
+        "split_origin": str((pilot_dir / "splits.npz").resolve()),
+        "pilot_trials_used": False,
+        "utils_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "python": platform.python_version(),
+        "versions": {name: importlib.metadata.version(name) for name in [
+            "numpy", "pandas", "scikit-learn", "xgboost", "optuna", "pyarrow", "joblib",
+        ]},
+    }
+    run_id = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:16]
+    directory = Path(results_dir) / "official" / run_id
+    model_directory = Path(models_dir) / run_id
+    directory.mkdir(parents=True, exist_ok=True)
+    model_directory.mkdir(parents=True, exist_ok=True)
+    config_path = directory / "config.json"
+    if config_path.exists():
+        assert json.loads(config_path.read_text(encoding="utf-8")) == config
+    else:
+        _write_tuning_json(config_path, config)
+    split_path = directory / "splits.npz"
+    if split_path.exists():
+        with np.load(split_path) as saved:
+            assert set(saved.files) == set(arrays)
+            for name, indices in arrays.items():
+                np.testing.assert_array_equal(saved[name], indices)
+    else:
+        np.savez_compressed(split_path, **arrays)
+    return {"id": run_id, "config": config, "directory": directory,
+            "model_directory": model_directory, "splits": splits}
+
+
+def fit_reverse_development(model_name, X, y, support, run):
+    """Tối ưu BRFSS, tạo OOF phát triển ngưỡng và lưu pipeline fit toàn mẫu."""
+    import hashlib
+    import json
+    import joblib
+    import optuna
+    import traceback
+    import warnings
+    from time import perf_counter
+    from sklearn.metrics import roc_auc_score
+
+    started_model = perf_counter()
+    config, splits = run["config"], run["splits"]
+    assert model_name in config["models"]
+    assert X.index.equals(y.index) and X.index.equals(support.index)
+    assert X.columns.tolist() == config["columns"]
+    assert _hash_tuning_frames(X, y, support) == config["data_sha256"]
+    assert hashlib.sha256(Path(__file__).read_bytes()).hexdigest() == config["utils_sha256"]
+    with np.load(run["directory"] / "splits.npz") as saved:
+        for fold, (train, valid) in enumerate(splits, 1):
+            np.testing.assert_array_equal(train, saved[f"fold_{fold}_train"])
+            np.testing.assert_array_equal(valid, saved[f"fold_{fold}_valid"])
+    directory = run["directory"] / model_name
+    directory.mkdir(parents=True, exist_ok=True)
+    model_path = run["model_directory"] / f"{model_name}.joblib"
+    complete_path = directory / "artifacts.json"
+    if complete_path.exists():
+        marker = json.loads(complete_path.read_text(encoding="utf-8"))
+        assert marker["run_id"] == run["id"]
+        for filename, digest in marker["sha256"].items():
+            assert hashlib.sha256(Path(filename).read_bytes()).hexdigest() == digest
+        return json.loads((directory / "metadata.json").read_text(encoding="utf-8"))
+
+    def fit_recorded(pipeline, train, phase, fold):
+        X_train, y_train = X.iloc[train], y.iloc[train]
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            started = perf_counter()
+            pipeline.fit(X_train, y_train)
+            seconds = perf_counter() - started
+        np.testing.assert_array_equal(pipeline.classes_, [0, 1])
+        classifier = pipeline.named_steps["classifier"]
+        if model_name == "XGBoost":
+            assert np.isclose(classifier.scale_pos_weight, y_train.eq(0).sum() / y_train.eq(1).sum())
+        else:
+            assert classifier.class_weight == "balanced"
+        return seconds, [{"phase": phase, "fold": fold, "category": w.category.__name__,
+                          "message": str(w.message)} for w in caught]
+
+    optuna.logging.set_verbosity(optuna.logging.WARNING)
+    storage = optuna.storages.RDBStorage("sqlite:///" + (directory / "study.sqlite3").resolve().as_posix())
+    study = optuna.create_study(
+        study_name=f"reverse_{run['id']}_{model_name}", storage=storage,
+        direction="maximize", load_if_exists=True, pruner=optuna.pruners.NopPruner(),
+    )
+    identity = {"run_id": run["id"], "model": model_name, "stage": "reverse_official"}
+    if study.user_attrs:
+        assert study.user_attrs == identity
+    else:
+        for name, value in identity.items():
+            study.set_user_attr(name, value)
+    for trial in study.get_trials(states=(optuna.trial.TrialState.RUNNING,)):
+        study.tell(trial.number, state=optuna.trial.TrialState.FAIL)
+
+    def objective(trial):
+        try:
+            params = {}
+            for name, spec in config["space"][model_name].items():
+                params[name] = getattr(trial, "suggest_" + spec["kind"])(
+                    name, **{key: value for key, value in spec.items() if key != "kind"})
+            rows, captured = [], []
+            for fold, (train, valid) in enumerate(splits, 1):
+                pipeline = build_tuning_pipeline(model_name, params, seed=config["seed"])
+                fit_seconds, caught = fit_recorded(pipeline, train, "search", fold)
+                probability = pipeline.predict_proba(X.iloc[valid])[:, 1]
+                assert np.isfinite(probability).all() and ((probability >= 0) & (probability <= 1)).all()
+                rows.append({"fold": fold, "auc": float(roc_auc_score(y.iloc[valid], probability)),
+                             "fit_seconds": fit_seconds, "train_n": len(train), "valid_n": len(valid),
+                             "train_positive": int(y.iloc[train].sum())})
+                captured.extend(caught)
+                trial.set_user_attr("cv_folds", rows)
+                trial.set_user_attr("warnings", captured)
+            return float(np.mean([row["auc"] for row in rows]))
+        except Exception:
+            trial.set_user_attr("error", traceback.format_exc())
+            raise
+
+    try:
+        complete_count = lambda: len(study.get_trials(states=(optuna.trial.TrialState.COMPLETE,)))
+        assert complete_count() <= config["budget_complete"]
+        while complete_count() < config["budget_complete"]:
+            study.sampler = optuna.samplers.TPESampler(
+                seed=config["seed"] + len(study.trials), n_startup_trials=10,
+                multivariate=False, constant_liar=False,
+            )
+            try:
+                study.optimize(objective, n_trials=1, n_jobs=1, catch=(ValueError, FloatingPointError))
+            finally:
+                study.trials_dataframe().to_csv(directory / "trials.csv", index=False)
+            if len(study.trials) >= 3 and all(trial.state.name == "FAIL" for trial in study.trials[-3:]):
+                raise RuntimeError("Three consecutive failed trials; inspect saved errors")
+        assert complete_count() == config["budget_complete"]
+        best = study.best_trial
+        failed = [{"trial": t.number, "error": t.user_attrs.get("error", "interrupted")}
+                  for t in study.trials if t.state.name == "FAIL"]
+        trial_seconds = sum((t.datetime_complete - t.datetime_start).total_seconds()
+                            for t in study.trials if t.datetime_start and t.datetime_complete)
+        _write_tuning_json(directory / "best_params.json", {
+            **identity, "params": best.params, "mean_cv_auc": best.value, "best_trial": best.number,
+            "complete_trials": complete_count(), "failed_trials": len(failed),
+            "trial_seconds": trial_seconds,
+        })
+        pd.DataFrame(failed, columns=["trial", "error"]).to_csv(directory / "failed_trials.csv", index=False)
+        warning_rows = [{"trial": trial.number, **row} for trial in study.trials
+                        for row in trial.user_attrs.get("warnings", [])]
+        params_hash = hashlib.sha256(json.dumps(best.params, sort_keys=True).encode()).hexdigest()
+        parts, coverage = [], np.zeros(len(X), dtype=int)
+        oof_seconds = 0.0
+        for fold, (train, valid) in enumerate(splits, 1):
+            fold_path = directory / f"development_oof_fold{fold}.parquet"
+            fold_meta_path = fold_path.with_suffix(".json")
+            expected = {**identity, "fold": fold, "params_sha256": params_hash}
+            if fold_path.exists() and fold_meta_path.exists():
+                fold_meta = json.loads(fold_meta_path.read_text(encoding="utf-8"))
+                assert fold_meta["identity"] == expected
+                assert hashlib.sha256(fold_path.read_bytes()).hexdigest() == fold_meta["sha256"]
+                part = pd.read_parquet(fold_path)
+            else:
+                pipeline = build_tuning_pipeline(model_name, best.params, seed=config["seed"])
+                fit_seconds, caught = fit_recorded(pipeline, train, "development_oof", fold)
+                started = perf_counter()
+                probability = pipeline.predict_proba(X.iloc[valid])[:, 1]
+                predict_seconds = perf_counter() - started
+                part = support.iloc[valid][["year", "source_row_id"]].copy()
+                part["diabetes_label"] = y.iloc[valid]
+                part["fold"], part["probability"] = fold, probability
+                temporary = fold_path.with_suffix(".parquet.tmp")
+                part.to_parquet(temporary, index=True)
+                pd.testing.assert_frame_equal(pd.read_parquet(temporary), part)
+                temporary.replace(fold_path)
+                fold_meta = {"identity": expected, "sha256": hashlib.sha256(fold_path.read_bytes()).hexdigest(),
+                             "fit_seconds": fit_seconds, "predict_seconds": predict_seconds, "warnings": caught}
+                _write_tuning_json(fold_meta_path, fold_meta)
+            expected_keys = support.iloc[valid][["year", "source_row_id"]].copy()
+            expected_keys["diabetes_label"] = y.iloc[valid]
+            pd.testing.assert_frame_equal(part[expected_keys.columns], expected_keys)
+            assert part["fold"].eq(fold).all() and part["probability"].notna().all()
+            assert part["probability"].between(0, 1).all()
+            coverage[valid] += 1
+            parts.append(part)
+            oof_seconds += fold_meta["fit_seconds"] + fold_meta["predict_seconds"]
+            warning_rows.extend({"trial": None, **row} for row in fold_meta["warnings"])
+        oof = pd.concat(parts)
+        assert np.all(coverage == 1) and oof.index.is_unique
+        assert oof["source_row_id"].is_unique and len(oof) == len(X)
+        oof = oof.reindex(X.index)
+        pd.testing.assert_series_equal(oof["diabetes_label"], y)
+        pd.testing.assert_frame_equal(oof[["year", "source_row_id"]], support[["year", "source_row_id"]])
+        assert np.isfinite(oof["probability"]).all() and oof["probability"].between(0, 1).all()
+        threshold, curve = get_youden_threshold(y, oof["probability"])
+        thresholds = {"default": 0.5, "youden": threshold,
+                      "selection_rule": "maximize finite Youden J; ties choose higher threshold",
+                      "prediction_rule": "probability >= threshold; fixed for all groups",
+                      "use": config["oof_use"]}
+        curve.to_csv(directory / "youden_candidates.csv", index=False)
+        _write_tuning_json(directory / "thresholds.json", thresholds)
+        oof["prediction_0_5"] = oof["probability"].ge(0.5).astype(int)
+        oof["prediction_youden"] = oof["probability"].ge(threshold).astype(int)
+        oof["run_id"] = run["id"]
+        oof_path = directory / "development_oof.parquet"
+        oof.to_parquet(oof_path, index=True)
+        pd.testing.assert_frame_equal(pd.read_parquet(oof_path), oof)
+        model_meta_path = model_path.with_suffix(".metadata.json")
+        final_identity = {**identity, "params_sha256": params_hash}
+        if model_path.exists() and model_meta_path.exists():
+            final_info = json.loads(model_meta_path.read_text(encoding="utf-8"))
+            assert final_info["identity"] == final_identity
+            assert hashlib.sha256(model_path.read_bytes()).hexdigest() == final_info["model_sha256"]
+            final_pipeline = joblib.load(model_path)
+        else:
+            final_pipeline = build_tuning_pipeline(model_name, best.params, seed=config["seed"])
+            final_seconds, caught = fit_recorded(final_pipeline, np.arange(len(X)), "final_fit", None)
+            before = final_pipeline.predict_proba(X)
+            temporary = model_path.with_suffix(".joblib.tmp")
+            joblib.dump(final_pipeline, temporary)
+            restored = joblib.load(temporary)
+            after = restored.predict_proba(X)
+            np.testing.assert_allclose(after, before, rtol=0, atol=1e-12)
+            for cut in [0.5, threshold]:
+                np.testing.assert_array_equal(after[:, 1] >= cut, before[:, 1] >= cut)
+            assert restored.feature_names_in_.tolist() == config["columns"]
+            temporary.replace(model_path)
+            final_info = {"identity": final_identity, "fit_seconds": final_seconds, "warnings": caught,
+                          "model_sha256": hashlib.sha256(model_path.read_bytes()).hexdigest(),
+                          "serialization_max_abs_error": float(np.max(abs(after - before)))}
+            _write_tuning_json(model_meta_path, final_info)
+        assert final_pipeline.feature_names_in_.tolist() == config["columns"]
+        np.testing.assert_array_equal(final_pipeline.classes_, [0, 1])
+        final_probability = final_pipeline.predict_proba(X)
+        assert np.isfinite(final_probability).all()
+        assert ((final_probability >= 0) & (final_probability <= 1)).all()
+        reloaded = joblib.load(model_path)
+        np.testing.assert_allclose(reloaded.predict_proba(X), final_probability, rtol=0, atol=1e-12)
+        warning_rows.extend({"trial": None, **row} for row in final_info["warnings"])
+        pd.DataFrame(warning_rows, columns=["trial", "phase", "fold", "category", "message"]).to_csv(
+            directory / "warnings.csv", index=False)
+        assert _hash_tuning_frames(X, y, support) == config["data_sha256"]
+        metadata = {
+            **identity, "config": config, "best_params": best.params, "best_mean_cv_auc": best.value,
+            "best_trial": best.number, "complete_trials": complete_count(), "failed_trials": len(failed),
+            "thresholds": thresholds, "oof_rows": len(oof), "oof_coverage": "exactly once per source_row_id",
+            "trial_seconds": trial_seconds, "oof_seconds": oof_seconds,
+            "final_fit_seconds": final_info["fit_seconds"], "wall_seconds": perf_counter() - started_model,
+            "warning_count": len(warning_rows),
+            "serialization_max_abs_error": final_info["serialization_max_abs_error"],
+            "pipeline_path": str(model_path.resolve()), "oof_path": str(oof_path.resolve()),
+        }
+        _write_tuning_json(directory / "metadata.json", metadata)
+        _write_tuning_json(model_path.with_suffix(".run.json"), metadata)
+        files = [p for p in directory.iterdir() if p.is_file() and p.name not in [
+            "artifacts.json", "study.sqlite3", "study.sqlite3-shm", "study.sqlite3-wal",
+        ]] + [model_path, model_meta_path, model_path.with_suffix(".run.json")]
+        _write_tuning_json(complete_path, {"run_id": run["id"], "sha256": {
+            str(p.resolve()): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}})
+        return metadata
+    finally:
+        storage.remove_session()
+        storage.engine.dispose()

@@ -1,0 +1,54 @@
+{
+  "stage": "reverse_pilot",
+  "source": "BRFSS 2017",
+  "rows": 449219,
+  "seed": 42,
+  "cv_folds": 5,
+  "stratify": "diabetes_label",
+  "shuffle": true,
+  "params": {
+    "LR": {
+      "C": 1.0
+    },
+    "XGBoost": {
+      "learning_rate": 0.05,
+      "max_depth": 3,
+      "n_estimators": 200,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 1
+    }
+  },
+  "columns": [
+    "age",
+    "sex",
+    "race_ethnicity",
+    "bmi",
+    "smoking_status",
+    "physical_activity",
+    "heart_attack",
+    "stroke"
+  ],
+  "dtypes": {
+    "age": "float64",
+    "sex": "Int64",
+    "race_ethnicity": "string",
+    "bmi": "float64",
+    "smoking_status": "string",
+    "physical_activity": "Int64",
+    "heart_attack": "Int64",
+    "stroke": "Int64"
+  },
+  "data_sha256": "69fc6ca7383a93a699a0548fa85a4d8fc912225622e565edfc7de4eb99c90da8",
+  "splits_sha256": "61a965c33e645d10089672ab0d5e15844a08df6e42e3032971df845bef40c9cc",
+  "utils_sha256": "f16ba73ba5c3f2a451f5480b1217b4ac5b934e56889c0c51e1830d5799ccd0dc",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1"
+  },
+  "class_balance": "LR balanced; XGBoost negative/positive from y of each fit",
+  "timing": "fit includes preprocessing; predict includes transform and predict_proba",
+  "estimate": "30 * sum(fit_seconds + predict_seconds) across 5 pilot folds; configuration dependent"
+}

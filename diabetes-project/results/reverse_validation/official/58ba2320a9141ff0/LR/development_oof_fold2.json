@@ -1,0 +1,13 @@
+{
+  "identity": {
+    "run_id": "58ba2320a9141ff0",
+    "model": "LR",
+    "stage": "reverse_official",
+    "fold": 2,
+    "params_sha256": "6bc1b84d668c22378cd6daff7cb1a73492ed5eabc93b5a7c87d8882464fe89ea"
+  },
+  "sha256": "c1fc72e524a9f022a4bdeeec03e5af49d79cc14526d4f41e830db90d1fd297af",
+  "fit_seconds": 2.276552100000117,
+  "predict_seconds": 0.29944109999996726,
+  "warnings": []
+}

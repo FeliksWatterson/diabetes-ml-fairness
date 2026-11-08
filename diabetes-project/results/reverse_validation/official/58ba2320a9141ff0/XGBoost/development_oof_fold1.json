@@ -1,0 +1,13 @@
+{
+  "identity": {
+    "run_id": "58ba2320a9141ff0",
+    "model": "XGBoost",
+    "stage": "reverse_official",
+    "fold": 1,
+    "params_sha256": "c15f409f6c255321b66c1df31c6cf62e192114f3498e5a0208e19282aa9d211c"
+  },
+  "sha256": "b103fca1e277ed066cfbe3b3523f5da48fc7609b77724b17a741812e2d8002e2",
+  "fit_seconds": 2.6497780999998213,
+  "predict_seconds": 0.15620779999972,
+  "warnings": []
+}

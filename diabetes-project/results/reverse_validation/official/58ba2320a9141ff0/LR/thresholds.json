@@ -1,0 +1,7 @@
+{
+  "default": 0.5,
+  "youden": 0.47120265240078846,
+  "selection_rule": "maximize finite Youden J; ties choose higher threshold",
+  "prediction_rule": "probability >= threshold; fixed for all groups",
+  "use": "parameter selection and threshold development on same 5 folds; not independent internal evaluation"
+}

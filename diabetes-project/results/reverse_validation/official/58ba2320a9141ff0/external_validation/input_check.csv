@@ -1,0 +1,9 @@
+feature,dtype,missing,missing_percent
+age,float64,0,0.0
+sex,Int64,0,0.0
+race_ethnicity,string,0,0.0
+bmi,float64,228,2.104874446085672
+smoking_status,string,9,0.08308714918759232
+physical_activity,Int64,25,0.2307976366322009
+heart_attack,Int64,499,4.60672082717873
+stroke,Int64,495,4.569793205317577

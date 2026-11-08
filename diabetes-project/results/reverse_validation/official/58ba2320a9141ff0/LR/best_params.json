@@ -1,0 +1,13 @@
+{
+  "run_id": "58ba2320a9141ff0",
+  "model": "LR",
+  "stage": "reverse_official",
+  "params": {
+    "C": 29.13831224000588
+  },
+  "mean_cv_auc": 0.7787939197103328,
+  "best_trial": 25,
+  "complete_trials": 30,
+  "failed_trials": 0,
+  "trial_seconds": 229.932045
+}

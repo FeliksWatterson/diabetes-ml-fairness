@@ -1,0 +1,15 @@
+{
+  "run_id": "37d7ba48f973e904",
+  "model": "XGBoost",
+  "fold": 1,
+  "train_n": 359375,
+  "valid_n": 89844,
+  "train_positive": 48352,
+  "valid_positive": 12088,
+  "train_negative": 311023,
+  "auc": 0.78428697401728,
+  "fit_seconds": 5.891259900000023,
+  "predict_seconds": 0.33711250000033033,
+  "scale_pos_weight": 6.432474354731966,
+  "warnings": []
+}
