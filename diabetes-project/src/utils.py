@@ -9,6 +9,46 @@ from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardSc
 from xgboost import XGBClassifier
 
 
+def resolve_project_path(path):
+    """Resolve artifact paths relative to the project root."""
+    path = Path(str(path).replace("\\", "/"))
+    return path if path.is_absolute() else Path(__file__).resolve().parents[1] / path
+
+
+def _project_relative_path(path):
+    return Path(path).resolve().relative_to(Path(__file__).resolve().parents[1]).as_posix()
+
+
+def _result_run_identity(config, run_root):
+    """Keep migrated run IDs when data, splits and experiment settings match."""
+    import hashlib
+    import json
+
+    project = Path(__file__).resolve().parents[1]
+    migration = project / "results/path_migration_manifest.json"
+    if migration.exists():
+        ledger = json.loads(migration.read_text(encoding="utf-8"))
+        for entry in ledger["runs"]:
+            path = project / entry["config_path"]
+            if path.parent.parent != Path(run_root).resolve():
+                continue
+            saved = json.loads(path.read_text(encoding="utf-8"))
+            candidate = dict(config)
+            if (saved.get("schema") == 1 and saved.get("pilot_params") is not None
+                    and config.get("schema") == 2):
+                # Pilot lịch sử chạy một trial; giữ schema/ngân sách cũ khi nạp lại.
+                candidate.update(schema=saved["schema"], budget_rule=saved["budget_rule"])
+            comparable = lambda value: {k: v for k, v in value.items() if k != "utils_sha256"}
+            if comparable(candidate) != comparable(saved):
+                continue
+            # Đổi đường dẫn không tạo run mới; thay đổi code khác vẫn phải được kiểm tra.
+            assert config["utils_sha256"] == ledger["utils_sha256_after"], "Code changed after result migration"
+            assert hashlib.sha256(path.read_bytes()).hexdigest() == entry["config_sha256_after"]
+            return entry["id"], saved
+    identity = json.dumps(config, sort_keys=True, ensure_ascii=True).encode()
+    return hashlib.sha256(identity).hexdigest()[:16], config
+
+
 def get_tuning_space():
     return {
         "LR": {"C": {"kind": "float", "low": 0.001, "high": 100.0, "log": True}},
@@ -140,8 +180,7 @@ def prepare_tuning_run(X, y, support, outer_splits, inner_splits_by_outer,
         },
         "thresholds": {"SVM RBF": "decision score >= 0", "others": "probability >= 0.5"},
     }
-    identity = json.dumps(config, sort_keys=True, ensure_ascii=True).encode()
-    run_id = hashlib.sha256(identity).hexdigest()[:16]
+    run_id, config = _result_run_identity(config, Path(results_dir) / "tuning")
     directory = Path(results_dir) / "tuning" / run_id
     directory.mkdir(parents=True, exist_ok=True)
     manifest = directory / "config.json"
@@ -311,7 +350,7 @@ def evaluate_tuned_outer(model_name, study, directory, X_train, y_train,
         checkpoint = json.loads(marker.read_text(encoding="utf-8"))
         assert checkpoint["identity"] == expected
         for path, digest in checkpoint["artifacts"].items():
-            assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, path
+            assert hashlib.sha256(resolve_project_path(path).read_bytes()).hexdigest() == digest, path
         metrics = json.loads((directory / "outer_metrics.json").read_text(encoding="utf-8"))
         predictions = pd.read_parquet(directory / "outer_predictions.parquet")
         pd.testing.assert_frame_equal(predictions[["SEQN", "cycle"]], support_test[["SEQN", "cycle"]])
@@ -364,7 +403,7 @@ def evaluate_tuned_outer(model_name, study, directory, X_train, y_train,
     predictions.to_parquet(Path(directory) / "outer_predictions.parquet", index=True)
     artifacts = [model_path, metadata_path, directory / "outer_metrics.json", directory / "outer_predictions.parquet"]
     _write_tuning_json(marker, {"identity": expected, "artifacts": {
-        str(path.resolve()): hashlib.sha256(path.read_bytes()).hexdigest() for path in artifacts
+        _project_relative_path(path): hashlib.sha256(path.read_bytes()).hexdigest() for path in artifacts
     }})
     return metrics, predictions
 
@@ -811,7 +850,7 @@ def prepare_final_run(X, y, support, splits, data_path, results_dir, models_dir,
             "numpy", "pandas", "scikit-learn", "xgboost", "optuna", "pyarrow", "joblib",
         ]},
     }
-    run_id = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:16]
+    run_id, config = _result_run_identity(config, Path(results_dir) / "final_development")
     directory = Path(results_dir) / "final_development" / run_id
     model_directory = Path(models_dir) / "final" / run_id
     directory.mkdir(parents=True, exist_ok=True)
@@ -882,7 +921,7 @@ def fit_final_development(model_name, X, y, support, splits, run):
         saved = json.loads(manifest.read_text(encoding="utf-8"))
         assert saved["run_id"] == run["id"]
         for filename, digest in saved["sha256"].items():
-            assert hashlib.sha256(Path(filename).read_bytes()).hexdigest() == digest
+            assert hashlib.sha256(resolve_project_path(filename).read_bytes()).hexdigest() == digest
         return json.loads((directory / "metadata.json").read_text(encoding="utf-8"))
     optuna.logging.set_verbosity(optuna.logging.WARNING)
     storage = optuna.storages.RDBStorage("sqlite:///" + (directory / "study.sqlite3").resolve().as_posix())
@@ -1022,14 +1061,14 @@ def fit_final_development(model_name, X, y, support, splits, run):
                     "wall_seconds": perf_counter() - wall_started,
                     "rows": len(X), "oof_coverage": "exactly once per person",
                     "serialization_check": "exact probability and prediction match on all NHANES rows",
-                    "pipeline_path": str(model_path.resolve()), "oof_path": str(oof_path.resolve())}
+                    "pipeline_path": _project_relative_path(model_path), "oof_path": _project_relative_path(oof_path)}
         _write_tuning_json(directory / "metadata.json", metadata)
         _write_tuning_json(model_path.with_suffix(".metadata.json"), metadata)
         files = [p for p in directory.iterdir() if p.is_file() and p.name not in [
             "artifacts.json", "study.sqlite3", "study.sqlite3-shm", "study.sqlite3-wal",
         ]] + [model_path, model_path.with_suffix(".metadata.json")]
         _write_tuning_json(manifest, {"run_id": run["id"], "sha256": {
-            str(p.resolve()): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}})
+            _project_relative_path(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}})
         return metadata
     finally:
         storage.remove_session()
@@ -1618,7 +1657,7 @@ def run_reverse_pilot(X, y, support, splits, pilot_params, results_dir, seed=42)
         "timing": "fit includes preprocessing; predict includes transform and predict_proba",
         "estimate": "30 * sum(fit_seconds + predict_seconds) across 5 pilot folds; configuration dependent",
     }
-    run_id = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:16]
+    run_id, config = _result_run_identity(config, Path(results_dir) / "pilot")
     directory = Path(results_dir) / "pilot" / run_id
     directory.mkdir(parents=True, exist_ok=True)
     config_path = directory / "config.json"
@@ -1761,7 +1800,7 @@ def prepare_reverse_run(X, y, support, pilot_dir, results_dir, models_dir, seed=
         "thresholds": "0.5 and maximum finite Youden J; ties choose higher threshold",
         "oof_use": "parameter selection and threshold development on same 5 folds; not independent internal evaluation",
         "data_sha256": data_hash, "splits_sha256": split_hash.hexdigest(),
-        "split_origin": str((pilot_dir / "splits.npz").resolve()),
+        "split_origin": _project_relative_path(pilot_dir / "splits.npz"),
         "pilot_trials_used": False,
         "utils_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "python": platform.python_version(),
@@ -1769,8 +1808,8 @@ def prepare_reverse_run(X, y, support, pilot_dir, results_dir, models_dir, seed=
             "numpy", "pandas", "scikit-learn", "xgboost", "optuna", "pyarrow", "joblib",
         ]},
     }
-    run_id = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()[:16]
-    directory = Path(results_dir) / "official" / run_id
+    run_id, config = _result_run_identity(config, Path(results_dir) / "final_development")
+    directory = Path(results_dir) / "final_development" / run_id
     model_directory = Path(models_dir) / run_id
     directory.mkdir(parents=True, exist_ok=True)
     model_directory.mkdir(parents=True, exist_ok=True)
@@ -1821,7 +1860,7 @@ def fit_reverse_development(model_name, X, y, support, run):
         marker = json.loads(complete_path.read_text(encoding="utf-8"))
         assert marker["run_id"] == run["id"]
         for filename, digest in marker["sha256"].items():
-            assert hashlib.sha256(Path(filename).read_bytes()).hexdigest() == digest
+            assert hashlib.sha256(resolve_project_path(filename).read_bytes()).hexdigest() == digest
         return json.loads((directory / "metadata.json").read_text(encoding="utf-8"))
 
     def fit_recorded(pipeline, train, phase, fold):
@@ -2006,7 +2045,7 @@ def fit_reverse_development(model_name, X, y, support, run):
             "final_fit_seconds": final_info["fit_seconds"], "wall_seconds": perf_counter() - started_model,
             "warning_count": len(warning_rows),
             "serialization_max_abs_error": final_info["serialization_max_abs_error"],
-            "pipeline_path": str(model_path.resolve()), "oof_path": str(oof_path.resolve()),
+            "pipeline_path": _project_relative_path(model_path), "oof_path": _project_relative_path(oof_path),
         }
         _write_tuning_json(directory / "metadata.json", metadata)
         _write_tuning_json(model_path.with_suffix(".run.json"), metadata)
@@ -2014,7 +2053,7 @@ def fit_reverse_development(model_name, X, y, support, run):
             "artifacts.json", "study.sqlite3", "study.sqlite3-shm", "study.sqlite3-wal",
         ]] + [model_path, model_meta_path, model_path.with_suffix(".run.json")]
         _write_tuning_json(complete_path, {"run_id": run["id"], "sha256": {
-            str(p.resolve()): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}})
+            _project_relative_path(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in files}})
         return metadata
     finally:
         storage.remove_session()

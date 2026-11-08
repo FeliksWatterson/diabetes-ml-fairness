@@ -14,8 +14,8 @@ Notebook: `notebooks/05_fairness.ipynb`. Cell đánh số theo thứ tự code c
 
 ## Nơi lưu kết quả
 
-CSV/manifest: `results/fairness/54c463bbe9079503/research_extension/`.
-Hình: `results/figures/fairness/54c463bbe9079503/research_extension/`.
+CSV/manifest: `results/nhanes_to_brfss/fairness/54c463bbe9079503/research_extension/`.
+Hình: `results/nhanes_to_brfss/figures/fairness/54c463bbe9079503/research_extension/`.
 
 ## Phương pháp và giới hạn
 

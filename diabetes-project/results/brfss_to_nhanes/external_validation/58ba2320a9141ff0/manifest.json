@@ -1,0 +1,106 @@
+{
+  "reverse_run_id": "58ba2320a9141ff0",
+  "development": "BRFSS 2017",
+  "external": "NHANES 2015-2018",
+  "rows": 10832,
+  "n_positive": 2274,
+  "n_negative": 8558,
+  "input_columns": [
+    "age",
+    "sex",
+    "race_ethnicity",
+    "bmi",
+    "smoking_status",
+    "physical_activity",
+    "heart_attack",
+    "stroke"
+  ],
+  "input_dtypes": {
+    "age": "float64",
+    "sex": "Int64",
+    "race_ethnicity": "string",
+    "bmi": "float64",
+    "smoking_status": "string",
+    "physical_activity": "Int64",
+    "heart_attack": "Int64",
+    "stroke": "Int64"
+  },
+  "thresholds": {
+    "LR": {
+      "default": 0.5,
+      "youden": 0.47120265240078846,
+      "selection_rule": "maximize finite Youden J; ties choose higher threshold",
+      "prediction_rule": "probability >= threshold; fixed for all groups",
+      "use": "parameter selection and threshold development on same 5 folds; not independent internal evaluation"
+    },
+    "XGBoost": {
+      "default": 0.5,
+      "youden": 0.5007332563400269,
+      "selection_rule": "maximize finite Youden J; ties choose higher threshold",
+      "prediction_rule": "probability >= threshold; fixed for all groups",
+      "use": "parameter selection and threshold development on same 5 folds; not independent internal evaluation"
+    }
+  },
+  "prediction_rule": "probability >= saved threshold",
+  "survey_weighted": false,
+  "calibration": null,
+  "label_definitions": {
+    "BRFSS": "self-reported diagnosed non-gestational diabetes",
+    "NHANES": "questionnaire, medication, HbA1c and usable glucose; existing negative-label assumption"
+  },
+  "frozen_artifacts_before": {
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/config.json": "4455b548c16c9a28cfad9342e75d0b583bcd49cf3f9d0c976e4c4fd963122a36",
+    "models/reverse_validation/58ba2320a9141ff0/LR.joblib": "04498ebcb0237eafc4b2c46f7bd5849b3ea78b4b147cf1353431f81703bea779",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/metadata.json": "08f8e165df8e802b2ae222e061b150e070887ae818ed39babcc9a676ece2c09f",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/thresholds.json": "c9f083b7aae9ad6ce4fe488ee247dddaedefbcfc63c3714580500564b1b635fa",
+    "models/reverse_validation/58ba2320a9141ff0/LR.metadata.json": "0ceab2e60590b67626e09a00fe8194b895cb26ae37cc9990a16b316b8ca7c4aa",
+    "models/reverse_validation/58ba2320a9141ff0/LR.run.json": "08f8e165df8e802b2ae222e061b150e070887ae818ed39babcc9a676ece2c09f",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/artifacts.json": "06c480273d709b592df4effc2e1f756cef24193dd12826d963a103d2dd759925",
+    "models/reverse_validation/58ba2320a9141ff0/XGBoost.joblib": "4aaf0829ac8fdca36be06e2a22f066a787c55a3ad169c2a8f8123995f510c590",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/XGBoost/metadata.json": "fad653cd87d66781befef9cb9282dff7581b56d82a8cdde85b32150dcbd4a417",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/XGBoost/thresholds.json": "16f168fa4e4088234c600564ab36fec2a3615b8b0a02f74c95b2a311a3ad9937",
+    "models/reverse_validation/58ba2320a9141ff0/XGBoost.metadata.json": "9237905499133fcbb86d34e7a3c6ed491b38ac4f773b656d011d2f84b55ddf9e",
+    "models/reverse_validation/58ba2320a9141ff0/XGBoost.run.json": "fad653cd87d66781befef9cb9282dff7581b56d82a8cdde85b32150dcbd4a417",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/XGBoost/artifacts.json": "e176d8ed205dc997916d046478c53043c560cee5fd870e9e9293bc78cf89a306",
+    "data/processed/nhanes_2015_2018.parquet": "966f97c24c43df55dd37096ee325c0b22047ac5bee7539a44c63f7fba9794873"
+  },
+  "frozen_artifacts_after": {
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/config.json": "4455b548c16c9a28cfad9342e75d0b583bcd49cf3f9d0c976e4c4fd963122a36",
+    "models/reverse_validation/58ba2320a9141ff0/LR.joblib": "04498ebcb0237eafc4b2c46f7bd5849b3ea78b4b147cf1353431f81703bea779",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/metadata.json": "08f8e165df8e802b2ae222e061b150e070887ae818ed39babcc9a676ece2c09f",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/thresholds.json": "c9f083b7aae9ad6ce4fe488ee247dddaedefbcfc63c3714580500564b1b635fa",
+    "models/reverse_validation/58ba2320a9141ff0/LR.metadata.json": "0ceab2e60590b67626e09a00fe8194b895cb26ae37cc9990a16b316b8ca7c4aa",
+    "models/reverse_validation/58ba2320a9141ff0/LR.run.json": "08f8e165df8e802b2ae222e061b150e070887ae818ed39babcc9a676ece2c09f",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/artifacts.json": "06c480273d709b592df4effc2e1f756cef24193dd12826d963a103d2dd759925",
+    "models/reverse_validation/58ba2320a9141ff0/XGBoost.joblib": "4aaf0829ac8fdca36be06e2a22f066a787c55a3ad169c2a8f8123995f510c590",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/XGBoost/metadata.json": "fad653cd87d66781befef9cb9282dff7581b56d82a8cdde85b32150dcbd4a417",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/XGBoost/thresholds.json": "16f168fa4e4088234c600564ab36fec2a3615b8b0a02f74c95b2a311a3ad9937",
+    "models/reverse_validation/58ba2320a9141ff0/XGBoost.metadata.json": "9237905499133fcbb86d34e7a3c6ed491b38ac4f773b656d011d2f84b55ddf9e",
+    "models/reverse_validation/58ba2320a9141ff0/XGBoost.run.json": "fad653cd87d66781befef9cb9282dff7581b56d82a8cdde85b32150dcbd4a417",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/XGBoost/artifacts.json": "e176d8ed205dc997916d046478c53043c560cee5fd870e9e9293bc78cf89a306",
+    "data/processed/nhanes_2015_2018.parquet": "966f97c24c43df55dd37096ee325c0b22047ac5bee7539a44c63f7fba9794873"
+  },
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "optuna": "5.0.0",
+    "pyarrow": "26.0.0",
+    "joblib": "1.6.0"
+  },
+  "output_sha256": {
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/artifact_hashes.csv": "f4c84ee9376b854e8622dcd3f7aa8ee0b83f0393247e0b77a8c2db334c637abf",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/calibration_quantile_bins.csv": "fde485b97966e28785f6b804aeeef759ff592c9772b97f73e7344da52b0771ff",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/cycle_metrics.csv": "5a9310e0d3363f3fb3a13c5f3661d888cd3c9a41fc9bd69550f222d0b31c11e8",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/input_check.csv": "277f48e7af03867867b0e445ed9f2edbfd91153da57ddc58e32fa59b03523c0b",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/nhanes_LR_predictions.parquet": "fce608e88d349e74043ffc670f2fcea36e7df09719df389c25dadf2a60cceb56",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/nhanes_XGBoost_predictions.parquet": "8d1344d211a588c019d2fcbae75d908caaa106a8d5eb50a1d8a98f101548d7a2",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/overall_metrics.csv": "5a1b40f1b476f0622016f302e1b57453687c0a853a7563d6678c3ac872ad4508",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/probability_metrics.csv": "fe1148b0d3d282f9250d9fd0955ffb30365d9c452560f566ce94beb703eb6252",
+    "results/brfss_to_nhanes/external_validation/58ba2320a9141ff0/threshold_metrics.csv": "95849f0aaf0c7377e2f70f849ec3cccebe6f01cde19c2ab2501ed9cd5d4e43fe",
+    "results/brfss_to_nhanes/figures/external_validation/58ba2320a9141ff0/nhanes_calibration.png": "80dc06e6cb7443046ef02d9ff1e2f213925c804b7b766b33cc2f93e0aa9ccb63",
+    "results/brfss_to_nhanes/figures/external_validation/58ba2320a9141ff0/nhanes_confusion_youden.png": "e2a77e0899f252238324627d0c55a7cc69ecdc81cde3aac04abcd9073564c4d9",
+    "results/brfss_to_nhanes/figures/external_validation/58ba2320a9141ff0/nhanes_roc_pr.png": "275e820a0eddb8c728544edda27ed30dc73e07d665211b6f15202154cac5ae8e"
+  }
+}

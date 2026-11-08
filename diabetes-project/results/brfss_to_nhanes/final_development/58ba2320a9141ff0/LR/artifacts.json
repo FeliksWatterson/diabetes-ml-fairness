@@ -1,0 +1,26 @@
+{
+  "run_id": "58ba2320a9141ff0",
+  "sha256": {
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/best_params.json": "cac5588f315f83995f3b6aacdbc9ad6dc9ef9be168c476b89659602b682ccfe9",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof.parquet": "63af794b79c018914fe9660e9c42c18080cba72cdccbd153f659c3c083237f07",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold1.json": "054d15b01d073c77e8e90f91d9325e2cbed17cfaaab6ac102ceede69c7aaae4d",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold1.parquet": "2dcca92e75942693dea4112716da419cb3941bae0db0095e8a04e28aa35c586e",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold2.json": "2c79771d11da1933ce8b3ebf51358c91872171aced46b5c41c6a4efd0d6a4d60",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold2.parquet": "c1fc72e524a9f022a4bdeeec03e5af49d79cc14526d4f41e830db90d1fd297af",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold3.json": "98868acbf5caf37af73f19e25865b4b497cc8fa31a1d564bdb96a8289b26d0ec",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold3.parquet": "f97517bef8b74186d216d37e2c77e90db7a4fb4fb2e20b69f9df05ccaf9e5b56",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold4.json": "30d40c159b17cac0bc3dff814807d859b266dba0fa176852de1bc7d94086f33f",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold4.parquet": "cf9e8cd957e1bd5670f2c63bb52102bead9e7002b7398cd4d8e774e5ca322344",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold5.json": "f45cf837958e56c57b8a2d9ba907cc11c9bed46da369b1591b11e693c9870600",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/development_oof_fold5.parquet": "285dacfe0dba420da03442eba321f5f6e605b5a9420d478d8ab85f2f0b9dba35",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/failed_trials.csv": "0b87e12ebcf6ce33530c2656eceb2c291e7347d628f3d14f5fefd57fef4d325d",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/metadata.json": "08f8e165df8e802b2ae222e061b150e070887ae818ed39babcc9a676ece2c09f",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/thresholds.json": "c9f083b7aae9ad6ce4fe488ee247dddaedefbcfc63c3714580500564b1b635fa",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/trials.csv": "691b2d22311b27fcc3649696f263bc57081c4274e80295c5c22fdadadf764743",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/warnings.csv": "fe4aac6050d6bfb50f575846cde077e47ca45fa5d4cb9309e9c5aa38c735dbda",
+    "results/brfss_to_nhanes/final_development/58ba2320a9141ff0/LR/youden_candidates.csv": "6ba3f39dd115432df62319f6522ab36d9c19f49211a6ecdb8c14e2f4564b3dfe",
+    "models/reverse_validation/58ba2320a9141ff0/LR.joblib": "04498ebcb0237eafc4b2c46f7bd5849b3ea78b4b147cf1353431f81703bea779",
+    "models/reverse_validation/58ba2320a9141ff0/LR.metadata.json": "0ceab2e60590b67626e09a00fe8194b895cb26ae37cc9990a16b316b8ca7c4aa",
+    "models/reverse_validation/58ba2320a9141ff0/LR.run.json": "08f8e165df8e802b2ae222e061b150e070887ae818ed39babcc9a676ece2c09f"
+  }
+}
