@@ -1,0 +1,61 @@
+{
+  "direction": "08",
+  "internal": "BRFSS_internal_test",
+  "external": "NHANES_external",
+  "n_boot": 1000,
+  "confidence": 0.95,
+  "seed": 42,
+  "method": "ordinary IID person bootstrap; percentile; fixed predictions; paired model comparisons",
+  "prevalence_reference": 0.15,
+  "prevalence_grid": [
+    0.1,
+    0.15,
+    0.2
+  ],
+  "priorities": [
+    [
+      "age",
+      "40-59"
+    ],
+    [
+      "age",
+      "60+"
+    ],
+    [
+      "race_ethnicity",
+      "Hispanic"
+    ],
+    [
+      "bmi",
+      "Missing"
+    ],
+    [
+      "bmi",
+      "Underweight"
+    ],
+    [
+      "age",
+      "18-39"
+    ]
+  ],
+  "sources_sha256": {
+    "data\\processed\\nhanes_2015_2018.parquet": "826343c606786bea11080a266d06793bfa5e5399b483f8fcb29952c81d730fa5",
+    "data\\processed\\brfss_2017.parquet": "a0de41b6ffa5c712fa206b1971745a7bc988eb0352af837a33c95e095d6d480c",
+    "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\manifest.json": "27d2666a9dc6b922075c28a9562e27e447ed4dca2d0fe2c22f9fb2b91db111d1",
+    "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\BRFSS_internal_test_LR.parquet": "bf3b0264c8c2127607408f2da1e075d3c4b2deb3cbaae4fdb6b4eb6c87f8edcb",
+    "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\BRFSS_internal_test_XGBoost.parquet": "ecf5f094e4fcb6601498f70a4a266e6ecd7858c27ee7b14b5821a071420ea8e9",
+    "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\NHANES_external_LR.parquet": "0d6db2aef3db9646fb4ba356122cdfb3ec4269e4a5fe1147a21fc0517395db11",
+    "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\NHANES_external_XGBoost.parquet": "2b8295faa1be1acd75a2441a603b32cdc43ec96d9c19e5d847b2228b9c1c4a5c",
+    "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\split_membership.parquet": "f4f949ee62fefaee07c01ceb0d0cff103935474d709108a5cbfb19d017c178f6",
+    "src\\dataset_shift.py": "573d1a75352e81fd4992d4cf5b87a978d765892af52142f9fe53b989ec5e550f",
+    "data\\raw\\nhanes\\2015-2016\\DIQ_I.xpt": "e87587479b29f175b63eee5dd40d582837e3e3fe2665503012085eefdb978e0d",
+    "data\\raw\\nhanes\\2017-2018\\DIQ_J.xpt": "1ecbf5360dfc331d1efbf32198553dc30e9a1f4cff0a907ed30ca72bac797f89"
+  },
+  "extension_code_sha256": "f607fadfd834241f1ade4ea09999ecf32b5022ee4c6ead4ba7f882b0e992d76e",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1"
+  }
+}

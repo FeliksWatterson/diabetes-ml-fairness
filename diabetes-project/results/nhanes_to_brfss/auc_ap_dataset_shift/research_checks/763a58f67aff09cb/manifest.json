@@ -1,0 +1,119 @@
+{
+  "analysis_id": "763a58f67aff09cb",
+  "config": {
+    "direction": "07",
+    "internal": "NHANES_OOF",
+    "external": "BRFSS_2017",
+    "n_boot": 1000,
+    "confidence": 0.95,
+    "seed": 42,
+    "method": "ordinary IID person bootstrap; percentile; fixed predictions; paired model comparisons",
+    "prevalence_reference": 0.15,
+    "prevalence_grid": [
+      0.1,
+      0.15,
+      0.2
+    ],
+    "priorities": [
+      [
+        "age",
+        "18-39"
+      ],
+      [
+        "bmi",
+        "Normal"
+      ],
+      [
+        "bmi",
+        "Underweight"
+      ],
+      [
+        "bmi",
+        "Missing"
+      ],
+      [
+        "race_ethnicity",
+        "Other"
+      ]
+    ],
+    "sources_sha256": {
+      "data\\processed\\nhanes_2015_2018.parquet": "826343c606786bea11080a266d06793bfa5e5399b483f8fcb29952c81d730fa5",
+      "data\\processed\\brfss_2017.parquet": "a0de41b6ffa5c712fa206b1971745a7bc988eb0352af837a33c95e095d6d480c",
+      "results\\nhanes_to_brfss\\tuning\\3d15f3dbb58256ec\\oof_LR.parquet": "c953c012cc0b2f3a8125ff2029f089b70d5648f9b403a25528f214a80f179309",
+      "results\\nhanes_to_brfss\\external_validation\\54c463bbe9079503\\brfss_2017_LR_predictions.parquet": "b73c906fd90b24c72fbff037f5062cc26c85689b877f142cc797083041106398",
+      "results\\nhanes_to_brfss\\tuning\\3d15f3dbb58256ec\\oof_XGBoost.parquet": "77e91e33292103d69fcbc80babfc7ffe10651a69744fdda2aca77a796e4849e1",
+      "results\\nhanes_to_brfss\\external_validation\\54c463bbe9079503\\brfss_2017_XGBoost_predictions.parquet": "5aaf2f32c12be0dd4aca046978e30c12076bf07d0c7d38d6181a54d728b55f61",
+      "src\\dataset_shift.py": "573d1a75352e81fd4992d4cf5b87a978d765892af52142f9fe53b989ec5e550f",
+      "data\\raw\\nhanes\\2015-2016\\DIQ_I.xpt": "e87587479b29f175b63eee5dd40d582837e3e3fe2665503012085eefdb978e0d",
+      "data\\raw\\nhanes\\2017-2018\\DIQ_J.xpt": "1ecbf5360dfc331d1efbf32198553dc30e9a1f4cff0a907ed30ca72bac797f89"
+    },
+    "extension_code_sha256": "32d84c5e666830023806f560305fd12f1a80a19fc5f84f8b16d7d7daf3076b1a",
+    "versions": {
+      "numpy": "2.5.4",
+      "pandas": "3.0.6",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1"
+    }
+  },
+  "frozen_scores": true,
+  "models_refitted": false,
+  "threshold_used": false,
+  "ci_scope": "fixed-score IID person-level approximation; not retraining or survey-design uncertainty",
+  "label_scope": "frozen-score endpoint sensitivity, original and alternative labels on common subset",
+  "output_sha256": {
+    "categorical_distribution.csv": "6e6893f2320e8abf9b9a46243806667d367a5410fe99a4a0dc150b152b7f4e2a",
+    "config.json": "0fc35b5a1489500c66bf9b7c3eb1974be905cefe844bcc6e181e94c0a62cc0ef",
+    "external_internal_delta_ci.csv": "c9d1692ac7040c1df4dc76a24697cd9c48ef719fa4868ff04ea6c8bc406f1ed6",
+    "group_composition.csv": "7fb8ced0120517da80b55d14495a9f8ca821efa158a292cfb35f72453fae478a",
+    "input_shift.csv": "7f70ee66eef30c5a5cc8289d272d894ff00c65532268ef0006e0e3c724eb64ed",
+    "label_coverage.csv": "2263f5c9b5a8759bd821d3671ef05039a1be7928ca44d3c642b909761e8afa7f",
+    "label_sensitivity.csv": "0ea6946e0b17ba7291d46963bd4c15988a9dbb1a81ccc6216fec57a459e9468b",
+    "label_transition.csv": "0fc30756c8d0d9ce40e8a53fa7b82973ba2b2a74518936784451bb1835285e4b",
+    "metric_ci.csv": "d3a948a649331c265b7e8861a11f27e189267c227b8d9130976b52be65adaa83",
+    "missingness.csv": "40cbc05b8a0d4e49a5df113fea0832f4a0f0b33dd0e7e6e9af87b975b521952d",
+    "numeric_summary.csv": "fc1a651827b5a96cdbff9da5ecc26bde190ce328e6cdfe3ed0b28ad581b42f33",
+    "paired_model_delta_ci.csv": "ed36c35890125b7d4578de79072e5c1a78c60286a74e8aa005cfc0a9365af3b3",
+    "prevalence_macro_ap.csv": "543653070a9aa734fb595a2941b7c22d770c3c530b1590af215e82de06a0c450",
+    "prevalence_sensitivity.csv": "c268987c907bd3514059412af4e846028023949de4f2dd34ad4563c1ead2b2ec",
+    "bootstrap_cache\\00a055f3f479be91362318b677d7bfc61612b201c361a3fb5a1c25a139b184fb.npz": "d5cd07e08a10ad5f84f3abe767a60f9865c67d107449d741bc830c262234e1b1",
+    "bootstrap_cache\\035e7f95e0dc2b630e67d1c89bc6135371e31360d1c71653c65b9a1684c79eac.npz": "e1e8ab4b10e3aef0c61d3f1f26e15de09f9e69a56d6fcc3f983696492083c8e0",
+    "bootstrap_cache\\03df3f904d4cc21bdca7d6da89ad070227e7d847a707ed6b1a2d90bea5b896fa.npz": "2eb31bf3cc2903344a2e9f634cf3f5d530d313d001f812a355a90d07af54c762",
+    "bootstrap_cache\\1279e7bc56dec94c27a23c0426b359a4a8b5675252666a20409e7e7111a8e8be.npz": "f4d6e2257a57b3c2b22374470edc92c078b6d72e9b41d9124fb0f1d4b812e477",
+    "bootstrap_cache\\1a7718ca622b40d8bf0592c633464d3c95c03bccf21d536feeb4fe516e4f3cfe.npz": "a04dfddbe5b17e431a8d9df747c8b4bf5694d3887894c51d78dd417fc390ddee",
+    "bootstrap_cache\\2177f3d2f3b6427a4d080196492d2d493c988511a72a504e0c8021ba2cf2b014.npz": "59d338c79510a25b100d4380bc5a1db212121cf8b94ac3453c4c7f6d3938da0a",
+    "bootstrap_cache\\38cec59dbe72c356138d6429c4fab571495906e3efbe169dd8ca5583c649b849.npz": "85cc6c289f877fa9d108c20acdb81e7f0d2d1faf2f90df0c3bea35db0620dacb",
+    "bootstrap_cache\\3bed217e570bd30b1107d61dbfb704dbf60c0e831d87a16f2053c90aa93c72e6.npz": "642a40378fd8495b3f39765b1949dffe9856513f3c5edcebd3ec339096202071",
+    "bootstrap_cache\\44d4f797f3d0405370a456500f27d345f5e57e0d22d0fd7c916fd494a554ccb9.npz": "7a2c7455d8e9eb96998dc5b3ed79b91cff02d772642ec94fe0306c678e8bb206",
+    "bootstrap_cache\\458d6ffb300f9bea5eef96fdb25e7a3253ee4bcaa93ad57e401f8d0d382a12ec.npz": "a500ea8215cc137f632c52f9be8f2d24414d0fa08d3c07b303eecf14760710fc",
+    "bootstrap_cache\\5780dc378ef7e9fc2cd11f89f26658d1cebdef638e0d226be3967dbe2d032442.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\57ffe6e50162ab15f410896a0fa3c3b147355b487332d8f144c806ebacdd9186.npz": "7e39137e3b1c89fec320d82e9eef4951889950a7a483b8dc008dece79e9dcb14",
+    "bootstrap_cache\\58911071b0de492d01173993ccdbb81583110f1272fcd307bc9182841f995b79.npz": "97e4e6cb1923e9c68f7fb363ee16a9587ffbd79878938acfdf69ca648e11019e",
+    "bootstrap_cache\\5c91b193365e91352c1a44f2a29426b5d98fe2868c864297bb01efb23a22c712.npz": "9bf2dbe2633b35057ac188a171926eef33ec818067ae24a644665b117916f66a",
+    "bootstrap_cache\\622632d5d5a0b56d1452c269af0a918ae1c3ff68a933d54c95ba5374e5cf4a4a.npz": "4b930c1229dc6f90deb89196c1b85e38decdedfc423c50c21e9a4c498bd14eed",
+    "bootstrap_cache\\6a4caabf7340e9ee399210fcafdf286129b3c04fdd9952f782eb9124cf34d420.npz": "f95892df7894d4aeb3472a5013b693abe8cbf2a09cc3c2b90eed5e0f6ec17e3d",
+    "bootstrap_cache\\6ff78e10dd70816de1b91e2cac5a2bb64ab5530b52033beaa4d7f8b9ea0f2946.npz": "0c52af10bd4bc0984d042db6929da601288302de19cbc7867caf4d53a1e1f3cc",
+    "bootstrap_cache\\771e43cfa62733b5bafb038db805c552c00821e8f34d598afd45c50ae29f442d.npz": "c5bf3c92d9eb9000c7b41f42c2c9e6407aeeacee190bac8cc4f2abfa192a605a",
+    "bootstrap_cache\\7ad44e4d5db52656cc7ece72e5e0c35ed0e177f4c7463c072508bd0126bababc.npz": "69e22f09c5a187d89bd3a1e3e88d835cb2b6eab1019cc1c93606350d7b0d92b6",
+    "bootstrap_cache\\7cf53252a6da54df75b64631b92c5290b93f5d68ecf94fbdb1618fddcad92644.npz": "77323ce866bcff0c6245ea5c688da737c4c90514b96a832840f12ef2055ba882",
+    "bootstrap_cache\\9911a58a8388ecb914f407ca153c1bdcea1e9dfb7c384da23b9146c983da852e.npz": "b5219f56271990f3d26deba23a5a78d03ac56a9d82bbc8d515b409d83a4cb214",
+    "bootstrap_cache\\9cd1c8a0f7257938c0591854a5f8e65b9ccc6a30de97774e253f9b8258abedf9.npz": "3de7fdd490be8e836d3033eecb54ec240202a89e643cf01ceb7d38217e27d60d",
+    "bootstrap_cache\\b044bcb953ec56fe0d1fcc6faa73df7d2741380cbcd99a98fa45f86a55e77528.npz": "83812a86e1fc162b896fab5650410e5d4e9c8e07072165482419b22602395190",
+    "bootstrap_cache\\b04fc58991c6348fcbb8f3ecd99cecd3ecf4588401f4693fcf4bf1d2667e1481.npz": "a38dea5929fe8b384fb2195af998645dca1daf35bdfa9ad6b4b7348ee2fe1dc0",
+    "bootstrap_cache\\c2f7d3960008ca3b40c8f60ba24d687a4c76fef0f6c1b4890efacdd396e88f88.npz": "be556b607890610c819e5ae169074b354768b6091a1bcf105e876d3b5ce98312",
+    "bootstrap_cache\\c4980e2756e178298a62e3bafa57cdc1b3e2f70a04c72305ff51f75584197b0c.npz": "d226b3dbd2105b4cc8955dba88d2000b88259bf11ac04963a812dc8596f9502b",
+    "bootstrap_cache\\c699868a8718b41b737c97fc36491ba4b93b0d611ce6122eb5f49338ccdae018.npz": "a714b219b364be06bd01f97587c87f4c515b032d5653d61239cf2ef8ba27e9f3",
+    "bootstrap_cache\\d08f5677cae4e7437c4547c9e2f5887da1f93d668446dc7358b2476ed3e8001c.npz": "31314d24ecc0275c2f81644fbb9a4ccf60806fd054a831e399fd6bfb2fd1b595",
+    "bootstrap_cache\\db888790574354a40b813d118b5eb7b09253f6823a92e07e85b82911fe2ed41b.npz": "44dd4bd4330ac75eccc7fa4b258f287706d79245eb8c0367e165b264ac62abae",
+    "bootstrap_cache\\de2eda34111aa58385e31835b9ef1392f880eb8bcfac92ec2e0dd672778da3f6.npz": "6dfe075ae833cdc09f77a6aaf794c0f02b88c353462a4b24bbe60e06f44d0df3",
+    "bootstrap_cache\\e70e74d0dd99139653a6d8d72be970df992f6e3292751f2ebc6ac62afd36e7c2.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\e9ee099b45c5639fd13248262c06fa3240dca107afcb5bf4ea269c0772a67d4e.npz": "73c324b84f560c67a8f638aaf7b3af1120d22ec569b5ffdc2bdb769816aa3459",
+    "bootstrap_cache\\eb2c7b82f5348a2aa3a82e06609364c64c625970ee7473fbb2f19bf5d3a94da7.npz": "1bcb07f45dbaf205fe371acdf0c89bc4e2ee940bfcb4d8211ecbd4beacffa824",
+    "bootstrap_cache\\f1cea5af245a04ccc45bc887158801a618d2e5dde50139fcb22c5f41bb6f9558.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\f90185f74228563977ee12ee4f3f11a89496ab63a76058432110fcf4d44a564e.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\fd67700a42c0ecf8ba75d4f94cf4144653c495954304ad9b0104d00a06e80b5c.npz": "5349607a952773d47edbf939ec6b9a56c8ab6e92940f25127fa2c444a988851a",
+    "figures\\ap_prevalence_sensitivity.png": "2d12166de470d2a49464bc820c958becd739ca4a8a40d078d6dda9c54238e2da",
+    "figures\\delta_ci_priority_groups.png": "b4c2b6119e8ad44c16bb341068bc456faf3063e12054718fb3c48111bc4e539b",
+    "figures\\missingness_priority_groups.png": "f43c20b9e9bcd7623a69b713becb09d385d84b778d961d900068672ca07dfbb2",
+    "figures\\numeric_ecdf.png": "1ecb50ea97f2477851236f1cec3e19510ddb358a52ad10d9d498087d6bb509ce"
+  }
+}

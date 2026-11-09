@@ -1,0 +1,661 @@
+dataset,attribute,group,feature,category,n,count,fraction
+NHANES_OOF,overall,All,sex,1,10832,5222,0.4820901033973412
+BRFSS_2017,overall,All,sex,1,449219,198325,0.44148844995425396
+NHANES_OOF,overall,All,sex,2,10832,5610,0.5179098966026587
+BRFSS_2017,overall,All,sex,2,449219,250618,0.5578971503876728
+NHANES_OOF,overall,All,sex,Missing,10832,0,0.0
+BRFSS_2017,overall,All,sex,Missing,449219,276,0.0006143996580732338
+NHANES_OOF,overall,All,race_ethnicity,Black NH,10832,2359,0.21778064992614476
+BRFSS_2017,overall,All,race_ethnicity,Black NH,449219,35688,0.07944454709173031
+NHANES_OOF,overall,All,race_ethnicity,Hispanic,10832,2961,0.2733567208271787
+BRFSS_2017,overall,All,race_ethnicity,Hispanic,449219,36973,0.0823050672389191
+NHANES_OOF,overall,All,race_ethnicity,Missing,10832,0,0.0
+BRFSS_2017,overall,All,race_ethnicity,Missing,449219,8662,0.01928235448634185
+NHANES_OOF,overall,All,race_ethnicity,Other,10832,1879,0.17346750369276218
+BRFSS_2017,overall,All,race_ethnicity,Other,449219,31148,0.06933811793356914
+NHANES_OOF,overall,All,race_ethnicity,White NH,10832,3633,0.3353951255539143
+BRFSS_2017,overall,All,race_ethnicity,White NH,449219,336748,0.7496299132494396
+NHANES_OOF,overall,All,smoking_status,Missing,10832,9,0.0008308714918759232
+BRFSS_2017,overall,All,smoking_status,Missing,449219,18625,0.041460846491354994
+NHANES_OOF,overall,All,smoking_status,current,10832,1934,0.1785450516986706
+BRFSS_2017,overall,All,smoking_status,current,449219,63322,0.140960199813454
+NHANES_OOF,overall,All,smoking_status,former,10832,2471,0.22812038404726737
+BRFSS_2017,overall,All,smoking_status,former,449219,121548,0.2705762668097298
+NHANES_OOF,overall,All,smoking_status,never,10832,6418,0.5925036927621861
+BRFSS_2017,overall,All,smoking_status,never,449219,245724,0.5470026868854612
+NHANES_OOF,overall,All,physical_activity,0,10832,7122,0.6574963072378139
+BRFSS_2017,overall,All,physical_activity,0,449219,193470,0.43068080379503093
+NHANES_OOF,overall,All,physical_activity,1,10832,3685,0.3401957163958641
+BRFSS_2017,overall,All,physical_activity,1,449219,205817,0.4581662841509375
+NHANES_OOF,overall,All,physical_activity,Missing,10832,25,0.002307976366322009
+BRFSS_2017,overall,All,physical_activity,Missing,449219,49932,0.11115291205403155
+NHANES_OOF,overall,All,heart_attack,0,10832,9840,0.9084194977843427
+BRFSS_2017,overall,All,heart_attack,0,449219,421052,0.9372978435907653
+NHANES_OOF,overall,All,heart_attack,1,10832,493,0.04551329394387001
+BRFSS_2017,overall,All,heart_attack,1,449219,25949,0.05776469828747226
+NHANES_OOF,overall,All,heart_attack,Missing,10832,499,0.0460672082717873
+BRFSS_2017,overall,All,heart_attack,Missing,449219,2218,0.0049374581217624365
+NHANES_OOF,overall,All,stroke,0,10832,9891,0.9131277695716395
+BRFSS_2017,overall,All,stroke,0,449219,429102,0.9552178336179012
+NHANES_OOF,overall,All,stroke,1,10832,446,0.04117429837518464
+BRFSS_2017,overall,All,stroke,1,449219,18905,0.042084150492298855
+NHANES_OOF,overall,All,stroke,Missing,10832,495,0.04569793205317577
+BRFSS_2017,overall,All,stroke,Missing,449219,1212,0.0026980158897998525
+NHANES_OOF,sex,Nam,sex,1,5222,5222,1.0
+BRFSS_2017,sex,Nam,sex,1,198325,198325,1.0
+NHANES_OOF,sex,Nam,race_ethnicity,Black NH,5222,1111,0.21275373420145538
+BRFSS_2017,sex,Nam,race_ethnicity,Black NH,198325,13645,0.06880121013487962
+NHANES_OOF,sex,Nam,race_ethnicity,Hispanic,5222,1357,0.2598621217924167
+BRFSS_2017,sex,Nam,race_ethnicity,Hispanic,198325,16467,0.08303037942770705
+NHANES_OOF,sex,Nam,race_ethnicity,Missing,5222,0,0.0
+BRFSS_2017,sex,Nam,race_ethnicity,Missing,198325,4358,0.02197403252237489
+NHANES_OOF,sex,Nam,race_ethnicity,Other,5222,936,0.17924166985829185
+BRFSS_2017,sex,Nam,race_ethnicity,Other,198325,15045,0.07586033026597756
+NHANES_OOF,sex,Nam,race_ethnicity,White NH,5222,1818,0.34814247414783606
+BRFSS_2017,sex,Nam,race_ethnicity,White NH,198325,148810,0.7503340476490609
+NHANES_OOF,sex,Nam,smoking_status,Missing,5222,5,0.0009574875526618154
+BRFSS_2017,sex,Nam,smoking_status,Missing,198325,8457,0.04264212782049666
+NHANES_OOF,sex,Nam,smoking_status,current,5222,1138,0.21792416698582917
+BRFSS_2017,sex,Nam,smoking_status,current,198325,30731,0.15495272910626498
+NHANES_OOF,sex,Nam,smoking_status,former,5222,1545,0.29586365377250096
+BRFSS_2017,sex,Nam,smoking_status,former,198325,61333,0.30925501071473593
+NHANES_OOF,sex,Nam,smoking_status,never,5222,2534,0.48525469168900803
+BRFSS_2017,sex,Nam,smoking_status,never,198325,97804,0.49315013235850247
+NHANES_OOF,sex,Nam,physical_activity,0,5222,3209,0.6145155112983531
+BRFSS_2017,sex,Nam,physical_activity,0,198325,81973,0.4133266103617799
+NHANES_OOF,sex,Nam,physical_activity,1,5222,1998,0.38261202604366146
+BRFSS_2017,sex,Nam,physical_activity,1,198325,94291,0.4754367830581117
+NHANES_OOF,sex,Nam,physical_activity,Missing,5222,15,0.002872462657985446
+BRFSS_2017,sex,Nam,physical_activity,Missing,198325,22061,0.11123660658010841
+NHANES_OOF,sex,Nam,heart_attack,0,5222,4637,0.8879739563385676
+BRFSS_2017,sex,Nam,heart_attack,0,198325,182039,0.9178822639606706
+NHANES_OOF,sex,Nam,heart_attack,1,5222,329,0.06300268096514745
+BRFSS_2017,sex,Nam,heart_attack,1,198325,15152,0.07639984873314004
+NHANES_OOF,sex,Nam,heart_attack,Missing,5222,256,0.04902336269628495
+BRFSS_2017,sex,Nam,heart_attack,Missing,198325,1134,0.005717887306189336
+NHANES_OOF,sex,Nam,stroke,0,5222,4747,0.9090386824971275
+BRFSS_2017,sex,Nam,stroke,0,198325,189491,0.9554569519727719
+NHANES_OOF,sex,Nam,stroke,1,5222,221,0.04232094982765224
+BRFSS_2017,sex,Nam,stroke,1,198325,8257,0.041633682087482665
+NHANES_OOF,sex,Nam,stroke,Missing,5222,254,0.048640367675220224
+BRFSS_2017,sex,Nam,stroke,Missing,198325,577,0.0029093659397453676
+NHANES_OOF,sex,Nữ,sex,2,5610,5610,1.0
+BRFSS_2017,sex,Nữ,sex,2,250618,250618,1.0
+NHANES_OOF,sex,Nữ,race_ethnicity,Black NH,5610,1248,0.22245989304812835
+BRFSS_2017,sex,Nữ,race_ethnicity,Black NH,250618,22024,0.08787876369614313
+NHANES_OOF,sex,Nữ,race_ethnicity,Hispanic,5610,1604,0.28591800356506236
+BRFSS_2017,sex,Nữ,race_ethnicity,Hispanic,250618,20486,0.08174193393930204
+NHANES_OOF,sex,Nữ,race_ethnicity,Missing,5610,0,0.0
+BRFSS_2017,sex,Nữ,race_ethnicity,Missing,250618,4233,0.01689024730865301
+NHANES_OOF,sex,Nữ,race_ethnicity,Other,5610,943,0.16809269162210339
+BRFSS_2017,sex,Nữ,race_ethnicity,Other,250618,16076,0.06414543249088255
+NHANES_OOF,sex,Nữ,race_ethnicity,White NH,5610,1815,0.3235294117647059
+BRFSS_2017,sex,Nữ,race_ethnicity,White NH,250618,187799,0.7493436225650193
+NHANES_OOF,sex,Nữ,smoking_status,Missing,5610,4,0.00071301247771836
+BRFSS_2017,sex,Nữ,smoking_status,Missing,250618,10139,0.04045599278583342
+NHANES_OOF,sex,Nữ,smoking_status,current,5610,796,0.14188948306595364
+BRFSS_2017,sex,Nữ,smoking_status,current,250618,32544,0.12985499844384682
+NHANES_OOF,sex,Nữ,smoking_status,former,5610,926,0.16506238859180036
+BRFSS_2017,sex,Nữ,smoking_status,former,250618,60157,0.24003463438380324
+NHANES_OOF,sex,Nữ,smoking_status,never,5610,3884,0.6923351158645277
+BRFSS_2017,sex,Nữ,smoking_status,never,250618,147778,0.5896543743865166
+NHANES_OOF,sex,Nữ,physical_activity,0,5610,3913,0.6975044563279857
+BRFSS_2017,sex,Nữ,physical_activity,0,250618,111435,0.4446408478241786
+NHANES_OOF,sex,Nữ,physical_activity,1,5610,1687,0.30071301247771837
+BRFSS_2017,sex,Nữ,physical_activity,1,250618,111526,0.44500395023501904
+NHANES_OOF,sex,Nữ,physical_activity,Missing,5610,10,0.0017825311942959
+BRFSS_2017,sex,Nữ,physical_activity,Missing,250618,27657,0.11035520194080234
+NHANES_OOF,sex,Nữ,heart_attack,0,5610,5203,0.9274509803921569
+BRFSS_2017,sex,Nữ,heart_attack,0,250618,238761,0.9526889529084104
+NHANES_OOF,sex,Nữ,heart_attack,1,5610,164,0.02923351158645276
+BRFSS_2017,sex,Nữ,heart_attack,1,250618,10782,0.043021650480013406
+NHANES_OOF,sex,Nữ,heart_attack,Missing,5610,243,0.04331550802139037
+BRFSS_2017,sex,Nữ,heart_attack,Missing,250618,1075,0.004289396611576184
+NHANES_OOF,sex,Nữ,stroke,0,5610,5144,0.9169340463458111
+BRFSS_2017,sex,Nữ,stroke,0,250618,239356,0.9550630840562131
+NHANES_OOF,sex,Nữ,stroke,1,5610,225,0.040106951871657755
+BRFSS_2017,sex,Nữ,stroke,1,250618,10632,0.042423130022584174
+NHANES_OOF,sex,Nữ,stroke,Missing,5610,241,0.042959001782531196
+BRFSS_2017,sex,Nữ,stroke,Missing,250618,630,0.0025137859212027865
+NHANES_OOF,sex,Missing,sex,Missing,0,0,NA
+BRFSS_2017,sex,Missing,sex,Missing,276,276,1.0
+NHANES_OOF,sex,Missing,race_ethnicity,Black NH,0,0,NA
+BRFSS_2017,sex,Missing,race_ethnicity,Black NH,276,19,0.06884057971014493
+NHANES_OOF,sex,Missing,race_ethnicity,Hispanic,0,0,NA
+BRFSS_2017,sex,Missing,race_ethnicity,Hispanic,276,20,0.07246376811594203
+NHANES_OOF,sex,Missing,race_ethnicity,Missing,0,0,NA
+BRFSS_2017,sex,Missing,race_ethnicity,Missing,276,71,0.2572463768115942
+NHANES_OOF,sex,Missing,race_ethnicity,Other,0,0,NA
+BRFSS_2017,sex,Missing,race_ethnicity,Other,276,27,0.09782608695652174
+NHANES_OOF,sex,Missing,race_ethnicity,White NH,0,0,NA
+BRFSS_2017,sex,Missing,race_ethnicity,White NH,276,139,0.5036231884057971
+NHANES_OOF,sex,Missing,smoking_status,Missing,0,0,NA
+BRFSS_2017,sex,Missing,smoking_status,Missing,276,29,0.10507246376811594
+NHANES_OOF,sex,Missing,smoking_status,current,0,0,NA
+BRFSS_2017,sex,Missing,smoking_status,current,276,47,0.17028985507246377
+NHANES_OOF,sex,Missing,smoking_status,former,0,0,NA
+BRFSS_2017,sex,Missing,smoking_status,former,276,58,0.21014492753623187
+NHANES_OOF,sex,Missing,smoking_status,never,0,0,NA
+BRFSS_2017,sex,Missing,smoking_status,never,276,142,0.5144927536231884
+NHANES_OOF,sex,Missing,physical_activity,0,0,0,NA
+BRFSS_2017,sex,Missing,physical_activity,0,276,62,0.2246376811594203
+NHANES_OOF,sex,Missing,physical_activity,Missing,0,0,NA
+BRFSS_2017,sex,Missing,physical_activity,Missing,276,214,0.7753623188405797
+NHANES_OOF,sex,Missing,heart_attack,0,0,0,NA
+BRFSS_2017,sex,Missing,heart_attack,0,276,252,0.9130434782608695
+NHANES_OOF,sex,Missing,heart_attack,1,0,0,NA
+BRFSS_2017,sex,Missing,heart_attack,1,276,15,0.05434782608695652
+NHANES_OOF,sex,Missing,heart_attack,Missing,0,0,NA
+BRFSS_2017,sex,Missing,heart_attack,Missing,276,9,0.03260869565217391
+NHANES_OOF,sex,Missing,stroke,0,0,0,NA
+BRFSS_2017,sex,Missing,stroke,0,276,255,0.9239130434782609
+NHANES_OOF,sex,Missing,stroke,1,0,0,NA
+BRFSS_2017,sex,Missing,stroke,1,276,16,0.057971014492753624
+NHANES_OOF,sex,Missing,stroke,Missing,0,0,NA
+BRFSS_2017,sex,Missing,stroke,Missing,276,5,0.018115942028985508
+NHANES_OOF,race_ethnicity,White NH,sex,1,3633,1818,0.500412881915772
+BRFSS_2017,race_ethnicity,White NH,sex,1,336748,148810,0.4419031441909083
+NHANES_OOF,race_ethnicity,White NH,sex,2,3633,1815,0.4995871180842279
+BRFSS_2017,race_ethnicity,White NH,sex,2,336748,187799,0.5576840842410349
+NHANES_OOF,race_ethnicity,White NH,sex,Missing,3633,0,0.0
+BRFSS_2017,race_ethnicity,White NH,sex,Missing,336748,139,0.0004127715680568259
+NHANES_OOF,race_ethnicity,White NH,race_ethnicity,White NH,3633,3633,1.0
+BRFSS_2017,race_ethnicity,White NH,race_ethnicity,White NH,336748,336748,1.0
+NHANES_OOF,race_ethnicity,White NH,smoking_status,Missing,3633,1,0.0002752546105147261
+BRFSS_2017,race_ethnicity,White NH,smoking_status,Missing,336748,11885,0.03529345385867177
+NHANES_OOF,race_ethnicity,White NH,smoking_status,current,3633,754,0.2075419763281035
+BRFSS_2017,race_ethnicity,White NH,smoking_status,current,336748,46010,0.1366303586064357
+NHANES_OOF,race_ethnicity,White NH,smoking_status,former,3633,1087,0.2992017616295073
+BRFSS_2017,race_ethnicity,White NH,smoking_status,former,336748,99592,0.29574637414327626
+NHANES_OOF,race_ethnicity,White NH,smoking_status,never,3633,1791,0.4929810074318745
+BRFSS_2017,race_ethnicity,White NH,smoking_status,never,336748,179261,0.5323298133916163
+NHANES_OOF,race_ethnicity,White NH,physical_activity,0,3633,2379,0.6548307184145334
+BRFSS_2017,race_ethnicity,White NH,physical_activity,0,336748,140837,0.41822668583035383
+NHANES_OOF,race_ethnicity,White NH,physical_activity,1,3633,1245,0.342691990090834
+BRFSS_2017,race_ethnicity,White NH,physical_activity,1,336748,162994,0.4840236616104624
+NHANES_OOF,race_ethnicity,White NH,physical_activity,Missing,3633,9,0.002477291494632535
+BRFSS_2017,race_ethnicity,White NH,physical_activity,Missing,336748,32917,0.09774965255918372
+NHANES_OOF,race_ethnicity,White NH,heart_attack,0,3633,3266,0.8989815579410955
+BRFSS_2017,race_ethnicity,White NH,heart_attack,0,336748,315160,0.9358927150272608
+NHANES_OOF,race_ethnicity,White NH,heart_attack,1,3633,233,0.06413432424993118
+BRFSS_2017,race_ethnicity,White NH,heart_attack,1,336748,20225,0.06005974794208132
+NHANES_OOF,race_ethnicity,White NH,heart_attack,Missing,3633,134,0.0368841178089733
+BRFSS_2017,race_ethnicity,White NH,heart_attack,Missing,336748,1363,0.00404753703065794
+NHANES_OOF,race_ethnicity,White NH,stroke,0,3633,3310,0.9110927608037435
+BRFSS_2017,race_ethnicity,White NH,stroke,0,336748,321860,0.955788898523525
+NHANES_OOF,race_ethnicity,White NH,stroke,1,3633,189,0.05202312138728324
+BRFSS_2017,race_ethnicity,White NH,stroke,1,336748,14042,0.04169883711261834
+NHANES_OOF,race_ethnicity,White NH,stroke,Missing,3633,134,0.0368841178089733
+BRFSS_2017,race_ethnicity,White NH,stroke,Missing,336748,846,0.0025122643638566524
+NHANES_OOF,race_ethnicity,Black NH,sex,1,2359,1111,0.47096227214921577
+BRFSS_2017,race_ethnicity,Black NH,sex,1,35688,13645,0.3823414032728088
+NHANES_OOF,race_ethnicity,Black NH,sex,2,2359,1248,0.5290377278507842
+BRFSS_2017,race_ethnicity,Black NH,sex,2,35688,22024,0.6171262048867967
+NHANES_OOF,race_ethnicity,Black NH,sex,Missing,2359,0,0.0
+BRFSS_2017,race_ethnicity,Black NH,sex,Missing,35688,19,0.0005323918403945303
+NHANES_OOF,race_ethnicity,Black NH,race_ethnicity,Black NH,2359,2359,1.0
+BRFSS_2017,race_ethnicity,Black NH,race_ethnicity,Black NH,35688,35688,1.0
+NHANES_OOF,race_ethnicity,Black NH,smoking_status,Missing,2359,4,0.001695633743111488
+BRFSS_2017,race_ethnicity,Black NH,smoking_status,Missing,35688,2155,0.060384442950011205
+NHANES_OOF,race_ethnicity,Black NH,smoking_status,current,2359,553,0.2344213649851632
+BRFSS_2017,race_ethnicity,Black NH,smoking_status,current,35688,5862,0.16425689307330196
+NHANES_OOF,race_ethnicity,Black NH,smoking_status,former,2359,437,0.18524798643493007
+BRFSS_2017,race_ethnicity,Black NH,smoking_status,former,35688,6448,0.1806769782559964
+NHANES_OOF,race_ethnicity,Black NH,smoking_status,never,2359,1365,0.5786350148367952
+BRFSS_2017,race_ethnicity,Black NH,smoking_status,never,35688,21223,0.5946816857206905
+NHANES_OOF,race_ethnicity,Black NH,physical_activity,0,2359,1548,0.6562102585841458
+BRFSS_2017,race_ethnicity,Black NH,physical_activity,0,35688,17511,0.4906691324815064
+NHANES_OOF,race_ethnicity,Black NH,physical_activity,1,2359,803,0.3403984739296312
+BRFSS_2017,race_ethnicity,Black NH,physical_activity,1,35688,12661,0.35476911006500783
+NHANES_OOF,race_ethnicity,Black NH,physical_activity,Missing,2359,8,0.003391267486222976
+BRFSS_2017,race_ethnicity,Black NH,physical_activity,Missing,35688,5516,0.15456175745348577
+NHANES_OOF,race_ethnicity,Black NH,heart_attack,0,2359,2167,0.9186095803306485
+BRFSS_2017,race_ethnicity,Black NH,heart_attack,0,35688,33487,0.9383266083837705
+NHANES_OOF,race_ethnicity,Black NH,heart_attack,1,2359,95,0.04027130139889784
+BRFSS_2017,race_ethnicity,Black NH,heart_attack,1,35688,1924,0.05391167899574086
+NHANES_OOF,race_ethnicity,Black NH,heart_attack,Missing,2359,97,0.04111911827045358
+BRFSS_2017,race_ethnicity,Black NH,heart_attack,Missing,35688,277,0.00776171262048868
+NHANES_OOF,race_ethnicity,Black NH,stroke,0,2359,2131,0.9033488766426452
+BRFSS_2017,race_ethnicity,Black NH,stroke,0,35688,33468,0.9377942165433759
+NHANES_OOF,race_ethnicity,Black NH,stroke,1,2359,131,0.05553200508690123
+BRFSS_2017,race_ethnicity,Black NH,stroke,1,35688,2140,0.05996413360233131
+NHANES_OOF,race_ethnicity,Black NH,stroke,Missing,2359,97,0.04111911827045358
+BRFSS_2017,race_ethnicity,Black NH,stroke,Missing,35688,80,0.0022416498542927594
+NHANES_OOF,race_ethnicity,Hispanic,sex,1,2961,1357,0.45829111786558596
+BRFSS_2017,race_ethnicity,Hispanic,sex,1,36973,16467,0.4453790603954237
+NHANES_OOF,race_ethnicity,Hispanic,sex,2,2961,1604,0.541708882134414
+BRFSS_2017,race_ethnicity,Hispanic,sex,2,36973,20486,0.5540800043274822
+NHANES_OOF,race_ethnicity,Hispanic,sex,Missing,2961,0,0.0
+BRFSS_2017,race_ethnicity,Hispanic,sex,Missing,36973,20,0.0005409352770940957
+NHANES_OOF,race_ethnicity,Hispanic,race_ethnicity,Hispanic,2961,2961,1.0
+BRFSS_2017,race_ethnicity,Hispanic,race_ethnicity,Hispanic,36973,36973,1.0
+NHANES_OOF,race_ethnicity,Hispanic,smoking_status,Missing,2961,4,0.0013508949679162446
+BRFSS_2017,race_ethnicity,Hispanic,smoking_status,Missing,36973,2057,0.05563519324912774
+NHANES_OOF,race_ethnicity,Hispanic,smoking_status,current,2961,375,0.12664640324214793
+BRFSS_2017,race_ethnicity,Hispanic,smoking_status,current,36973,4527,0.12244069997024856
+NHANES_OOF,race_ethnicity,Hispanic,smoking_status,former,2961,648,0.2188449848024316
+BRFSS_2017,race_ethnicity,Hispanic,smoking_status,former,36973,6453,0.17453276715440996
+NHANES_OOF,race_ethnicity,Hispanic,smoking_status,never,2961,1934,0.6531577169875042
+BRFSS_2017,race_ethnicity,Hispanic,smoking_status,never,36973,23936,0.6473913396262138
+NHANES_OOF,race_ethnicity,Hispanic,physical_activity,0,2961,2019,0.6818642350557245
+BRFSS_2017,race_ethnicity,Hispanic,physical_activity,0,36973,18818,0.5089660022178346
+NHANES_OOF,race_ethnicity,Hispanic,physical_activity,1,2961,937,0.31644714623438025
+BRFSS_2017,race_ethnicity,Hispanic,physical_activity,1,36973,13323,0.36034403483623184
+NHANES_OOF,race_ethnicity,Hispanic,physical_activity,Missing,2961,5,0.0016886187098953055
+BRFSS_2017,race_ethnicity,Hispanic,physical_activity,Missing,36973,4832,0.13068996294593352
+NHANES_OOF,race_ethnicity,Hispanic,heart_attack,0,2961,2687,0.9074636946977372
+BRFSS_2017,race_ethnicity,Hispanic,heart_attack,0,36973,35353,0.9561842425553783
+NHANES_OOF,race_ethnicity,Hispanic,heart_attack,1,2961,108,0.0364741641337386
+BRFSS_2017,race_ethnicity,Hispanic,heart_attack,1,36973,1397,0.037784329105022586
+NHANES_OOF,race_ethnicity,Hispanic,heart_attack,Missing,2961,166,0.05606214116852415
+BRFSS_2017,race_ethnicity,Hispanic,heart_attack,Missing,36973,223,0.006031428339599167
+NHANES_OOF,race_ethnicity,Hispanic,stroke,0,2961,2719,0.9182708544410672
+BRFSS_2017,race_ethnicity,Hispanic,stroke,0,36973,35926,0.9716820382441241
+NHANES_OOF,race_ethnicity,Hispanic,stroke,1,2961,76,0.025667004390408647
+BRFSS_2017,race_ethnicity,Hispanic,stroke,1,36973,922,0.024937116274037812
+NHANES_OOF,race_ethnicity,Hispanic,stroke,Missing,2961,166,0.05606214116852415
+BRFSS_2017,race_ethnicity,Hispanic,stroke,Missing,36973,125,0.003380845481838098
+NHANES_OOF,race_ethnicity,Other,sex,1,1879,936,0.4981373070782331
+BRFSS_2017,race_ethnicity,Other,sex,1,31148,15045,0.4830165660716579
+NHANES_OOF,race_ethnicity,Other,sex,2,1879,943,0.5018626929217669
+BRFSS_2017,race_ethnicity,Other,sex,2,31148,16076,0.5161166045974059
+NHANES_OOF,race_ethnicity,Other,sex,Missing,1879,0,0.0
+BRFSS_2017,race_ethnicity,Other,sex,Missing,31148,27,0.0008668293309361757
+NHANES_OOF,race_ethnicity,Other,race_ethnicity,Other,1879,1879,1.0
+BRFSS_2017,race_ethnicity,Other,race_ethnicity,Other,31148,31148,1.0
+NHANES_OOF,race_ethnicity,Other,smoking_status,Missing,1879,0,0.0
+BRFSS_2017,race_ethnicity,Other,smoking_status,Missing,31148,1595,0.05120714010530371
+NHANES_OOF,race_ethnicity,Other,smoking_status,current,1879,252,0.1341138903672166
+BRFSS_2017,race_ethnicity,Other,smoking_status,current,31148,5788,0.18582252472068833
+NHANES_OOF,race_ethnicity,Other,smoking_status,former,1879,299,0.1591271953166578
+BRFSS_2017,race_ethnicity,Other,smoking_status,former,31148,6768,0.21728521895466804
+NHANES_OOF,race_ethnicity,Other,smoking_status,never,1879,1328,0.7067589143161256
+BRFSS_2017,race_ethnicity,Other,smoking_status,never,31148,16997,0.5456851162193399
+NHANES_OOF,race_ethnicity,Other,physical_activity,0,1879,1176,0.6258648217136775
+BRFSS_2017,race_ethnicity,Other,physical_activity,0,31148,13145,0.42201746500577886
+NHANES_OOF,race_ethnicity,Other,physical_activity,1,1879,700,0.37253858435337944
+BRFSS_2017,race_ethnicity,Other,physical_activity,1,31148,13795,0.44288557852831645
+NHANES_OOF,race_ethnicity,Other,physical_activity,Missing,1879,3,0.0015965939329430547
+BRFSS_2017,race_ethnicity,Other,physical_activity,Missing,31148,4208,0.13509695646590472
+NHANES_OOF,race_ethnicity,Other,heart_attack,0,1879,1720,0.9153805215540181
+BRFSS_2017,race_ethnicity,Other,heart_attack,0,31148,29090,0.9339283421086426
+NHANES_OOF,race_ethnicity,Other,heart_attack,1,1879,57,0.03033528472591804
+BRFSS_2017,race_ethnicity,Other,heart_attack,1,31148,1808,0.058045460382689096
+NHANES_OOF,race_ethnicity,Other,heart_attack,Missing,1879,102,0.054284193720063864
+BRFSS_2017,race_ethnicity,Other,heart_attack,Missing,31148,250,0.008026197508668294
+NHANES_OOF,race_ethnicity,Other,stroke,0,1879,1731,0.9212346993081426
+BRFSS_2017,race_ethnicity,Other,stroke,0,31148,29653,0.9520033388981636
+NHANES_OOF,race_ethnicity,Other,stroke,1,1879,50,0.026609898882384245
+BRFSS_2017,race_ethnicity,Other,stroke,1,31148,1390,0.04462565814819571
+NHANES_OOF,race_ethnicity,Other,stroke,Missing,1879,98,0.052155401809473124
+BRFSS_2017,race_ethnicity,Other,stroke,Missing,31148,105,0.003371002953640683
+NHANES_OOF,race_ethnicity,Missing,sex,1,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,sex,1,8662,4358,0.5031170630339413
+NHANES_OOF,race_ethnicity,Missing,sex,2,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,sex,2,8662,4233,0.48868621565458326
+NHANES_OOF,race_ethnicity,Missing,sex,Missing,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,sex,Missing,8662,71,0.00819672131147541
+NHANES_OOF,race_ethnicity,Missing,race_ethnicity,Missing,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,race_ethnicity,Missing,8662,8662,1.0
+NHANES_OOF,race_ethnicity,Missing,smoking_status,Missing,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,smoking_status,Missing,8662,933,0.10771184483952898
+NHANES_OOF,race_ethnicity,Missing,smoking_status,current,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,smoking_status,current,8662,1135,0.13103209420457168
+NHANES_OOF,race_ethnicity,Missing,smoking_status,former,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,smoking_status,former,8662,2287,0.2640267836527361
+NHANES_OOF,race_ethnicity,Missing,smoking_status,never,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,smoking_status,never,8662,4307,0.49722927730316324
+NHANES_OOF,race_ethnicity,Missing,physical_activity,0,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,physical_activity,0,8662,3159,0.3646963749711383
+NHANES_OOF,race_ethnicity,Missing,physical_activity,1,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,physical_activity,1,8662,3044,0.3514199953821288
+NHANES_OOF,race_ethnicity,Missing,physical_activity,Missing,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,physical_activity,Missing,8662,2459,0.28388362964673286
+NHANES_OOF,race_ethnicity,Missing,heart_attack,0,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,heart_attack,0,8662,7962,0.9191872546755946
+NHANES_OOF,race_ethnicity,Missing,heart_attack,1,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,heart_attack,1,8662,595,0.06869083352574464
+NHANES_OOF,race_ethnicity,Missing,heart_attack,Missing,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,heart_attack,Missing,8662,105,0.012121911798660817
+NHANES_OOF,race_ethnicity,Missing,stroke,0,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,stroke,0,8662,8195,0.9460863541907181
+NHANES_OOF,race_ethnicity,Missing,stroke,1,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,stroke,1,8662,411,0.047448626183329484
+NHANES_OOF,race_ethnicity,Missing,stroke,Missing,0,0,NA
+BRFSS_2017,race_ethnicity,Missing,stroke,Missing,8662,56,0.0064650196259524355
+NHANES_OOF,age,18-39,sex,1,3720,1778,0.47795698924731184
+BRFSS_2017,age,18-39,sex,1,99769,49483,0.49597570387595347
+NHANES_OOF,age,18-39,sex,2,3720,1942,0.5220430107526882
+BRFSS_2017,age,18-39,sex,2,99769,50223,0.5033928374545199
+NHANES_OOF,age,18-39,sex,Missing,3720,0,0.0
+BRFSS_2017,age,18-39,sex,Missing,99769,63,0.0006314586695266065
+NHANES_OOF,age,18-39,race_ethnicity,Black NH,3720,782,0.21021505376344085
+BRFSS_2017,age,18-39,race_ethnicity,Black NH,99769,9060,0.09080977057001674
+NHANES_OOF,age,18-39,race_ethnicity,Hispanic,3720,1093,0.2938172043010753
+BRFSS_2017,age,18-39,race_ethnicity,Hispanic,99769,15515,0.15550922631278252
+NHANES_OOF,age,18-39,race_ethnicity,Missing,3720,0,0.0
+BRFSS_2017,age,18-39,race_ethnicity,Missing,99769,1562,0.015656165742866022
+NHANES_OOF,age,18-39,race_ethnicity,Other,3720,726,0.19516129032258064
+BRFSS_2017,age,18-39,race_ethnicity,Other,99769,10851,0.10876123846084455
+NHANES_OOF,age,18-39,race_ethnicity,White NH,3720,1119,0.3008064516129032
+BRFSS_2017,age,18-39,race_ethnicity,White NH,99769,62781,0.6292635989134902
+NHANES_OOF,age,18-39,smoking_status,Missing,3720,2,0.0005376344086021505
+BRFSS_2017,age,18-39,smoking_status,Missing,99769,4761,0.047720233739939256
+NHANES_OOF,age,18-39,smoking_status,current,3720,727,0.19543010752688172
+BRFSS_2017,age,18-39,smoking_status,current,99769,17679,0.17719933045334724
+NHANES_OOF,age,18-39,smoking_status,former,3720,458,0.12311827956989248
+BRFSS_2017,age,18-39,smoking_status,former,99769,14631,0.14664875863244095
+NHANES_OOF,age,18-39,smoking_status,never,3720,2533,0.6809139784946237
+BRFSS_2017,age,18-39,smoking_status,never,99769,62698,0.6284316771742726
+NHANES_OOF,age,18-39,physical_activity,0,3720,1960,0.5268817204301075
+BRFSS_2017,age,18-39,physical_activity,0,99769,43825,0.43926470146037344
+NHANES_OOF,age,18-39,physical_activity,1,3720,1752,0.47096774193548385
+BRFSS_2017,age,18-39,physical_activity,1,99769,44102,0.4420411149755936
+NHANES_OOF,age,18-39,physical_activity,Missing,3720,8,0.002150537634408602
+BRFSS_2017,age,18-39,physical_activity,Missing,99769,11842,0.11869418356403291
+NHANES_OOF,age,18-39,heart_attack,0,3720,3220,0.8655913978494624
+BRFSS_2017,age,18-39,heart_attack,0,99769,98859,0.9908789303290602
+NHANES_OOF,age,18-39,heart_attack,1,3720,15,0.004032258064516129
+BRFSS_2017,age,18-39,heart_attack,1,99769,587,0.0058835910954304444
+NHANES_OOF,age,18-39,heart_attack,Missing,3720,485,0.1303763440860215
+BRFSS_2017,age,18-39,heart_attack,Missing,99769,323,0.003237478575509427
+NHANES_OOF,age,18-39,stroke,0,3720,3216,0.864516129032258
+BRFSS_2017,age,18-39,stroke,0,99769,98920,0.9914903426916176
+NHANES_OOF,age,18-39,stroke,1,3720,19,0.00510752688172043
+BRFSS_2017,age,18-39,stroke,1,99769,713,0.007146508434483658
+NHANES_OOF,age,18-39,stroke,Missing,3720,485,0.1303763440860215
+BRFSS_2017,age,18-39,stroke,Missing,99769,136,0.001363148873898706
+NHANES_OOF,age,40-59,sex,1,3339,1554,0.46540880503144655
+BRFSS_2017,age,40-59,sex,1,140691,63309,0.4499861398383692
+NHANES_OOF,age,40-59,sex,2,3339,1785,0.5345911949685535
+BRFSS_2017,age,40-59,sex,2,140691,77275,0.5492533282157352
+NHANES_OOF,age,40-59,sex,Missing,3339,0,0.0
+BRFSS_2017,age,40-59,sex,Missing,140691,107,0.0007605319458956153
+NHANES_OOF,age,40-59,race_ethnicity,Black NH,3339,759,0.22731356693620844
+BRFSS_2017,age,40-59,race_ethnicity,Black NH,140691,12490,0.08877611218912368
+NHANES_OOF,age,40-59,race_ethnicity,Hispanic,3339,915,0.27403414195867026
+BRFSS_2017,age,40-59,race_ethnicity,Hispanic,140691,12914,0.091789808871925
+NHANES_OOF,age,40-59,race_ethnicity,Missing,3339,0,0.0
+BRFSS_2017,age,40-59,race_ethnicity,Missing,140691,2876,0.020441961461642892
+NHANES_OOF,age,40-59,race_ethnicity,Other,3339,674,0.20185684336627732
+BRFSS_2017,age,40-59,race_ethnicity,Other,140691,10542,0.07493016610870631
+NHANES_OOF,age,40-59,race_ethnicity,White NH,3339,991,0.296795447738844
+BRFSS_2017,age,40-59,race_ethnicity,White NH,140691,101869,0.7240619513686021
+NHANES_OOF,age,40-59,smoking_status,Missing,3339,0,0.0
+BRFSS_2017,age,40-59,smoking_status,Missing,140691,5927,0.04212778358246085
+NHANES_OOF,age,40-59,smoking_status,current,3339,700,0.20964360587002095
+BRFSS_2017,age,40-59,smoking_status,current,140691,25207,0.17916568934757732
+NHANES_OOF,age,40-59,smoking_status,former,3339,651,0.1949685534591195
+BRFSS_2017,age,40-59,smoking_status,former,140691,31573,0.22441378624076877
+NHANES_OOF,age,40-59,smoking_status,never,3339,1988,0.5953878406708596
+BRFSS_2017,age,40-59,smoking_status,never,140691,77984,0.5542927408291931
+NHANES_OOF,age,40-59,physical_activity,0,3339,2287,0.6849356094639113
+BRFSS_2017,age,40-59,physical_activity,0,140691,63026,0.44797463945810323
+NHANES_OOF,age,40-59,physical_activity,1,3339,1046,0.31326744534291706
+BRFSS_2017,age,40-59,physical_activity,1,140691,61713,0.43864213062669255
+NHANES_OOF,age,40-59,physical_activity,Missing,3339,6,0.0017969451931716084
+BRFSS_2017,age,40-59,physical_activity,Missing,140691,15952,0.11338322991520425
+NHANES_OOF,age,40-59,heart_attack,0,3339,3240,0.9703504043126685
+BRFSS_2017,age,40-59,heart_attack,0,140691,134883,0.9587180416657782
+NHANES_OOF,age,40-59,heart_attack,1,3339,95,0.02845163222521713
+BRFSS_2017,age,40-59,heart_attack,1,140691,5226,0.037145233170565284
+NHANES_OOF,age,40-59,heart_attack,Missing,3339,4,0.0011979634621144056
+BRFSS_2017,age,40-59,heart_attack,Missing,140691,582,0.004136725163656524
+NHANES_OOF,age,40-59,stroke,0,3339,3233,0.9682539682539683
+BRFSS_2017,age,40-59,stroke,0,140691,136104,0.9673966351792226
+NHANES_OOF,age,40-59,stroke,1,3339,104,0.031147050014974545
+BRFSS_2017,age,40-59,stroke,1,140691,4259,0.0302720145567236
+NHANES_OOF,age,40-59,stroke,Missing,3339,2,0.0005989817310572028
+BRFSS_2017,age,40-59,stroke,Missing,140691,328,0.0023313502640538485
+NHANES_OOF,age,60+,sex,1,3773,1890,0.5009276437847866
+BRFSS_2017,age,60+,sex,1,208759,85533,0.4097212575266216
+NHANES_OOF,age,60+,sex,2,3773,1883,0.49907235621521334
+BRFSS_2017,age,60+,sex,2,208759,123120,0.5897709799337992
+NHANES_OOF,age,60+,sex,Missing,3773,0,0.0
+BRFSS_2017,age,60+,sex,Missing,208759,106,0.000507762539579132
+NHANES_OOF,age,60+,race_ethnicity,Black NH,3773,818,0.2168036045587066
+BRFSS_2017,age,60+,race_ethnicity,Black NH,208759,14138,0.0677240262695261
+NHANES_OOF,age,60+,race_ethnicity,Hispanic,3773,953,0.2525841505433342
+BRFSS_2017,age,60+,race_ethnicity,Hispanic,208759,8544,0.04092757677513305
+NHANES_OOF,age,60+,race_ethnicity,Missing,3773,0,0.0
+BRFSS_2017,age,60+,race_ethnicity,Missing,208759,4224,0.020233858180964653
+NHANES_OOF,age,60+,race_ethnicity,Other,3773,479,0.12695467797508614
+BRFSS_2017,age,60+,race_ethnicity,Other,208759,9755,0.04672852427919275
+NHANES_OOF,age,60+,race_ethnicity,White NH,3773,1523,0.403657566922873
+BRFSS_2017,age,60+,race_ethnicity,White NH,208759,172098,0.8243860144951835
+NHANES_OOF,age,60+,smoking_status,Missing,3773,7,0.0018552875695732839
+BRFSS_2017,age,60+,smoking_status,Missing,208759,7937,0.03801991770414689
+NHANES_OOF,age,60+,smoking_status,current,3773,507,0.13437582825337926
+BRFSS_2017,age,60+,smoking_status,current,208759,20436,0.0978927854607466
+NHANES_OOF,age,60+,smoking_status,former,3773,1362,0.36098595282268753
+BRFSS_2017,age,60+,smoking_status,former,208759,75344,0.36091378096273696
+NHANES_OOF,age,60+,smoking_status,never,3773,1897,0.5027829313543599
+BRFSS_2017,age,60+,smoking_status,never,208759,105042,0.5031735158723696
+NHANES_OOF,age,60+,physical_activity,0,3773,2875,0.7619931089318844
+BRFSS_2017,age,60+,physical_activity,0,208759,86619,0.41492342845098895
+NHANES_OOF,age,60+,physical_activity,1,3773,887,0.23509143917307182
+BRFSS_2017,age,60+,physical_activity,1,208759,100002,0.47903084417917313
+NHANES_OOF,age,60+,physical_activity,Missing,3773,11,0.0029154518950437317
+BRFSS_2017,age,60+,physical_activity,Missing,208759,22138,0.10604572736983794
+NHANES_OOF,age,60+,heart_attack,0,3773,3380,0.8958388550225285
+BRFSS_2017,age,60+,heart_attack,0,208759,187310,0.8972547291374264
+NHANES_OOF,age,60+,heart_attack,1,3773,383,0.10151073416379539
+BRFSS_2017,age,60+,heart_attack,1,208759,20136,0.0964557216694849
+NHANES_OOF,age,60+,heart_attack,Missing,3773,10,0.0026504108136761197
+BRFSS_2017,age,60+,heart_attack,Missing,208759,1313,0.0062895491930886815
+NHANES_OOF,age,60+,stroke,0,3773,3442,0.9122714020673204
+BRFSS_2017,age,60+,stroke,0,208759,194078,0.9296748882682903
+NHANES_OOF,age,60+,stroke,1,3773,323,0.08560826928173867
+BRFSS_2017,age,60+,stroke,1,208759,13933,0.06674203267883061
+NHANES_OOF,age,60+,stroke,Missing,3773,8,0.0021203286509408957
+BRFSS_2017,age,60+,stroke,Missing,208759,748,0.0035830790528791575
+NHANES_OOF,bmi,Underweight,sex,1,171,70,0.4093567251461988
+BRFSS_2017,bmi,Underweight,sex,1,6907,1965,0.2844939916027219
+NHANES_OOF,bmi,Underweight,sex,2,171,101,0.5906432748538012
+BRFSS_2017,bmi,Underweight,sex,2,6907,4936,0.7146373244534531
+NHANES_OOF,bmi,Underweight,sex,Missing,171,0,0.0
+BRFSS_2017,bmi,Underweight,sex,Missing,6907,6,0.000868683943825105
+NHANES_OOF,bmi,Underweight,race_ethnicity,Black NH,171,38,0.2222222222222222
+BRFSS_2017,bmi,Underweight,race_ethnicity,Black NH,6907,427,0.061821340668886636
+NHANES_OOF,bmi,Underweight,race_ethnicity,Hispanic,171,28,0.16374269005847952
+BRFSS_2017,bmi,Underweight,race_ethnicity,Hispanic,6907,459,0.06645432170262053
+NHANES_OOF,bmi,Underweight,race_ethnicity,Missing,171,0,0.0
+BRFSS_2017,bmi,Underweight,race_ethnicity,Missing,6907,134,0.01940060807876068
+NHANES_OOF,bmi,Underweight,race_ethnicity,Other,171,47,0.27485380116959063
+BRFSS_2017,bmi,Underweight,race_ethnicity,Other,6907,694,0.1004777761691038
+NHANES_OOF,bmi,Underweight,race_ethnicity,White NH,171,58,0.3391812865497076
+BRFSS_2017,bmi,Underweight,race_ethnicity,White NH,6907,5193,0.7518459533806283
+NHANES_OOF,bmi,Underweight,smoking_status,Missing,171,0,0.0
+BRFSS_2017,bmi,Underweight,smoking_status,Missing,6907,190,0.02750832488779499
+NHANES_OOF,bmi,Underweight,smoking_status,current,171,51,0.2982456140350877
+BRFSS_2017,bmi,Underweight,smoking_status,current,6907,1899,0.2749384682206457
+NHANES_OOF,bmi,Underweight,smoking_status,former,171,16,0.0935672514619883
+BRFSS_2017,bmi,Underweight,smoking_status,former,6907,1359,0.19675691327638628
+NHANES_OOF,bmi,Underweight,smoking_status,never,171,104,0.6081871345029239
+BRFSS_2017,bmi,Underweight,smoking_status,never,6907,3459,0.500796293615173
+NHANES_OOF,bmi,Underweight,physical_activity,0,171,121,0.7076023391812866
+BRFSS_2017,bmi,Underweight,physical_activity,0,6907,3129,0.45301867670479223
+NHANES_OOF,bmi,Underweight,physical_activity,1,171,50,0.29239766081871343
+BRFSS_2017,bmi,Underweight,physical_activity,1,6907,3012,0.4360793398002027
+NHANES_OOF,bmi,Underweight,physical_activity,Missing,171,0,0.0
+BRFSS_2017,bmi,Underweight,physical_activity,Missing,6907,766,0.11090198349500507
+NHANES_OOF,bmi,Underweight,heart_attack,0,171,138,0.8070175438596491
+BRFSS_2017,bmi,Underweight,heart_attack,0,6907,6432,0.9312291877805126
+NHANES_OOF,bmi,Underweight,heart_attack,1,171,6,0.03508771929824561
+BRFSS_2017,bmi,Underweight,heart_attack,1,6907,430,0.06225568264079919
+NHANES_OOF,bmi,Underweight,heart_attack,Missing,171,27,0.15789473684210525
+BRFSS_2017,bmi,Underweight,heart_attack,Missing,6907,45,0.006515129578688287
+NHANES_OOF,bmi,Underweight,stroke,0,171,140,0.8187134502923976
+BRFSS_2017,bmi,Underweight,stroke,0,6907,6527,0.94498335022441
+NHANES_OOF,bmi,Underweight,stroke,1,171,3,0.017543859649122806
+BRFSS_2017,bmi,Underweight,stroke,1,6907,356,0.05154191400028956
+NHANES_OOF,bmi,Underweight,stroke,Missing,171,28,0.16374269005847952
+BRFSS_2017,bmi,Underweight,stroke,Missing,6907,24,0.00347473577530042
+NHANES_OOF,bmi,Normal,sex,1,2737,1295,0.4731457800511509
+BRFSS_2017,bmi,Normal,sex,1,128710,48195,0.37444642995882216
+NHANES_OOF,bmi,Normal,sex,2,2737,1442,0.5268542199488491
+BRFSS_2017,bmi,Normal,sex,2,128710,80450,0.6250485587755419
+NHANES_OOF,bmi,Normal,sex,Missing,2737,0,0.0
+BRFSS_2017,bmi,Normal,sex,Missing,128710,65,0.0005050112656359257
+NHANES_OOF,bmi,Normal,race_ethnicity,Black NH,2737,529,0.19327731092436976
+BRFSS_2017,bmi,Normal,race_ethnicity,Black NH,128710,7508,0.05833268588299277
+NHANES_OOF,bmi,Normal,race_ethnicity,Hispanic,2737,502,0.1834124954329558
+BRFSS_2017,bmi,Normal,race_ethnicity,Hispanic,128710,8814,0.06847952762023153
+NHANES_OOF,bmi,Normal,race_ethnicity,Missing,2737,0,0.0
+BRFSS_2017,bmi,Normal,race_ethnicity,Missing,128710,2071,0.016090435863569265
+NHANES_OOF,bmi,Normal,race_ethnicity,Other,2737,781,0.2853489221775667
+BRFSS_2017,bmi,Normal,race_ethnicity,Other,128710,9923,0.07709579675238909
+NHANES_OOF,bmi,Normal,race_ethnicity,White NH,2737,925,0.3379612714651078
+BRFSS_2017,bmi,Normal,race_ethnicity,White NH,128710,100394,0.7800015538808174
+NHANES_OOF,bmi,Normal,smoking_status,Missing,2737,1,0.00036536353671903543
+BRFSS_2017,bmi,Normal,smoking_status,Missing,128710,3270,0.025405951363530417
+NHANES_OOF,bmi,Normal,smoking_status,current,2737,561,0.20496894409937888
+BRFSS_2017,bmi,Normal,smoking_status,current,128710,21138,0.16422966358480304
+NHANES_OOF,bmi,Normal,smoking_status,former,2737,464,0.16952868103763244
+BRFSS_2017,bmi,Normal,smoking_status,former,128710,31176,0.24221894180716338
+NHANES_OOF,bmi,Normal,smoking_status,never,2737,1711,0.6251370113262696
+BRFSS_2017,bmi,Normal,smoking_status,never,128710,73126,0.5681454432445031
+NHANES_OOF,bmi,Normal,physical_activity,0,2737,1596,0.5831202046035806
+BRFSS_2017,bmi,Normal,physical_activity,0,128710,48031,0.3731722476886023
+NHANES_OOF,bmi,Normal,physical_activity,1,2737,1130,0.41286079649251006
+BRFSS_2017,bmi,Normal,physical_activity,1,128710,68417,0.531559319400202
+NHANES_OOF,bmi,Normal,physical_activity,Missing,2737,11,0.00401899890390939
+BRFSS_2017,bmi,Normal,physical_activity,Missing,128710,12262,0.09526843291119572
+NHANES_OOF,bmi,Normal,heart_attack,0,2737,2417,0.8830836682499087
+BRFSS_2017,bmi,Normal,heart_attack,0,128710,122295,0.9501592727837774
+NHANES_OOF,bmi,Normal,heart_attack,1,2737,93,0.0339788089148703
+BRFSS_2017,bmi,Normal,heart_attack,1,128710,5883,0.04570740424209463
+NHANES_OOF,bmi,Normal,heart_attack,Missing,2737,227,0.08293752283522104
+BRFSS_2017,bmi,Normal,heart_attack,Missing,128710,532,0.004133322974127884
+NHANES_OOF,bmi,Normal,stroke,0,2737,2422,0.8849104859335039
+BRFSS_2017,bmi,Normal,stroke,0,128710,123592,0.9602361898842359
+NHANES_OOF,bmi,Normal,stroke,1,2737,90,0.03288271830471319
+BRFSS_2017,bmi,Normal,stroke,1,128710,4771,0.037067826897676945
+NHANES_OOF,bmi,Normal,stroke,Missing,2737,225,0.08220679576178297
+BRFSS_2017,bmi,Normal,stroke,Missing,128710,347,0.0026959832180871728
+NHANES_OOF,bmi,Overweight,sex,1,3376,1843,0.5459123222748815
+BRFSS_2017,bmi,Overweight,sex,1,148963,79928,0.5365627706208924
+NHANES_OOF,bmi,Overweight,sex,2,3376,1533,0.4540876777251185
+BRFSS_2017,bmi,Overweight,sex,2,148963,68965,0.462967314031001
+NHANES_OOF,bmi,Overweight,sex,Missing,3376,0,0.0
+BRFSS_2017,bmi,Overweight,sex,Missing,148963,70,0.0004699153481065768
+NHANES_OOF,bmi,Overweight,race_ethnicity,Black NH,3376,628,0.18601895734597157
+BRFSS_2017,bmi,Overweight,race_ethnicity,Black NH,148963,10794,0.07246094667803414
+NHANES_OOF,bmi,Overweight,race_ethnicity,Hispanic,3376,1042,0.30864928909952605
+BRFSS_2017,bmi,Overweight,race_ethnicity,Hispanic,148963,12020,0.08069117834630075
+NHANES_OOF,bmi,Overweight,race_ethnicity,Missing,3376,0,0.0
+BRFSS_2017,bmi,Overweight,race_ethnicity,Missing,148963,2476,0.016621577170169773
+NHANES_OOF,bmi,Overweight,race_ethnicity,Other,3376,594,0.1759478672985782
+BRFSS_2017,bmi,Overweight,race_ethnicity,Other,148963,9648,0.06476776112188933
+NHANES_OOF,bmi,Overweight,race_ethnicity,White NH,3376,1112,0.3293838862559242
+BRFSS_2017,bmi,Overweight,race_ethnicity,White NH,148963,114025,0.765458536683606
+NHANES_OOF,bmi,Overweight,smoking_status,Missing,3376,4,0.001184834123222749
+BRFSS_2017,bmi,Overweight,smoking_status,Missing,148963,3607,0.02421406658029175
+NHANES_OOF,bmi,Overweight,smoking_status,current,3376,565,0.16735781990521326
+BRFSS_2017,bmi,Overweight,smoking_status,current,148963,20196,0.13557729100514893
+NHANES_OOF,bmi,Overweight,smoking_status,former,3376,814,0.2411137440758294
+BRFSS_2017,bmi,Overweight,smoking_status,former,148963,43869,0.2944959486583917
+NHANES_OOF,bmi,Overweight,smoking_status,never,3376,1993,0.5903436018957346
+BRFSS_2017,bmi,Overweight,smoking_status,never,148963,81291,0.5457126937561676
+NHANES_OOF,bmi,Overweight,physical_activity,0,3376,2145,0.6353672985781991
+BRFSS_2017,bmi,Overweight,physical_activity,0,148963,61241,0.411115511905641
+NHANES_OOF,bmi,Overweight,physical_activity,1,3376,1225,0.3628554502369668
+BRFSS_2017,bmi,Overweight,physical_activity,1,148963,74499,0.5001174788370266
+NHANES_OOF,bmi,Overweight,physical_activity,Missing,3376,6,0.0017772511848341231
+BRFSS_2017,bmi,Overweight,physical_activity,Missing,148963,13223,0.08876700925733236
+NHANES_OOF,bmi,Overweight,heart_attack,0,3376,3114,0.92239336492891
+BRFSS_2017,bmi,Overweight,heart_attack,0,148963,139247,0.9347757496828072
+NHANES_OOF,bmi,Overweight,heart_attack,1,3376,149,0.04413507109004739
+BRFSS_2017,bmi,Overweight,heart_attack,1,148963,9037,0.06066607144055906
+NHANES_OOF,bmi,Overweight,heart_attack,Missing,3376,113,0.03347156398104265
+BRFSS_2017,bmi,Overweight,heart_attack,Missing,148963,679,0.004558178876633795
+NHANES_OOF,bmi,Overweight,stroke,0,3376,3143,0.9309834123222749
+BRFSS_2017,bmi,Overweight,stroke,0,148963,142522,0.9567610748977934
+NHANES_OOF,bmi,Overweight,stroke,1,3376,125,0.0370260663507109
+BRFSS_2017,bmi,Overweight,stroke,1,148963,6107,0.04099675758409806
+NHANES_OOF,bmi,Overweight,stroke,Missing,3376,108,0.031990521327014215
+BRFSS_2017,bmi,Overweight,stroke,Missing,148963,334,0.0022421675181085237
+NHANES_OOF,bmi,Obese,sex,1,4320,1894,0.43842592592592594
+BRFSS_2017,bmi,Obese,sex,1,128427,59355,0.46216917003433855
+NHANES_OOF,bmi,Obese,sex,2,4320,2426,0.5615740740740741
+BRFSS_2017,bmi,Obese,sex,2,128427,69010,0.5373480654379531
+NHANES_OOF,bmi,Obese,sex,Missing,4320,0,0.0
+BRFSS_2017,bmi,Obese,sex,Missing,128427,62,0.00048276452770834794
+NHANES_OOF,bmi,Obese,race_ethnicity,Black NH,4320,1112,0.2574074074074074
+BRFSS_2017,bmi,Obese,race_ethnicity,Black NH,128427,13700,0.10667538757426398
+NHANES_OOF,bmi,Obese,race_ethnicity,Hispanic,4320,1327,0.3071759259259259
+BRFSS_2017,bmi,Obese,race_ethnicity,Hispanic,128427,10468,0.08150933993630623
+NHANES_OOF,bmi,Obese,race_ethnicity,Missing,4320,0,0.0
+BRFSS_2017,bmi,Obese,race_ethnicity,Missing,128427,1954,0.015214869147453416
+NHANES_OOF,bmi,Obese,race_ethnicity,Other,4320,420,0.09722222222222222
+BRFSS_2017,bmi,Obese,race_ethnicity,Other,128427,8280,0.06447242402298582
+NHANES_OOF,bmi,Obese,race_ethnicity,White NH,4320,1461,0.33819444444444446
+BRFSS_2017,bmi,Obese,race_ethnicity,White NH,128427,94025,0.7321279793189905
+NHANES_OOF,bmi,Obese,smoking_status,Missing,4320,4,0.000925925925925926
+BRFSS_2017,bmi,Obese,smoking_status,Missing,128427,2699,0.02101583000459405
+NHANES_OOF,bmi,Obese,smoking_status,current,4320,726,0.16805555555555557
+BRFSS_2017,bmi,Obese,smoking_status,current,128427,17517,0.1363965521268892
+NHANES_OOF,bmi,Obese,smoking_status,former,4320,1107,0.25625
+BRFSS_2017,bmi,Obese,smoking_status,former,128427,38737,0.3016266049973915
+NHANES_OOF,bmi,Obese,smoking_status,never,4320,2483,0.5747685185185185
+BRFSS_2017,bmi,Obese,smoking_status,never,128427,69474,0.5409610128711252
+NHANES_OOF,bmi,Obese,physical_activity,0,4320,3071,0.7108796296296296
+BRFSS_2017,bmi,Obese,physical_activity,0,128427,68008,0.5295459677482149
+NHANES_OOF,bmi,Obese,physical_activity,1,4320,1242,0.2875
+BRFSS_2017,bmi,Obese,physical_activity,1,128427,50250,0.39127286318297555
+NHANES_OOF,bmi,Obese,physical_activity,Missing,4320,7,0.0016203703703703703
+BRFSS_2017,bmi,Obese,physical_activity,Missing,128427,10169,0.07918116906880952
+NHANES_OOF,bmi,Obese,heart_attack,0,4320,3980,0.9212962962962963
+BRFSS_2017,bmi,Obese,heart_attack,0,128427,118496,0.9226720237956193
+NHANES_OOF,bmi,Obese,heart_attack,1,4320,220,0.05092592592592592
+BRFSS_2017,bmi,Obese,heart_attack,1,128427,9205,0.07167495931540875
+NHANES_OOF,bmi,Obese,heart_attack,Missing,4320,120,0.027777777777777776
+BRFSS_2017,bmi,Obese,heart_attack,Missing,128427,726,0.005653016888971945
+NHANES_OOF,bmi,Obese,stroke,0,4320,3999,0.9256944444444445
+BRFSS_2017,bmi,Obese,stroke,0,128427,121527,0.9462729799808451
+NHANES_OOF,bmi,Obese,stroke,1,4320,199,0.046064814814814815
+BRFSS_2017,bmi,Obese,stroke,1,128427,6511,0.05069806193401699
+NHANES_OOF,bmi,Obese,stroke,Missing,4320,122,0.02824074074074074
+BRFSS_2017,bmi,Obese,stroke,Missing,128427,389,0.0030289580851378603
+NHANES_OOF,bmi,Missing,sex,1,228,120,0.5263157894736842
+BRFSS_2017,bmi,Missing,sex,1,36212,8882,0.24527780846128355
+NHANES_OOF,bmi,Missing,sex,2,228,108,0.47368421052631576
+BRFSS_2017,bmi,Missing,sex,2,36212,27257,0.7527062852093229
+NHANES_OOF,bmi,Missing,sex,Missing,228,0,0.0
+BRFSS_2017,bmi,Missing,sex,Missing,36212,73,0.002015906329393571
+NHANES_OOF,bmi,Missing,race_ethnicity,Black NH,228,52,0.22807017543859648
+BRFSS_2017,bmi,Missing,race_ethnicity,Black NH,36212,3259,0.08999779078758423
+NHANES_OOF,bmi,Missing,race_ethnicity,Hispanic,228,62,0.2719298245614035
+BRFSS_2017,bmi,Missing,race_ethnicity,Hispanic,36212,5212,0.14393018888766154
+NHANES_OOF,bmi,Missing,race_ethnicity,Missing,228,0,0.0
+BRFSS_2017,bmi,Missing,race_ethnicity,Missing,36212,2027,0.05597591958466806
+NHANES_OOF,bmi,Missing,race_ethnicity,Other,228,37,0.16228070175438597
+BRFSS_2017,bmi,Missing,race_ethnicity,Other,36212,2603,0.07188224897823926
+NHANES_OOF,bmi,Missing,race_ethnicity,White NH,228,77,0.33771929824561403
+BRFSS_2017,bmi,Missing,race_ethnicity,White NH,36212,23111,0.6382138517618469
+NHANES_OOF,bmi,Missing,smoking_status,Missing,228,0,0.0
+BRFSS_2017,bmi,Missing,smoking_status,Missing,36212,8859,0.2446426598917486
+NHANES_OOF,bmi,Missing,smoking_status,current,228,31,0.13596491228070176
+BRFSS_2017,bmi,Missing,smoking_status,current,36212,2572,0.07102617916712692
+NHANES_OOF,bmi,Missing,smoking_status,former,228,70,0.30701754385964913
+BRFSS_2017,bmi,Missing,smoking_status,former,36212,6407,0.17693029934828233
+NHANES_OOF,bmi,Missing,smoking_status,never,228,127,0.5570175438596491
+BRFSS_2017,bmi,Missing,smoking_status,never,36212,18374,0.5074008615928421
+NHANES_OOF,bmi,Missing,physical_activity,0,228,189,0.8289473684210527
+BRFSS_2017,bmi,Missing,physical_activity,0,36212,13061,0.3606815420302662
+NHANES_OOF,bmi,Missing,physical_activity,1,228,38,0.16666666666666666
+BRFSS_2017,bmi,Missing,physical_activity,1,36212,9639,0.2661824809455429
+NHANES_OOF,bmi,Missing,physical_activity,Missing,228,1,0.0043859649122807015
+BRFSS_2017,bmi,Missing,physical_activity,Missing,36212,13512,0.3731359770241909
+NHANES_OOF,bmi,Missing,heart_attack,0,228,191,0.8377192982456141
+BRFSS_2017,bmi,Missing,heart_attack,0,36212,34582,0.9549872970286093
+NHANES_OOF,bmi,Missing,heart_attack,1,228,25,0.10964912280701754
+BRFSS_2017,bmi,Missing,heart_attack,1,36212,1394,0.03849552634485806
+NHANES_OOF,bmi,Missing,heart_attack,Missing,228,12,0.05263157894736842
+BRFSS_2017,bmi,Missing,heart_attack,Missing,36212,236,0.006517176626532641
+NHANES_OOF,bmi,Missing,stroke,0,228,187,0.8201754385964912
+BRFSS_2017,bmi,Missing,stroke,0,36212,34934,0.9647078316580139
+NHANES_OOF,bmi,Missing,stroke,1,228,29,0.12719298245614036
+BRFSS_2017,bmi,Missing,stroke,1,36212,1160,0.03203358002871976
+NHANES_OOF,bmi,Missing,stroke,Missing,228,12,0.05263157894736842
+BRFSS_2017,bmi,Missing,stroke,Missing,36212,118,0.0032585883132663206

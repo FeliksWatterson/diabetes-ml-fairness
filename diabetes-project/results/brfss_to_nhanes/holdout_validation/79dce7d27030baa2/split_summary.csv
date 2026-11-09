@@ -1,0 +1,4 @@
+dataset,n,n_positive,n_negative,positive_rate
+BRFSS_development,359375,48352,311023,0.13454469565217392
+BRFSS_internal_test,89844,12088,77756,0.1345443212679756
+BRFSS_tuning_subset_of_development,100000,13454,86546,0.13454

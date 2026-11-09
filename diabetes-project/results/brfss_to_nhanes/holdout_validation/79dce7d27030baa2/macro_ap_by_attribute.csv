@@ -1,0 +1,17 @@
+dataset,model,attribute,groups,n_groups_expected,n_groups_valid,map
+BRFSS_internal_test,LR,sex,"Nam, Nữ",2,2,0.3342569061527954
+BRFSS_internal_test,LR,race_ethnicity,"White NH, Black NH, Hispanic, Other",4,4,0.3538187632304916
+BRFSS_internal_test,LR,age,"18-39, 40-59, 60+",3,3,0.24310971232199208
+BRFSS_internal_test,LR,bmi,"Normal, Overweight, Obese",3,3,0.2777452936085624
+NHANES_external,LR,sex,"Nam, Nữ",2,2,0.4553292925706628
+NHANES_external,LR,race_ethnicity,"White NH, Black NH, Hispanic, Other",4,4,0.4606409619065283
+NHANES_external,LR,age,"18-39, 40-59, 60+",3,3,0.34624625146317417
+NHANES_external,LR,bmi,"Normal, Overweight, Obese",3,3,0.3862648974009974
+BRFSS_internal_test,XGBoost,sex,"Nam, Nữ",2,2,0.3525669037792853
+BRFSS_internal_test,XGBoost,race_ethnicity,"White NH, Black NH, Hispanic, Other",4,4,0.37353420049057595
+BRFSS_internal_test,XGBoost,age,"18-39, 40-59, 60+",3,3,0.2572213782164291
+BRFSS_internal_test,XGBoost,bmi,"Normal, Overweight, Obese",3,3,0.2948920293095434
+NHANES_external,XGBoost,sex,"Nam, Nữ",2,2,0.4736332511331283
+NHANES_external,XGBoost,race_ethnicity,"White NH, Black NH, Hispanic, Other",4,4,0.47872722172104387
+NHANES_external,XGBoost,age,"18-39, 40-59, 60+",3,3,0.3600473760879204
+NHANES_external,XGBoost,bmi,"Normal, Overweight, Obese",3,3,0.40044250465479164

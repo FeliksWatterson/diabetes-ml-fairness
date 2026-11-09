@@ -1,0 +1,7 @@
+dataset,original_y,alternative_y,n
+BRFSS_internal_test,0,0,77756
+BRFSS_internal_test,1,1,12088
+NHANES_external,0,0,8558
+NHANES_external,1,0,549
+NHANES_external,1,1,1723
+NHANES_external,1,Excluded,2

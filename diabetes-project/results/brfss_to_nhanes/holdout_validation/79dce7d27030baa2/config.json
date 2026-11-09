@@ -1,0 +1,102 @@
+{
+  "brfss_sha256": "a0de41b6ffa5c712fa206b1971745a7bc988eb0352af837a33c95e095d6d480c",
+  "budget_complete": 20,
+  "calibration": null,
+  "class_balance": "LR balanced; XGBoost negative/positive from each fit",
+  "columns": [
+    "age",
+    "sex",
+    "race_ethnicity",
+    "bmi",
+    "smoking_status",
+    "physical_activity",
+    "heart_attack",
+    "stroke"
+  ],
+  "cv_folds": 3,
+  "development": "BRFSS 2017 development partition",
+  "dtypes": {
+    "age": "float64",
+    "bmi": "float64",
+    "heart_attack": "Int64",
+    "physical_activity": "Int64",
+    "race_ethnicity": "string",
+    "sex": "Int64",
+    "smoking_status": "string",
+    "stroke": "Int64"
+  },
+  "external_test": "NHANES 2015-2018",
+  "fit_final": "entire development partition only",
+  "internal_test": "BRFSS 2017 held-out partition",
+  "models": [
+    "LR",
+    "XGBoost"
+  ],
+  "notebook_code_sha256": "5fee1b555bcbadd84771a998e13248ce4f46f1a811e2e5ee0c1c7a8e39890d49",
+  "objective": "mean_cv_roc_auc",
+  "partition_sha256": {
+    "development": "1a09c381be20a73e6e13f7c1243809e99dc7d912533d6ad5ab48111e7d24e325",
+    "test": "089013fa93f78383ada81b16d6dd5481f4f4523f87c1720ab9896cabd982a852",
+    "tuning": "6aaaea6fc5aaac0c0daa1abf1784fa128af3cd3735ad9ee45d879e3da2f390dc"
+  },
+  "python": "3.12.10",
+  "schema": 1,
+  "seed": 42,
+  "space": {
+    "LR": {
+      "C": {
+        "high": 100.0,
+        "kind": "float",
+        "log": true,
+        "low": 0.001
+      }
+    },
+    "XGBoost": {
+      "colsample_bytree": {
+        "high": 1.0,
+        "kind": "float",
+        "low": 0.6
+      },
+      "learning_rate": {
+        "high": 0.2,
+        "kind": "float",
+        "low": 0.01
+      },
+      "max_depth": {
+        "high": 9,
+        "kind": "int",
+        "low": 3
+      },
+      "min_child_weight": {
+        "high": 10,
+        "kind": "int",
+        "low": 1
+      },
+      "n_estimators": {
+        "high": 500,
+        "kind": "int",
+        "low": 100
+      },
+      "subsample": {
+        "high": 1.0,
+        "kind": "float",
+        "low": 0.6
+      }
+    }
+  },
+  "stage": "reverse_holdout",
+  "survey_weighted": false,
+  "test_fraction": 0.2,
+  "thresholds": null,
+  "tuning_max_rows": 100000,
+  "utils_sha256": "2b109fb824b47d1b06f3685ff5cd9d3a5fef3082a71e06b1de05952bbca3b1b1",
+  "versions": {
+    "joblib": "1.6.0",
+    "numpy": "2.5.4",
+    "optuna": "5.0.0",
+    "pandas": "3.0.6",
+    "pyarrow": "26.0.0",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1"
+  }
+}

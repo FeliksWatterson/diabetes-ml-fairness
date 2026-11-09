@@ -1,0 +1,125 @@
+{
+  "analysis_id": "3068e6735ab22885",
+  "config": {
+    "direction": "08",
+    "internal": "BRFSS_internal_test",
+    "external": "NHANES_external",
+    "n_boot": 1000,
+    "confidence": 0.95,
+    "seed": 42,
+    "method": "ordinary IID person bootstrap; percentile; fixed predictions; paired model comparisons",
+    "prevalence_reference": 0.15,
+    "prevalence_grid": [
+      0.1,
+      0.15,
+      0.2
+    ],
+    "priorities": [
+      [
+        "age",
+        "40-59"
+      ],
+      [
+        "age",
+        "60+"
+      ],
+      [
+        "race_ethnicity",
+        "Hispanic"
+      ],
+      [
+        "bmi",
+        "Missing"
+      ],
+      [
+        "bmi",
+        "Underweight"
+      ],
+      [
+        "age",
+        "18-39"
+      ]
+    ],
+    "sources_sha256": {
+      "data\\processed\\nhanes_2015_2018.parquet": "826343c606786bea11080a266d06793bfa5e5399b483f8fcb29952c81d730fa5",
+      "data\\processed\\brfss_2017.parquet": "a0de41b6ffa5c712fa206b1971745a7bc988eb0352af837a33c95e095d6d480c",
+      "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\manifest.json": "27d2666a9dc6b922075c28a9562e27e447ed4dca2d0fe2c22f9fb2b91db111d1",
+      "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\BRFSS_internal_test_LR.parquet": "bf3b0264c8c2127607408f2da1e075d3c4b2deb3cbaae4fdb6b4eb6c87f8edcb",
+      "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\BRFSS_internal_test_XGBoost.parquet": "ecf5f094e4fcb6601498f70a4a266e6ecd7858c27ee7b14b5821a071420ea8e9",
+      "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\NHANES_external_LR.parquet": "0d6db2aef3db9646fb4ba356122cdfb3ec4269e4a5fe1147a21fc0517395db11",
+      "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\predictions\\NHANES_external_XGBoost.parquet": "2b8295faa1be1acd75a2441a603b32cdc43ec96d9c19e5d847b2228b9c1c4a5c",
+      "results\\brfss_to_nhanes\\holdout_validation\\79dce7d27030baa2\\split_membership.parquet": "f4f949ee62fefaee07c01ceb0d0cff103935474d709108a5cbfb19d017c178f6",
+      "src\\dataset_shift.py": "573d1a75352e81fd4992d4cf5b87a978d765892af52142f9fe53b989ec5e550f",
+      "data\\raw\\nhanes\\2015-2016\\DIQ_I.xpt": "e87587479b29f175b63eee5dd40d582837e3e3fe2665503012085eefdb978e0d",
+      "data\\raw\\nhanes\\2017-2018\\DIQ_J.xpt": "1ecbf5360dfc331d1efbf32198553dc30e9a1f4cff0a907ed30ca72bac797f89"
+    },
+    "extension_code_sha256": "f607fadfd834241f1ade4ea09999ecf32b5022ee4c6ead4ba7f882b0e992d76e",
+    "versions": {
+      "numpy": "2.5.4",
+      "pandas": "3.0.6",
+      "scikit-learn": "1.9.1",
+      "scipy": "1.18.1"
+    }
+  },
+  "frozen_scores": true,
+  "models_refitted": false,
+  "threshold_used": false,
+  "ci_scope": "fixed-score IID person-level approximation; not retraining or survey-design uncertainty",
+  "label_scope": "frozen-score endpoint sensitivity, original and alternative labels on common subset",
+  "output_sha256": {
+    "categorical_distribution.csv": "dc93b7330f989209df1b53228039a6c3779f64394cc78a8ef349a1554b9b1d37",
+    "config.json": "47371bbd4dd2f1b70cdd2f373224d4cf7ddf8bef5e0cb14fb7de9753262585e6",
+    "external_internal_delta_ci.csv": "d235cbe88a6e99a791f41c995023b1ed965c88e7e5a851c4ea561cace6826dd7",
+    "group_composition.csv": "f017763779f114956c945ff655f4176343bf09c19a17084e7f266112c2e1f3d6",
+    "input_shift.csv": "b21bd8c1a56aa36b49b2ce73bbf526cd5ac5f1bed13c00eb19d81ec6999b16db",
+    "label_coverage.csv": "d43b468327dccd7a88b5e9b8fc762c01fd56c195d896543ce3465bc4aab81ed9",
+    "label_sensitivity.csv": "679505d59e6f0d3b07d760d56ad393e06854c890fd7f0f40da203a171f748105",
+    "label_transition.csv": "d78adfb6dcf7b961c2928577c80847602ebdd6831b496f473206b3452c9d2ccc",
+    "metric_ci.csv": "1c7009b6e0c2f080cc422eb68a425d383118be541edf6618423168c6fa900c67",
+    "missingness.csv": "092eeb51f95dfbbda6733d86620a2d3fbfa4bb8817cd323889beaa7c859bfefa",
+    "numeric_summary.csv": "20ac5d985adb2146937f0388f0bfb3b79252888194e0bb628cecc102601e6615",
+    "paired_model_delta_ci.csv": "d8a91fb51228256121bde566a200fd935fc456eabf8378ad0ab9c73194a6c600",
+    "prevalence_macro_ap.csv": "e1e7daa608f0265d018249040c32dd347dd0a85290fb3fc4f0a25a9d8340877f",
+    "prevalence_sensitivity.csv": "129efdd4d86f8a019210972dbe8b9ddc8a31c530e6e3f8f58da49141a888dcd0",
+    "bootstrap_cache\\031ec0fc63efe527e92becd1b1be88298e3230a86325b65fac474c2c20522e0d.npz": "5c028d3517a4556f55f0a4fe78f04005d86bdaee1cb4a0de8712a0225baad99c",
+    "bootstrap_cache\\038e927a0373713c8c62464a8b265d527d175017dd7a8c4cc0a164cad1410ef0.npz": "eda70c5486e82185391f7662880bacef8b3bc00fe08c1ad1f63b974b5cc98363",
+    "bootstrap_cache\\1092354674d3a1d10978999b3f482be1c6b6a6d818e6f0ee74f519c2df700894.npz": "366fd6a5ba6fb1739bb30f59a6f774a7dd8e5e3dfe9dbc2c61dff9c715b77d2b",
+    "bootstrap_cache\\13c78916dd81af26dac226babc15c8403ad4f84dc52340aec110ffd283130897.npz": "ced664b007b91daec5721a8ca02c2abd00dd70d4bf6933481b5fab3647d925d8",
+    "bootstrap_cache\\13f14697068ab395c2617ce3f6d9da28d6a0393fe57e2040270a772c6c49a947.npz": "0b72d748f7890d6e2f9cca36859a4977dd99c9f76e4042ed0a402fe05e914f2f",
+    "bootstrap_cache\\18b322fc39ad5e378cdc4931507eb0449a6d2f001aba7369eb6bc43361c31f1b.npz": "b1914a9c373f9992c6baed29a62fb89e09d4e456b3afb32d02196fe63dabd06d",
+    "bootstrap_cache\\2abbcc423f41d48e89eec3b6ab31c6b835a32b7ee86836dc8d333c2f7a72c2c4.npz": "ee7b358eb95bb1422df1c116fd9b1c23a70564777d3a7edc081dc51cb11c2025",
+    "bootstrap_cache\\4299d9b5faaa484580cb15bc65655d2b3696da2962d365e5cdb7fffb94188caa.npz": "861141945a93f896f34eb098d2f7b08ffa570bc050863b873425bd7bebd00e4e",
+    "bootstrap_cache\\43669dbcbdaaa3403665478d396a95d091568c65f98b95af4121a78a41181f37.npz": "8f3ee8d9abab1cc247c712c2f03d271cff6d4bab60f84d8ac81711c0eb947dd9",
+    "bootstrap_cache\\4369331b8f246c11c1ffb71f6d3d0b3c163b0f52de7ecacd3e32fcf06d9a8280.npz": "d00921b25ead037378773c1ed4f96e69ce9a61e0a2b079625af0e17a8e13a4f8",
+    "bootstrap_cache\\53cfab8d77a412a0050280f7cce0cf08f1eac379cda04ff903bfdb130363c3d6.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\5400e667e60a89237b2becf2f856f79d4c20d25b5e6a8a6f9e13a56510d38a06.npz": "6eedcacc74ad6bb502e5bb77a40af52ea5e0300b42c9b5cd61d4247cc7b5b96e",
+    "bootstrap_cache\\5780dc378ef7e9fc2cd11f89f26658d1cebdef638e0d226be3967dbe2d032442.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\57989ce8b6c4ab47cd740cf7b36c377cb06eee10244bfc14fa5aa580136d9dae.npz": "d89dbc48ed44c448720d6f805662eed90b66339ba09812e9808b5d8ccc8c4f77",
+    "bootstrap_cache\\5f99ff2d0d5a7f338720ea7ecf616840f269c4d403dfab0e2b992c54b64b6016.npz": "3d92431b54d0246ef5bb119ed68c4ecd3c5b2b8147d9e57d404f6fd3e64ea1d0",
+    "bootstrap_cache\\610245ce211dba86c4a774184b001575b460409cb9d2c9175a99faf3e13f7230.npz": "e2b37fca7d9b977699f02dae96ee543f1e7d470aa2b090318dc8dfbf96999a1a",
+    "bootstrap_cache\\6d249d58cec24faab63a8b1c687c177c9601c8e356558e5bc0d46d6064532551.npz": "7eb99377e452fe64d31b1716b66ac6c80f55120067a4e88fd181848ba9266152",
+    "bootstrap_cache\\708c7109862e5b4c7e1571b98c7380c080568e12932c7586bd9d0af07246f750.npz": "15fc8e89215a445d73d660738fb655f901f8f89235930948974b4716923ef1fb",
+    "bootstrap_cache\\73218eaad7864f674100524507b7f6a4060aee5b73675fd0b338c3f56d35fe70.npz": "ddab716fc0072d339acdb1fe41b5c0bdf416e3da45015b600a1d38a937572080",
+    "bootstrap_cache\\757d94dd133d1ad888e38629fcfb83e7b75534e64d7e8767469e0ecf2dc25a76.npz": "f574aff2eae2cd08a95eb5dbcb6edfcd3c8ad44715ca4b39c91adfc94888a6de",
+    "bootstrap_cache\\846027d1782a7d85c1d2399f38cffb9dc647ebf887b79ca0301cce613a664854.npz": "f2d078f2942d75dfbb1a8fea6a60c9bf4b9d3a25e230388ec340d9f6e91debe2",
+    "bootstrap_cache\\8a46c23c99e36da3eabd60e09896abbf154f6c1133c40475759bc7f76d3f083b.npz": "6a0d21e79b22398f4cfe67483ebeb8983966a98cc21d74d04adc76537861c9dc",
+    "bootstrap_cache\\8b7f8a569d51d079cad8a316a10bd0328f8ba0f1e7b503ca0c27960dc4b71865.npz": "a65892b29cf33cf66b742ca12123f8cff44699a5426579ea846f92bbc4ce9c96",
+    "bootstrap_cache\\aa169e43d2e49d30d6a0ef1e4fd5a2a58dbe3ee76f1251f83c35ef5c9068dc0b.npz": "4801eeb744e955b35aeb8289994dd14141bb7d1a0f9fe06cd60b03adefced1d9",
+    "bootstrap_cache\\ab2cb4c8f18c5d71a0a3a0c10359dbf5dffb2af4e13a1acb7a2bc7ab9182d8c8.npz": "7ebd2793ade7fbf310730c09a1f20e9e84fc1e3332bf52c636b4dba71fadd21c",
+    "bootstrap_cache\\ba63b334c703c050aec495e8647b52bb3ae68cc78a7e9daa7c6b88b3118178a2.npz": "af3163604537dd38844a87260f26814c37b45cf59128b0ffba924df721dd3498",
+    "bootstrap_cache\\bf7451fbdc55e3ac6b0fb98e194873a9e3ccf884d6e68076ba0cc6df3946a592.npz": "6435d485da6e439297cdcb3d57fe312748ea6e32c79f60dd3c57397bc204790f",
+    "bootstrap_cache\\c1bb68c7508980c8d274663eb3adc0cdf3a7c465b91ffe8dcfcf34c024b4dea4.npz": "1ce5183aa47c8a7166a2430ad07eeb935518426540b8c306d94720b75683683e",
+    "bootstrap_cache\\c91b917228831b905275a30f3865f2f3e82cac06e78c3055c4afa6b428ba3e01.npz": "9b61f3d63e5fdc623c04c016cc6a278614c8258e558d3ff3b9fd632e1754f13f",
+    "bootstrap_cache\\cbfc6f8d284eef3141bf41ab0d83dd615c4851e58da6907532a17bf62eb35660.npz": "264df776408e7ccdaf083e4e5b5f44632a6f687849d3627c274faf4ff31a773f",
+    "bootstrap_cache\\cc20fb3e4b26027890c86c5a7a022c39150c64d9871d708bc79c2a0ccbc9eb78.npz": "eaae22cf35199b463c18a63c6fdea6b82a6875685c3e5bd73f3a20beaabf9248",
+    "bootstrap_cache\\d96d713bfd1ae91da6eedf0766eca840adccf183799b632bcbed6e9433791aa7.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\e1d004808df3e6edc5ac21d01610ab64bb8198ee12674f2b2d2fc4f9783b60f4.npz": "5846d24fdcc6aee2d5d7851bb8229da533293b0510a97a28b0eb43ec157e4bda",
+    "bootstrap_cache\\e70e74d0dd99139653a6d8d72be970df992f6e3292751f2ebc6ac62afd36e7c2.npz": "7858e1fc01e3f780719529656f4f4d5fe1e7f25448fa72283d15bb77c63973ca",
+    "bootstrap_cache\\ea042a25eb6fc5f930c01e5630379a7944cc714b8cdb468fcf7c81adf6e0ad68.npz": "6ff86865159afa8899dc98d493e2f9499d787953a3172692c1332b6a3b10ac12",
+    "bootstrap_cache\\fa339dd352ca21d4213f2942c7a9a34b64935d33073eda9ddda33236e851e92a.npz": "52f714a8fc590ad686fa2d0989a0d9b80000e86d8af43c014855c6a8c328b4b9",
+    "figures\\ap_prevalence_sensitivity.png": "111de8a639703113a87c3d11508535e3c966bbb433915a8775f40730fcb22cfa",
+    "figures\\delta_ci_priority_groups.png": "f673ceb697252891a39d9c2014030747c0b744ac1ee3160bb2dc3016e3f087b3",
+    "figures\\missingness_priority_groups.png": "b9f9314e6464f57b0dcaded8c4cb93cd5b61870aea750ec81978ee3b981404bf",
+    "figures\\numeric_ecdf.png": "9e283c3371f5ba292e97d3e9832db9426c97cdc6cc176b3c522eefd1fc7e4b1b"
+  }
+}

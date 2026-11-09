@@ -1,0 +1,69 @@
+{
+  "confidence_intervals": false,
+  "design": "stratified development/internal holdout + external validation",
+  "external_test": "NHANES 2015-2018",
+  "internal_test": "BRFSS 2017 held-out partition",
+  "map_definition": "unweighted mean AP over primary groups within each attribute; NA if any primary AP missing",
+  "model_sha256": {
+    "models/reverse_validation/holdout/79dce7d27030baa2/LR.joblib": "c5f81788fd7af20950035f1efef92acbde8df706446bf9c4458f0a4f6483b53f",
+    "models/reverse_validation/holdout/79dce7d27030baa2/XGBoost.joblib": "71e9c9c224db842b520ec4c2649bcd1052523a139141ce2e140738e0d154c55b"
+  },
+  "output_sha256": {
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/LR/artifacts.json": "985348c6c572c2d4b9f579e09ec5c30b5b65faba3ddbe5f61ca9448e5716e510",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/LR/best_params.json": "af6d98eb9073d85c2f603cbf76decb6dcdd1ea7fb566823ddded6bb1eecb5aa6",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/LR/metadata.json": "3a0183eb31a38d9750e5ac75bc8e071fe945d3becd0598aacd2333282f95f5cb",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/LR/trials.csv": "dbff8da9197bf6573b1a72985436c8984d8981d783765f213b8d46442aeedd05",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/XGBoost/artifacts.json": "312bcb5a0d1b93586ad96fd7e53527c0d83605ba6dd3b7917f6a85798980ffe7",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/XGBoost/best_params.json": "5bbc62971fb77b0be9b01b38b3765827a4e2bc7dd4c26fcf1b8a1e4e0c832116",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/XGBoost/metadata.json": "8e7375f39a0096501e28acd722f4f16b412fa384914fd650c723b8dab0ee9e0e",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/XGBoost/trials.csv": "af202fa4bf78a2a6cb5a086e34e0ad22d8fbf1e2542b97e95d5dd1fb1e3424c5",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/auc_ap_by_group.csv": "eecec6bf148d0aae7cd3847062ec4a96708c27b09a34908a3f44152c6ef2e0a8",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/config.json": "9bd79af5cd487fd42a97a265924c6d98355dfb23ec30c0da0032f52fb6668273",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/figures/auc_ap_age.png": "1d7d050753f527d81a163dba2aa15224c84facaf4f9d8cff6b567761b3e83d18",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/figures/auc_ap_bmi.png": "2928689a17003695a1c3fcdaeb1bacf6ba9b526266e91c97d38f6bf4b22da332",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/figures/auc_ap_race_ethnicity.png": "e5b04e6a9a9b4b154a7b224cf462a617b8792b1c65838bd5a94b025976ebe881",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/figures/auc_ap_sex.png": "9ef2e6a507eff94a7778ad6e99f3ff67419d7f0a3690243f27d17d0d19e81101",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/figures/internal_external_roc_pr.png": "5cb44e0b3ffeb4c44ec44b59114aed16384d26371cd5f7b0e759183f3462e0e5",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/internal_external_comparison.csv": "c047d920ec7a47fd39e82cc46871e0c237e9f48638bb5e18dcd1c3c3d179c8e2",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/macro_ap_by_attribute.csv": "92344d2b50887bc3a86fdc3e358e538d8159e492bb45766fc10cbd53665f0643",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/overall_metrics.csv": "70d8d83295ff7a2f6be9d935d7ed3ef11c224488215356900d92716bd7869f4f",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/predictions/BRFSS_internal_test_LR.parquet": "bf3b0264c8c2127607408f2da1e075d3c4b2deb3cbaae4fdb6b4eb6c87f8edcb",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/predictions/BRFSS_internal_test_XGBoost.parquet": "ecf5f094e4fcb6601498f70a4a266e6ecd7858c27ee7b14b5821a071420ea8e9",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/predictions/NHANES_external_LR.parquet": "0d6db2aef3db9646fb4ba356122cdfb3ec4269e4a5fe1147a21fc0517395db11",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/predictions/NHANES_external_XGBoost.parquet": "2b8295faa1be1acd75a2441a603b32cdc43ec96d9c19e5d847b2228b9c1c4a5c",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/split_membership.parquet": "f4f949ee62fefaee07c01ceb0d0cff103935474d709108a5cbfb19d017c178f6",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/split_summary.csv": "de78c93da651cc416658bd512fef78bd985d6be201e4754b768f266fa7b2de58",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/tuning_splits.npz": "030bd20e353542fa2b1454eed5ca0fad22db05955ed432b65cacbda989a11bb1"
+  },
+  "primary_groups": {
+    "age": [
+      "18-39",
+      "40-59",
+      "60+"
+    ],
+    "bmi": [
+      "Normal",
+      "Overweight",
+      "Obese"
+    ],
+    "race_ethnicity": [
+      "White NH",
+      "Black NH",
+      "Hispanic",
+      "Other"
+    ],
+    "sex": [
+      "Nam",
+      "Nữ"
+    ]
+  },
+  "run_id": "79dce7d27030baa2",
+  "same_fitted_pipeline_for_both_tests": true,
+  "source_sha256": {
+    "data/processed/brfss_2017.parquet": "a0de41b6ffa5c712fa206b1971745a7bc988eb0352af837a33c95e095d6d480c",
+    "data/processed/nhanes_2015_2018.parquet": "826343c606786bea11080a266d06793bfa5e5399b483f8fcb29952c81d730fa5"
+  },
+  "survey_weighted": false,
+  "thresholds": null,
+  "training": "BRFSS 2017 development partition only"
+}

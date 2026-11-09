@@ -1,0 +1,8 @@
+{
+  "sha256": {
+    "models/reverse_validation/holdout/79dce7d27030baa2/XGBoost.joblib": "71e9c9c224db842b520ec4c2649bcd1052523a139141ce2e140738e0d154c55b",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/XGBoost/best_params.json": "5bbc62971fb77b0be9b01b38b3765827a4e2bc7dd4c26fcf1b8a1e4e0c832116",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/XGBoost/metadata.json": "8e7375f39a0096501e28acd722f4f16b412fa384914fd650c723b8dab0ee9e0e",
+    "results/brfss_to_nhanes/holdout_validation/79dce7d27030baa2/XGBoost/trials.csv": "af202fa4bf78a2a6cb5a086e34e0ad22d8fbf1e2542b97e95d5dd1fb1e3424c5"
+  }
+}
